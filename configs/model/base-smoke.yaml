@@ -1,0 +1,23 @@
+# Smoke-scale Base Reconstruction config: tiny data, few epochs.
+# Used by config-validation tests and CI; too small for real learning.
+seed: 0
+epochs: 2
+batch_size: 2
+learning_rate: 0.001
+weight_decay: 0.0
+grad_clip: 1.0
+mixed_precision: false
+checkpoint_dir: checkpoints
+data:
+  split: train
+  n_samples: 4
+  seed: 0
+model:
+  name: base
+  hidden_channels: 8
+  depth: 2
+loss:
+  pixel: 1.0
+  structural: 0.25
+  edge: 0.25
+  frequency: 0.1

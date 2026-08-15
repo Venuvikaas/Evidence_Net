@@ -1,0 +1,23 @@
+# Development Base Reconstruction config (Phase 3, governed comparison).
+# Deterministic anchor U(y) + learned refinement h_b(f(y)); composite loss.
+seed: 0
+epochs: 5
+batch_size: 8
+learning_rate: 0.001
+weight_decay: 0.0001
+grad_clip: 1.0
+mixed_precision: false
+checkpoint_dir: checkpoints
+data:
+  split: train
+  n_samples: 64
+  seed: 0
+model:
+  name: base
+  hidden_channels: 16
+  depth: 3
+loss:
+  pixel: 1.0
+  structural: 0.25
+  edge: 0.25
+  frequency: 0.1

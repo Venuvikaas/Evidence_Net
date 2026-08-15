@@ -1,0 +1,23 @@
+# Development direct-restoration config (Phase 3, equal-capacity baseline).
+# Same interface and procedure as the Base Reconstruction, no anchor.
+seed: 0
+epochs: 5
+batch_size: 8
+learning_rate: 0.001
+weight_decay: 0.0001
+grad_clip: 1.0
+mixed_precision: false
+checkpoint_dir: checkpoints
+data:
+  split: train
+  n_samples: 64
+  seed: 0
+model:
+  name: direct
+  hidden_channels: 16
+  depth: 3
+loss:
+  pixel: 1.0
+  structural: 0.25
+  edge: 0.25
+  frequency: 0.1
