@@ -5,6 +5,22 @@ execution plan lives in `EXECUTION.md`.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-08-15
+
+### Added (Phase 2)
+- Evaluation metric contracts (`docs/evaluation-protocol.md`) with PSNR,
+  SSIM, MAE, edge displacement, structural error, and frequency-band
+  diagnostics.
+- Grouped statistics: seeded group bootstrap CIs that resample source
+  groups, with guards rejecting pixel-level aggregation.
+- Deterministic bilinear reference reconstruction and classical
+  median+bilinear restoration baseline (`models/reference.py`).
+- Baseline inference pipeline (`inference/baseline.py`) and restoration
+  comparison reporting with dependency-free PNG comparison sheets
+  (`reporting/comparison_report.py`, `scripts/evaluate_baselines.py`).
+- Smoke pipeline extended through baseline evaluation and report
+  generation; EXP-002 records the first harness results.
+
 ## [0.2.0] - 2026-08-15
 
 ### Added (Phase 1)

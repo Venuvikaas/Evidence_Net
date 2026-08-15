@@ -55,3 +55,36 @@ are written before examining final test results. The format is defined in
   grouped by pair, never by pixel.
 - Decision: **continue** (ADR-005).
 - Artifact path: `runs/audit-*/` (metrics, summary, alignment examples).
+
+---
+
+## EXP-002 — Classical baselines through the trusted evaluation harness
+- Question: Do deterministic and classical restorers give usable comparison
+  anchors on the validation split, and does the harness produce grouped,
+  pixel-safe statistics?
+- Primary metric: PSNR and MAE per source group, aggregated with a 95%
+  seeded group bootstrap (groups = samples, never pixels).
+- Secondary diagnostics: SSIM, edge displacement, structural error,
+  frequency-band relative power differences.
+- Baselines: deterministic bilinear 2x up-sampling;
+  classical median-5x5 + bilinear 2x.
+- Dataset manifest: `official-train-source-v1.json` +
+  `dataset-splits-v1.json` (validation split only; Test_NoisyLR untouched).
+- Configs: `scripts/evaluate_baselines.py --n-samples 8 --seed 0
+  --split validation` (sample selection seeded; n_boot = 1000, seed 0).
+- Acceptance rule (predeclared): **continue** if the harness reproduces
+  per-group metrics with finite CIs and both baselines complete without
+  error; use the deterministic anchor as the Phase 3 comparison floor.
+- Result: harness green. Deterministic bilinear: PSNR 24.67 dB
+  (CI 23.23–26.20), SSIM 0.572, MAE 0.043; classical median+bilinear:
+  PSNR 24.41 dB (CI 21.80–26.92), SSIM 0.516, MAE 0.043. Edge displacement
+  lower for the deterministic anchor (4.66 vs 9.69 px). Both baselines show
+  large mid/high-band power deficits (classical −0.66 / −0.79 relative),
+  consistent with the inputs being pre-degraded (Phase 1 alignment
+  uncertainty), so low PSNR is expected before learned models.
+- Confidence interval / uncertainty: group bootstrap over 8 validation
+  groups; CIs reflect cross-sample spread, not pixel counts.
+- Decision: **continue** — deterministic anchor accepted as the Phase 3
+  floor; harness reusable for every later model (Phase 8/9 onward).
+- Artifact path: `runs/baseline-eval-20260815-171136/` (comparison sheets,
+  comparison-report.md, metrics.json).
