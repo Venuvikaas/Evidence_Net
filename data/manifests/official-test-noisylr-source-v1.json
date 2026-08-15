@@ -1,0 +1,6830 @@
+{
+  "created_at": "2026-08-15T16:25:39Z",
+  "dataset_hash": "aab75186e9a46982d24e9bef7494989a26be29a5194f90a145530d1cdce1ee9c",
+  "dataset_id": "official-test-noisylr-source-v1",
+  "files": [
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0010295246029272676,
+        1.5406136512756348
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000000.npy",
+      "sha256": "be17df2d30c69398e9ae903ecee7cb7a5727ded371b1e234fe8380ba2fe8cc03"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.015903551131486893,
+        1.4408851861953735
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000001.npy",
+      "sha256": "7c7ac11282c5cbb963025c217ea387b173aead8078abaed41d453bf5390c87e5"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0013688242761418223,
+        1.5148637294769287
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000002.npy",
+      "sha256": "2a230e33bc9f51ead1e53120e843e7903e53ee52069e0eef60d268c8b2c17a5c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0012985705398023129,
+        1.2556816339492798
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000003.npy",
+      "sha256": "79f77e47f90d5742ad75153d6b9489b397f10af6fa62b3ee37ee7722c85a73f5"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03735298290848732,
+        1.5844755172729492
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000004.npy",
+      "sha256": "2d0f90d2650fc1ce45830adcbf9bb31833567d43399b19ed1ab495915f1062a9"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0043469443917274475,
+        1.5697201490402222
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000005.npy",
+      "sha256": "077ebfb8c4c5b63a1c8aec0bc58b89719b94520a1d35081367649a39dff60a9f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.011498667299747467,
+        1.4034093618392944
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000006.npy",
+      "sha256": "b8b81fd098ef36a06fbf5fc50652a8d58a0ad620c9e1f584ea6841e071456b04"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0467996671795845,
+        1.3110368251800537
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000007.npy",
+      "sha256": "ca70c0bad661c811931b8bb1efdc24c4a181b59bff44a91ad55c75eee8a3f75c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.024353325366973877,
+        1.4542814493179321
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000008.npy",
+      "sha256": "89dcd5033dc8d8d78cbd871a850a7ce9359cf19666e44e15aaeadb3f1ffa107a"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.012526189908385277,
+        1.4853037595748901
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000009.npy",
+      "sha256": "9dceb680fcae75ee5330c1c3d72d8f6189945a2db69eeb0876d72677f173469f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.033061739057302475,
+        1.5027787685394287
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000010.npy",
+      "sha256": "6ad7386e263e9fb265624b50fb16c5ba9335c20695d433c0ccbb2418680bc8e1"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.10203442722558975,
+        1.5107743740081787
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000011.npy",
+      "sha256": "b13534252cd68431b03342b200213cd8d516ecfcce6df3729fcb7ba005becafe"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.1344524621963501,
+        1.474102258682251
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000012.npy",
+      "sha256": "582edc3e67a0fc8a4b7978f16683ea395cb89145cd14ee739b97e41a45529b46"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03720483183860779,
+        1.4663217067718506
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000013.npy",
+      "sha256": "af63790380103c3c7617b928187ec8ab9932b46053167cbfe2bded874d128d73"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.20278580486774445,
+        1.5618135929107666
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000014.npy",
+      "sha256": "67a3930f2d47e5e2202203a479dda3c75180224189c48a0aa091f5531d56daa6"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.013284986838698387,
+        1.5034836530685425
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000015.npy",
+      "sha256": "5ef0f8fb0164739e82d29d83129742c0a38941ac45e3f483f17e16486b24e3b3"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.027014145627617836,
+        1.5624456405639648
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000016.npy",
+      "sha256": "1d8e673c4776daebfa80461611b7c99c8c5c9d2e7ddbcdfa948e3031a56f09ec"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.09750420600175858,
+        1.3915926218032837
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000017.npy",
+      "sha256": "1949cd6d18e37adf14adb00b0e22553fbdad2df99c59b41d2c4c2bfb99fdb7a5"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.05306606739759445,
+        1.564294695854187
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000018.npy",
+      "sha256": "0e8e9437e64c8c0998106bff7b05316c3e718a5ed5a6068d07e13ea09b0c2c90"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03738158196210861,
+        1.6968563795089722
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000019.npy",
+      "sha256": "b7c7f178c28a2753fbb3478ad123a4986e348901fb3229d252fa45fee1c8dd8b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.006818494759500027,
+        1.4167156219482422
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000020.npy",
+      "sha256": "8ab8fb7380408704d1e64e7aacfcb465f4bf9574ca8e1a5f4edf066a00a43d23"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.006679723504930735,
+        1.257148027420044
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000021.npy",
+      "sha256": "823bba5d34547e2b5a68d3443b6476b9533142cf2b9af1785ed539cd20095c42"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.012342918664216995,
+        1.5186772346496582
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000022.npy",
+      "sha256": "19361eb291f8a703d471eefd457820ad11d5d816efd913ec0d7ac1acfd35abd5"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.012044358998537064,
+        1.2618011236190796
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000023.npy",
+      "sha256": "82f2a3fe877a32bdcfdd6c9f80e39f882c18cf21503a22a34273d000c3c945da"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.016302770003676414,
+        1.6764450073242188
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000024.npy",
+      "sha256": "88816ca8235e2851f81164dcfbad9813045043cc8484431813cfb4e0b07608c7"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.005274725612252951,
+        1.2798211574554443
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000025.npy",
+      "sha256": "99991356df3896498d84552ddd98ca4bc6b73e7a6d4612b4f10ca27090e65941"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.023977546021342278,
+        1.3064173460006714
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000026.npy",
+      "sha256": "a2dbb3cbd61e2b456065f152e4c870f2182630e6411e34137e2f1f5158144f8b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.020222527906298637,
+        1.6984533071517944
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000027.npy",
+      "sha256": "dbc3eefbd486c9790f89b3b0bcb5588fb012f8bcc3dd9b5b693329ec9588255c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.07955899089574814,
+        1.4017478227615356
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000028.npy",
+      "sha256": "da5b6b13b3d69fcc44238a0b55cfd577cc92a905aeede454f97735c1c3acfeb5"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.039602480828762054,
+        1.5516810417175293
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000029.npy",
+      "sha256": "78691ae3376457b2d16cdced9fd0803c41036180caf73af6fb2faff17c14b476"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.007272800430655479,
+        1.595907211303711
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000030.npy",
+      "sha256": "5b3ce654f986fe5604a6465f0b13f61ec19abc13abbce53ff4d461870b00c334"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.02898578718304634,
+        1.5028138160705566
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000031.npy",
+      "sha256": "343bf3366cbf1a35d16da4879d872c3aa0618f83fae30cebbea99a451ea3eceb"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04182829707860947,
+        1.7388486862182617
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000032.npy",
+      "sha256": "3597262ac9ce905d05751becd0fc122a14abf6694be63bff5a03ad558eed03ba"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.022771179676055908,
+        1.1520297527313232
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000033.npy",
+      "sha256": "fe2e8b3279c177ab77782607ba69322d91e2b16578f384ee7953949e4a682c3c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.006472394336014986,
+        1.4576514959335327
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000034.npy",
+      "sha256": "cf2241b8a3a8a093386b2699d738ba8895dd17d9d3093f43dd3dca010552dbd9"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.01508169062435627,
+        1.522909164428711
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000035.npy",
+      "sha256": "ba129ff748c02a0ff79c353d04c1a9c15ebf6cf4c67a8d9b7247b8032cb5717e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.021611688658595085,
+        1.4139082431793213
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000036.npy",
+      "sha256": "e816c9259b559a4185f6bb291580ee6ac913348cebd30384dad969ea74172e09"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.06950795650482178,
+        1.601548671722412
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000037.npy",
+      "sha256": "536cd42b3391eb5722f932be67bf6131cd0847ed24a8a648c459dfdca480058b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03309563174843788,
+        1.7282482385635376
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000038.npy",
+      "sha256": "0d740b76b370afc6d35c36f57165b2dfa829442792b073ca504d1b9e0c9bdef8"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0022259580437093973,
+        1.2764060497283936
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000039.npy",
+      "sha256": "875b34cb8eafff39c5b1ac95c5b43a5d81d1a670cbc331b6390d7ba493dfb1ff"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.06246362254023552,
+        1.4962846040725708
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000040.npy",
+      "sha256": "f988e20140ac7f179788b28a477d1c44682c52c6120f9dfec19511b4998babc6"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.007728970609605312,
+        1.734605073928833
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000041.npy",
+      "sha256": "41325f4035d28f0ff9ead2eac6624fab8b3e0369c1bf867db6ca9655a56d6068"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.02235673926770687,
+        1.2884819507598877
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000042.npy",
+      "sha256": "f2a1c4eba686972bd1d9cdb54ed316c8941bab89ff81a5bb65cd00c443f3141d"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.006955772638320923,
+        1.4922975301742554
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000043.npy",
+      "sha256": "1e80ef80abb08108e48773401a50c93d36ff106807244e43a36ed0395eec38d6"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.025105314329266548,
+        1.2644487619400024
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000044.npy",
+      "sha256": "727bf5ba0d630bfed5453b11a185112805030e3291070af0193ac42723c47c2a"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.020837927237153053,
+        1.4554882049560547
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000045.npy",
+      "sha256": "d4bff16617b7e65991d97bb180e10bcee14e55ca6bd81ca73566f6b3024c1d34"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.040595486760139465,
+        1.4976794719696045
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000046.npy",
+      "sha256": "8d8a5b6a49da1a52246c971013292c26431210c596932f8cc98be752da10d53b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.006891437340527773,
+        1.2213330268859863
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000047.npy",
+      "sha256": "0bfb19a1e3c609303e636b570f5fa43611c558ff482163491f1e8970268269ae"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.10161163657903671,
+        1.6376811265945435
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000048.npy",
+      "sha256": "93ab52c6b8c2ca196fd7c193eb5b030af31b080830c719264a71124aa7e7498f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.094990074634552,
+        1.3065272569656372
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000049.npy",
+      "sha256": "f2a80523003e8d7b6611fcc89a4ed3879cd0bad71c760226861fdf5ce4707a8e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.012127771973609924,
+        1.3011881113052368
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000050.npy",
+      "sha256": "bdda3379ccb176a7ecaaf2867792cf9bf3873f796b7752ef8c0102ec4752311c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.12312734127044678,
+        1.4818615913391113
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000051.npy",
+      "sha256": "f438bbe8ce65c66a975eb0f7932de5ddfa28c2fb4c11387be86b227d50088f7c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0036556082777678967,
+        1.4306862354278564
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000052.npy",
+      "sha256": "54aad655b224a57365876a7bd494e1c55f1e2a14f523c3e5d0752083a368ba40"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.014233189634978771,
+        1.363586664199829
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000053.npy",
+      "sha256": "c43802942e400a37c337da7ee8db9a635e3cf07dfc1c53947c199de594c0b397"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03209904581308365,
+        0.955432116985321
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000054.npy",
+      "sha256": "5950f2b20ee2e19ba3d334878a675034a8337c5463dfa6265e028a818a710b02"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.006557231768965721,
+        1.739500641822815
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000055.npy",
+      "sha256": "6a40d25832d77805746175177a28a44b722e2f9737f4c1674ee9f34d2a6d0f31"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.002931223250925541,
+        1.366742491722107
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000056.npy",
+      "sha256": "85eb9a8fdb504f0b86d48f026f751be9d633f10a11478f5aca5d75f19f847836"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.05129025876522064,
+        1.3487722873687744
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000057.npy",
+      "sha256": "474ffbe4880a8826b218a29b2c871ff776dc491b30813860164446a2dffe2248"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.010100733488798141,
+        1.4483424425125122
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000058.npy",
+      "sha256": "62f2bc547a0efa089d26cbe1d262474a869dd8f814f2b2d6c43f7a3daace0ab1"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.060910116881132126,
+        1.4449639320373535
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000059.npy",
+      "sha256": "acf4b5a8472d8373a0eb9cc3f2675472454c96f1f7fa21c15a4f40e696cc815c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0002703614009078592,
+        1.2600969076156616
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000060.npy",
+      "sha256": "acd10729299b892e3270f76d63605933cfd09c5baacaea9b600f33e8d6ee4807"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0032568424940109253,
+        1.8954665660858154
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000061.npy",
+      "sha256": "4fb777c4beb552f1c77054e474249ec4a485a835b150802702050e6b41985af6"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.07603519409894943,
+        1.3882285356521606
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000062.npy",
+      "sha256": "85a5a91cf11250c861c196bfaef253d4238c570591cc2dfe1095667485e06df2"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.017348656430840492,
+        1.361873984336853
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000063.npy",
+      "sha256": "51bd77506e38c3d772e78203622f1948c17cde40c8a4151bc5d2406efb527427"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.015040631406009197,
+        1.3627477884292603
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000064.npy",
+      "sha256": "bf7c21754524b2437a94dae4787c27797a8ecf7a134f65693e1c8924186ff610"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.061868831515312195,
+        1.5118807554244995
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000065.npy",
+      "sha256": "6bc2f9274244026b8d3f09d3b700accb7f4a390deea40a69edb3341ea4849ae8"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.017900267615914345,
+        1.450134515762329
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000066.npy",
+      "sha256": "248a9d3861eac3b0bc6db2d418a37ebb5f065ccb2a4fdd5209e6026f5c2b4d05"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03924190625548363,
+        1.5076568126678467
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000067.npy",
+      "sha256": "5c43d1a51ce31287ce7950c1c1b843b9580d12ffcac03581c7858f2fb205f350"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04746910557150841,
+        1.2823598384857178
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000068.npy",
+      "sha256": "568760249fefbdd41c1a96f8c62d928e679ce3915d2c823227d5c57d8c70078d"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0022176294587552547,
+        0.8063517808914185
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000069.npy",
+      "sha256": "5da4a89f035baa56ba2720c40b792f0f8dd952e6c62a3e3ca06b009e21daff50"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03100842423737049,
+        1.4536234140396118
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000070.npy",
+      "sha256": "8c8ebf4bbed939830d6e6197d67a6db49d71e40475364c17a577d5243dc3e67c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0011513479985296726,
+        1.430288314819336
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000071.npy",
+      "sha256": "bcae4f6821e44f3841c1901f4a6a5e9008bc6b104b70f1a18d132fefd7b1a3ea"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0021352560725063086,
+        1.5604768991470337
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000072.npy",
+      "sha256": "a01e34aba5e0c1bb48d6fe81bd5520f6683855a65c0bdcbc54458293e5d58088"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.010646653361618519,
+        1.1438424587249756
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000073.npy",
+      "sha256": "db12025a2b50043a7644562553cbd5f3a58e44fd2a2600bbb8cb0c5d49612a14"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.011536840349435806,
+        1.450401782989502
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000074.npy",
+      "sha256": "33a2f0c00930cf46cb949a26980112306fb4a6abaa033bf9a5e6fa82bf80bdd0"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.12650372087955475,
+        1.6818983554840088
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000075.npy",
+      "sha256": "0a5f3b7afa00f85f915debbe4c89991022057c77002e61af5a542b8593f10439"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.004640292841941118,
+        1.425290584564209
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000076.npy",
+      "sha256": "98af8a23517ae74907fe53acd9e42995eff0eb7d7f3c7ce24b521dc11015232e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.01537022553384304,
+        1.5206611156463623
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000077.npy",
+      "sha256": "1c4803cef95d28cb5527668dad87cd6d58c12c256a63c7a89dc3ff1cca1af066"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.11459000408649445,
+        1.4599602222442627
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000078.npy",
+      "sha256": "6871deca4ab6b8a42e179cd8c0ec32169a788ebd4e93fb7c324b0fdc724bd62d"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.01430854108184576,
+        1.4906116724014282
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000079.npy",
+      "sha256": "be2f71eea438a532ee0093d4cbddb3964742fa968299bc064da390db86234907"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0015989778330549598,
+        1.775122880935669
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000080.npy",
+      "sha256": "15e951408b1abd03a83bbc65bc52ee98e26a2822420940d5492354455b87e18c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.06621593981981277,
+        1.5454267263412476
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000081.npy",
+      "sha256": "abf09f25ea8abfc2b6466657731a026fab50cc7676bdb55404d831eaca220441"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.009192042984068394,
+        1.5379630327224731
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000082.npy",
+      "sha256": "c7da632639caefdec44760092f6fde0cfd544ffb5fea6921ee932d4392194dd9"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0028025414794683456,
+        1.5537577867507935
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000083.npy",
+      "sha256": "e5dca6e9acc17225bfe530f586c77a4041278462492ad163da0b175b0c0dad88"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.037790268659591675,
+        1.5437208414077759
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000084.npy",
+      "sha256": "cf66567236e5ddfb8ec29e81d88c970df1b911a91fc2a6b3235788a27374938e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.01355674397200346,
+        1.134184718132019
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000085.npy",
+      "sha256": "6149b1ceffcf7b4ce58c9d206ec77d53c59cd48469233ca6c876659d8c187f47"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.2248806655406952,
+        1.6487048864364624
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000086.npy",
+      "sha256": "fd77899962def029ea5f4499e2aa70d8fe3793eaa0138852890828621a5f1133"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.015843631699681282,
+        1.3066946268081665
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000087.npy",
+      "sha256": "bbe8370102891303a87b9b0db653cf4db07ef6e75f9488dc76af7c39c93dcfcd"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.02446736954152584,
+        1.3467427492141724
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000088.npy",
+      "sha256": "00a89fd71f5e5265862e2cc3b67939a6df12055682892e877f2a9a8231959bc7"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.00025988349807448685,
+        1.217986822128296
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000089.npy",
+      "sha256": "e15db000b9e48bf8c954c0f2212712fa8ea701b5a843748f59b2ece39edc3445"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0069806077517569065,
+        1.4952327013015747
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000090.npy",
+      "sha256": "fa6dc54d569aa59899a8e0682a0eccbcdb11bce87a97cc2f5c87f8a6200f002b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.02632271870970726,
+        1.1459406614303589
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000091.npy",
+      "sha256": "d240c81d52d955e993cfaca34a16089df8557d72f0daa3398fdea7398f6bae6f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0015306506538763642,
+        1.2592111825942993
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000092.npy",
+      "sha256": "8cab0dfd35e6a868279d29c47d2e3ecfcc1fff1a86ee62e02c761edf50ec28a5"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.07367683202028275,
+        1.5369153022766113
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000093.npy",
+      "sha256": "f262ea2cf9e2770ba7b674a48663dddf6bac215686520ce3f00a91be85042696"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.049958065152168274,
+        1.5029544830322266
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000094.npy",
+      "sha256": "1c02bd8abc83a39cac98f94012755e1853ce72a0ef15f9261fc4254157c21cd4"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0054967692121863365,
+        1.2811758518218994
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000095.npy",
+      "sha256": "c626abae0fa48f4ca52f98f51774c5c5733e9d6b2540703d9eac947cd2542cc5"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.031202146783471107,
+        1.3895576000213623
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000096.npy",
+      "sha256": "bf9e98a7e10ff9d7bcb5c0975bc8dfd042d14ba1ef44a49c20ba049ef1bf737c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.04949726164340973,
+        1.477842092514038
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000097.npy",
+      "sha256": "4e2f3320fb6f27f005af0005682ea1acf0673e8dd73787fcbd4e5e28d73c676e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.01225979719310999,
+        1.0925911664962769
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000098.npy",
+      "sha256": "34a2cac98d767e6e895cb608bfca7d72efd353d002a71d35f0b8c44af6430cdd"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0043578618206083775,
+        1.235675573348999
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000099.npy",
+      "sha256": "fb860f41508be4feac34149d0105128b27979484c17569f95cad30187c844d85"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.02955581806600094,
+        1.5203824043273926
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000100.npy",
+      "sha256": "d86aad89c96961c1db50bf9ea7fd4b3a47c3c457bf1a10f8baa70ad494c7eb77"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.01428791880607605,
+        1.2855266332626343
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000101.npy",
+      "sha256": "7a46dc0145f730307d73d1d51f3401a384dbf5761425d867fbc0ee7d0ecb78c2"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0400116965174675,
+        1.2900735139846802
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000102.npy",
+      "sha256": "5de2b375c0e8773da6361499964da8eccb4d04fc0ce68055f7ab8d6717abd1b2"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.15375389158725739,
+        1.6193352937698364
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000103.npy",
+      "sha256": "ca47e7f9faa50a14b3d37cc241fd38e943f26ce6353b81d271f51876cf03b9f0"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.012278888374567032,
+        1.1099448204040527
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000104.npy",
+      "sha256": "5fd952f6f4302479ac8d763add2c91e638f1d6e7045f46230e8410636b452721"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.14388947188854218,
+        1.9282082319259644
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000105.npy",
+      "sha256": "ede2c2d79f788aef61d809f1577538f5e8d332f15f2bb707086e9afc1ed00091"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0032474526669830084,
+        1.6427468061447144
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000106.npy",
+      "sha256": "6149d2e0d4c573b1d324aacfc1d91e2d3bf1069f828a2676d7b7af670d5e0e93"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.007553029805421829,
+        1.493262529373169
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000107.npy",
+      "sha256": "4c7f46e710a0ee82808478abbb5e9571001b16a0775e7a86afa6480eafc72eff"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.01667521707713604,
+        1.3456732034683228
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000108.npy",
+      "sha256": "f6f8beb95b64a1b5a15e2c5bb762fb63c9c96deb05eb0255727d52b62ad8f00a"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.02888299897313118,
+        1.4333300590515137
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000109.npy",
+      "sha256": "e43e06dbf5712717c7990319207c9b6c285b461ed3b3944f4139767f29564d4c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.017268145456910133,
+        1.1716930866241455
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000110.npy",
+      "sha256": "78c4d1a321ac8deb0f6595ef0ba65040776f7e9e50763956c5e81a8b0e02057b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.008947133086621761,
+        1.2863812446594238
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000111.npy",
+      "sha256": "c49f3900360caa24a8823b13883e982160e4c81d819a4147ec181abf81ea9ff9"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.010219278745353222,
+        1.504592776298523
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000112.npy",
+      "sha256": "feb677d0171d31b7d90f2a06924fa4a1011574bddca837cec1d2b11adb084a53"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.010408584959805012,
+        1.737154245376587
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000113.npy",
+      "sha256": "474c1349cb1b0fdd3a30b46a6dbefc10e3fcdfe8691d4d656f6640b942280759"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.15399964153766632,
+        1.6608737707138062
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000114.npy",
+      "sha256": "9373ec86fe593ac86641c7a979667b9f4600406fb983b4aedb0e18f7a6e4cb6a"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.08736559003591537,
+        1.6024045944213867
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000115.npy",
+      "sha256": "8e99b00972d158a1e21f008701587818ea1eefd88c0bb2fdaaf3f85eb6734c23"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03417098894715309,
+        1.5144011974334717
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000116.npy",
+      "sha256": "5fd99e7b09ad1396e2d485d98967f7c71f67a520fb329d7a518f5c566e864362"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.013156370259821415,
+        1.3282526731491089
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000117.npy",
+      "sha256": "d14250cbfcd80642e4fff4295e84aa67271d14bb855b3bc896965f315a2e4f06"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.10449136793613434,
+        1.2372856140136719
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000118.npy",
+      "sha256": "26945426beeb9961d37b5d5acaf2658f4df2dab1704e6af22cf4754f9f7881e4"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.015554642304778099,
+        1.6808661222457886
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000119.npy",
+      "sha256": "4f40b48b1701d4f91867a59b41f19f2d2b4fe9ef89f8acd49009adafefb4e5fd"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.06653295457363129,
+        1.6956357955932617
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000120.npy",
+      "sha256": "1f6855f8296428c5cfdb77bd0f9ff84a4865daa9c6009910d4688b886da5f4e3"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0024765010457485914,
+        1.5594477653503418
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000121.npy",
+      "sha256": "7315a711b8bd232af03cc8138593d06be4799d8019bdf4a0693d4f48241769b4"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0048773204907774925,
+        1.043860673904419
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000122.npy",
+      "sha256": "e9ec7ece4f2c19eb998705272b42932b76805aabaf0730d46cc264adea4b166f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.027600502595305443,
+        1.222124457359314
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000123.npy",
+      "sha256": "1429e950a7e257935d11d36c4875e00c0995bc60a9614be1ca622f177ca00ee9"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.07131341844797134,
+        1.312293529510498
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000124.npy",
+      "sha256": "43aa432e0ee2b8c6bce14eb09f4b4eed63255fa2d2d12baa16e4177aeb4cad03"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0008236486464738846,
+        1.7032272815704346
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000125.npy",
+      "sha256": "c706d761ba3030af6a6896f7187a2b80a10c5d6b0d4c10d042245d94e38ecad4"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.010593395680189133,
+        1.5695550441741943
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000126.npy",
+      "sha256": "2e91305c0c5c569f5758b2c7c0140f1765acaec332845d4ee31008ae525eeb29"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0009424272575415671,
+        1.5374653339385986
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000127.npy",
+      "sha256": "1681f115e69036b2fb043fa2a042ef95567f1d88d4e8392667f8ee03e3cd01b1"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0765896886587143,
+        1.3531993627548218
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000128.npy",
+      "sha256": "66b6726cc6b929e69b29f5230462ade0e78a090e5974146f1427edce1be3d3d9"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.058379121124744415,
+        1.155378818511963
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000129.npy",
+      "sha256": "6d578f4747a83081b66ef3288e5056bd610447f84624aa2b910d8e1899c06223"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.018328797072172165,
+        1.092041254043579
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000130.npy",
+      "sha256": "b29263fc13690ea7f29d2dd5a9ce8fe5b66b89b8c85983de05d5c784ea53cfc3"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.022688264027237892,
+        1.5276716947555542
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000131.npy",
+      "sha256": "3b79d1a79a5756b0bb49f661bb4fc657a5d2001851207d8dd3af63a66461550c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04440503194928169,
+        1.3221290111541748
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000132.npy",
+      "sha256": "b8bc960546ccec8bec3035a0acee280116a82e4cb1794724d08ababb919113d6"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.039551105350255966,
+        1.0641229152679443
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000133.npy",
+      "sha256": "4c9b160bf94f1a2e9d2d313f52a3b42a4f6cfd53caf6874113240ea7a542be01"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.006906131748110056,
+        1.5780013799667358
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000134.npy",
+      "sha256": "1ba278107a3189906fe205ee49acc7928013b2fc7df2120db4bcaf705ad780f8"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.00016632888582535088,
+        1.2132221460342407
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000135.npy",
+      "sha256": "376ff937afd10daf1ff33ab0276de2a71adb1a5bf31798994de73aaa4c53d987"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.014903068542480469,
+        1.4044908285140991
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000136.npy",
+      "sha256": "ec3c99001577b4a743080238ba89b4106f6a8f1148e2cd55da2133092cc3f037"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04678748548030853,
+        1.670108437538147
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000137.npy",
+      "sha256": "e6f46bd7a2b7b8970bf28305926f90a15eec064c94d0fc56372f8a1470830710"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.039220407605171204,
+        1.129074215888977
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000138.npy",
+      "sha256": "e58216bcf59a8c600ac901bf49cc099f6d7c35da56090ab13618ad51834aaa85"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.009639458730816841,
+        1.1308600902557373
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000139.npy",
+      "sha256": "d3778a2b2e435dc4c0869229a30ce8aa9a59f6120f72f36ac591dffce8fdff12"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0019850090611726046,
+        1.5481312274932861
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000140.npy",
+      "sha256": "6d9eb5074b1ffe5b4e4508dd7c96007d3e98a0b20519c815b83f0da1b8f00b8b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03850066661834717,
+        1.1827908754348755
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000141.npy",
+      "sha256": "d1bab875e0be8454fd2408c118559446bb86cd0d979915e9d60edda3ddf2ed1c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.027780158445239067,
+        1.5539110898971558
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000142.npy",
+      "sha256": "7eddacdf3da43a1e0684929af0fd631d4d3e4ebf0d88d436e3e98c2215a1247f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0009662260417826474,
+        1.5451382398605347
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000143.npy",
+      "sha256": "a9d3c33cc915de79ae44000266a9463ce7eb4a41ef26697d85b15e24a0e1e23d"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0047774482518434525,
+        1.1944571733474731
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000144.npy",
+      "sha256": "6448a9047910b64672d1a3025fb9732a77720db2d29779e301d6548010136214"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.00245535746216774,
+        1.4235453605651855
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000145.npy",
+      "sha256": "824220c8efcae9a61d52837760c53faacf02e41b10568b9dfd3005e2ca91c010"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0767916589975357,
+        1.5513635873794556
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000146.npy",
+      "sha256": "2a6822c946b74bc559565057027af68b0d2f1c41a517fa8ad3415ef0b936b993"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.08942539989948273,
+        1.3899707794189453
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000147.npy",
+      "sha256": "41aed35d19652ca7305e40843fedb9f37a791a9cbb79c6546c1df0ac891b1089"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.13967208564281464,
+        1.4641894102096558
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000148.npy",
+      "sha256": "4e7c22e9cfa953e60f01bf5c891c335ab4a68a1ba5aab7c265641d7b57c3dff3"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.007540013175457716,
+        1.3337342739105225
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000149.npy",
+      "sha256": "fe1d6cf51184e7446484cf4020fe8542523b6fa5d12be7716c98292d87f0e21b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03533109277486801,
+        1.3818483352661133
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000150.npy",
+      "sha256": "c4363635c08e7a8b4ac847ef367ad34b61fff93dc2df08580b8a4c20c56bb214"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.012834690511226654,
+        1.7468974590301514
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000151.npy",
+      "sha256": "71e18f25d8e9e1ea9a3308c8515111ed929f64abb4f5b7e84aaa23b6e17d5989"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.016704637557268143,
+        1.518995761871338
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000152.npy",
+      "sha256": "f1a36945e7441f298677e72d5a39b4541ed2534e9e302552707ecc090886d5c4"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.030803805217146873,
+        1.459647297859192
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000153.npy",
+      "sha256": "10eec8b95b02168fa5d17e8458a46fb10e316c607be56d64eb28b50a66a5c832"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.04179440811276436,
+        1.6097906827926636
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000154.npy",
+      "sha256": "e10cf3195832412fe7831dfd35e26bb44c5f3078048306788e7ba8ee925f0b4f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.017318084836006165,
+        1.356378197669983
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000155.npy",
+      "sha256": "0c0ffd3a64ffe9ec0c35003dc4ce02e90b6c0823358e6a2e6230c8b7bc2f3ebd"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04284067824482918,
+        1.447275996208191
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000156.npy",
+      "sha256": "e5578ff8390cada9cea844f4e7747c8ee46196be91c94359ff3685b29f0ae668"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.011730353347957134,
+        1.56600821018219
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000157.npy",
+      "sha256": "aa0f7757ad7e50a02a1f98caa2bb1265af0f32dcd1fb987ec60550887395c24f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.06326735764741898,
+        1.525668740272522
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000158.npy",
+      "sha256": "d50cc645f804b54fd05ad4f0d1a9bc0580aab09227934044fdd4ac09b8c4ac5e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.06888540834188461,
+        1.1777323484420776
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000159.npy",
+      "sha256": "1060e052a853b5ca9f897f6825568d9b1ffa40a34aa0a627836b38b4567c4396"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.06284823268651962,
+        1.2201192378997803
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000160.npy",
+      "sha256": "f0885c29e364bc9c743b6eb9928c28f4352fc476b3b076c4cb678ee31a69135a"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0006418573320843279,
+        1.2543516159057617
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000161.npy",
+      "sha256": "743219a4386605cd21760d8508fdf5f0f5861a2e805812d7c3a8ab7bf1082756"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.004852894227951765,
+        1.439832091331482
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000162.npy",
+      "sha256": "de137147a36e8df16a7ca9e9977e7028d694761ff8ff47c9a08a230272088d30"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.003760359715670347,
+        1.4560972452163696
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000163.npy",
+      "sha256": "fa3182f6cd3ff87fb693dbcceb91dba88a344eab4147152b7215bc2c6de94e2a"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0044098817743361,
+        1.331549882888794
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000164.npy",
+      "sha256": "8437966bba34e0cef60d4d1310711cdce8d8ec567ae29990e445d39184e39a1f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.013127351179718971,
+        1.4716966152191162
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000165.npy",
+      "sha256": "ec5c11d639d67a21f1c7bdc5b3747abec6a18d420d09a58114e55c4bbe3579f9"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0066458857618272305,
+        1.38694167137146
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000166.npy",
+      "sha256": "880f111e7165ec01bee1868bc00276d7e36eba5f71e9e3b08a2352bf2a4116fc"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.017635788768529892,
+        1.824062466621399
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000167.npy",
+      "sha256": "e1487e20fbef19119ba8df626bac0f0eabda5d74b5018843f40129ff85a80a13"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0352243073284626,
+        1.9431982040405273
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000168.npy",
+      "sha256": "398c808f8d02e76e6df90cfa8edeee812d9240001de147cb348d060c0e70735a"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0004863564681727439,
+        1.5295151472091675
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000169.npy",
+      "sha256": "b6da38f5579bf09f671ed33ff920e1eabedee716f6e2c0812b9490ef90a2a400"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.020902132615447044,
+        1.4270533323287964
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000170.npy",
+      "sha256": "bca489d15f59c67ff8fdf987a71f4335baa89e647d145e363186da32f6b08f6e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03238511085510254,
+        1.2304071187973022
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000171.npy",
+      "sha256": "70a9d69993df582ebfcec5d1fedf548d7fa6af98abec109e0801561da354b713"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.040437668561935425,
+        1.4532161951065063
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000172.npy",
+      "sha256": "01868b4a6282746abe3e8f47f8da50549fbc4b1d325f11d4b6332267cb5f552a"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.15555042028427124,
+        1.547760009765625
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000173.npy",
+      "sha256": "dbe6efb938b6688643173512f1cf49bdd8fec4919fa1641041868d4a89b9c455"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.00951051339507103,
+        1.3386893272399902
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000174.npy",
+      "sha256": "f8f362d6debe0a14dab070618d28c5e5bf0c15af4b6f39837d64c368c383edc0"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0056504965759813786,
+        1.3237214088439941
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000175.npy",
+      "sha256": "7fc2ee9c2b52aafa019b5af8e8a2ee58ee48b4ce2e594fb9495928d0d8b414a7"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.022276701405644417,
+        1.6391819715499878
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000176.npy",
+      "sha256": "caecaf9adc28173ad472ffd080d3c38a6c08aa9c693ef16ecbb362d77a3f6e26"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.019217748194932938,
+        1.6727091073989868
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000177.npy",
+      "sha256": "a8f3869a6d96a827c108d411843657b5b12e8aa26cfd1accb0b3b45921b82d55"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.057375963777303696,
+        1.7365773916244507
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000178.npy",
+      "sha256": "023034d656183c25c39a558f1966e2055c337eb44f59992aeac52044a4d7cfdd"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.004972632043063641,
+        1.5158321857452393
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000179.npy",
+      "sha256": "9b143d259c577c795dada039fe2b7fe2ca745fcb04f7f29583fbbcde29c7b68a"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.01394687034189701,
+        1.50448739528656
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000180.npy",
+      "sha256": "ae2318b14320d334fa30ba52c3f0c9e5c9c8780c75e665c1efd7b84af15b9043"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.01251775212585926,
+        1.472258448600769
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000181.npy",
+      "sha256": "12dac7f91846b621d970bbd481a255149e0adfb6dc99f6410ce827f8e70362d5"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.06258145719766617,
+        1.4734344482421875
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000182.npy",
+      "sha256": "0b97df963358b7bbbe25f3e604baf09a8109cdb56b61c04f04222d44c8fd463c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.010176456533372402,
+        1.413835883140564
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000183.npy",
+      "sha256": "5620df85c1462beabe249626a52126fdc3a3733df71e798a009f867cba61ff54"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.005756980273872614,
+        1.3237452507019043
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000184.npy",
+      "sha256": "cc6eac889680dd76a25d331e251fc839a45e2505214d9409e558685fef1eca23"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.026290932670235634,
+        1.190687894821167
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000185.npy",
+      "sha256": "a32dd863f52a5b2d3b8a944b1526aed244047fc756cfd36879ab78d605697e51"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0162186361849308,
+        1.5712432861328125
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000186.npy",
+      "sha256": "b8e1a7d3a43b5f40428a2d616c260e2b6ea85195965cfbc6ba865a4877be03bc"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.009522097185254097,
+        1.480892539024353
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000187.npy",
+      "sha256": "ac8aab1b621591442e4a19ece720bb9e3b8e62addc6d770a792bf4aa6df103b1"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.043235767632722855,
+        1.4975786209106445
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000188.npy",
+      "sha256": "41fd96965f8cc5b834fea87e8acfe0588372af11210f1a55426361355c6f1234"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0031882203184068203,
+        1.4570311307907104
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000189.npy",
+      "sha256": "85528ca0cb22886afa6a63d29a0b74d50ae639d9838c6afb3706d5dcfa71a72e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.002442882163450122,
+        1.5661680698394775
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000190.npy",
+      "sha256": "fe3f7d173837ed93829a4c9cf6517ce76d3823682b7675039a8ddb185875cdc8"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0033120857551693916,
+        1.5003869533538818
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000191.npy",
+      "sha256": "170e424f08889c3eae7c19236ed6749455ecf1d8e21b64c7015b36f5a5458a14"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.09438340365886688,
+        1.6022870540618896
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000192.npy",
+      "sha256": "19e9fc2e26008ebecd171ba88be195312a8665f4d2ddebf4ed42e93addc52554"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.002886358182877302,
+        1.553238034248352
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000193.npy",
+      "sha256": "0c4f3d7de0607a065bc951ceb34f5250acef5b5b4a1c3dda7e1b22c48aea7acc"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.08025893568992615,
+        1.6790351867675781
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000194.npy",
+      "sha256": "8cd68f28c365702d32e29cf77f1bed734a13b208540f9572974ed162cc35efd2"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.013810320757329464,
+        1.421670913696289
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000195.npy",
+      "sha256": "53bd1582c16d899971bf7192e4167f4bc17c29fa8955d6910c2fe17a755a3799"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.00341063947416842,
+        1.5571321249008179
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000196.npy",
+      "sha256": "2953b8133f1aea807cc00bc09522b4b4cb15e5a77dcae9f43002702c876565a6"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.039650388062000275,
+        1.4279404878616333
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000197.npy",
+      "sha256": "e34a5590bdf079d13439c730f2ca3705f540dee4e9fa829646a41321b374bd87"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.007745783310383558,
+        1.119410514831543
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000198.npy",
+      "sha256": "b16fce76600ad3147cbcf3b7e39618b426caeb71b1bb1afbcf73f73cde2e915c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.013902885839343071,
+        1.2670156955718994
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000199.npy",
+      "sha256": "b25db731849d5d93c91408486eac18f758d0e9d6f62064f7b2bbfba865791142"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.009469514712691307,
+        1.3902250528335571
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000200.npy",
+      "sha256": "7d9d9b0dd7997f89c0713ae4a69cc62bff000a0c44850fc6ebb43857338491a9"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.09172302484512329,
+        1.4461110830307007
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000201.npy",
+      "sha256": "945e8612a3f3475758b21c51900d89ecb110ef8a6962936eaa0fcc049d94724e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.06368990987539291,
+        1.7318402528762817
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000202.npy",
+      "sha256": "15f5d4a6d6a9fdb60b21cc2d1c0d136affe44c2013ca1648abfa9074023d23cf"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.009064828045666218,
+        1.5028804540634155
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000203.npy",
+      "sha256": "5234011705ff9b1da3ee7ede0a944b5a22a323fc1bf3b3047384eb7752af47e4"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.002131623914465308,
+        1.3873814344406128
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000204.npy",
+      "sha256": "72ba83f737e0316d03d39346d36f65b6a25fc3a535544e3884234d48cb77bd1b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.025450758635997772,
+        1.2975234985351562
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000205.npy",
+      "sha256": "af126cc4e12a8efcd7f90c34012f5b42040d87cb1e494b36658191f47aa8b98d"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.013635552488267422,
+        1.5018140077590942
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000206.npy",
+      "sha256": "dc8ef061c6533911e9905a9941e088f10460d7f372b818ad9a3e4216b71f2d61"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.07639142870903015,
+        1.489611268043518
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000207.npy",
+      "sha256": "42dd2849bae42d5ee7be0a3dcfb3343f96ff7276c06d98c4c6f28617260d422b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.003230783622711897,
+        1.937658667564392
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000208.npy",
+      "sha256": "a60ce231e4db48e6fcdee60b79daec3f83560f6f1fb89f2030c7aa7baf645e6f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0041593462228775024,
+        1.093074083328247
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000209.npy",
+      "sha256": "8dbc65cc8db4736e90ae0d4a3f148f68389a281e2394bf3d70ca99e705b17647"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.019711902365088463,
+        1.2722843885421753
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000210.npy",
+      "sha256": "e565c926e6f62b1a8dd28bf518151222785639b598d5fb31236eedf36dbcf003"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0021110600791871548,
+        1.2524816989898682
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000211.npy",
+      "sha256": "7e7d779b262525cbab721025df5ca3a26dbe87c78e6205ae3dc340be799a8881"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0031472225673496723,
+        1.5237116813659668
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000212.npy",
+      "sha256": "f20f22397cc0ddecc96b8a567d7c1a56131d639c2dd269f9a8acb80ef44118f7"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.013802582398056984,
+        1.584102749824524
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000213.npy",
+      "sha256": "5b9085817086df99867760a71baebdf543774732addccf0fad6d1a3af858671d"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.04885462671518326,
+        1.6945600509643555
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000214.npy",
+      "sha256": "6e6447e85579204910332937343dc710588677623c334f4197a735a9df66af53"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0995246171951294,
+        1.5770378112792969
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000215.npy",
+      "sha256": "1a11cb5a034c4a7fb056d789cb379ccaf16ac0f5c446ab50c9954c51dce978bb"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.03414611518383026,
+        1.0636377334594727
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000216.npy",
+      "sha256": "a4ba840b9823727f9c4f7ed79c8f96e639d03695066e4093b91d4b24eb12f109"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.022520149126648903,
+        1.3134833574295044
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000217.npy",
+      "sha256": "05b8442d99ba4b8c11602307d78af5296a00b189ad5a67164c0ea71f5d52b2fe"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0009650638094171882,
+        1.36720609664917
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000218.npy",
+      "sha256": "c366e8f4563e0d9dd199a0e527e65a472f24cf496b52f7401e4485cd7210f7df"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.036114130169153214,
+        1.1835118532180786
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000219.npy",
+      "sha256": "e24fd69d9a298ab3de7787e6c8f1b036a1c1be2ac93e55ffec4715cfcdb4dbae"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04008886590600014,
+        1.1822084188461304
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000220.npy",
+      "sha256": "c4b986a8a8a5dad9221c388384ab634fc75865fefd616f3788c633e5a23aab64"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.00019763941236305982,
+        1.3916990756988525
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000221.npy",
+      "sha256": "9ccf39e0d70ba8435ea672a44a52376bfe870e95d0845a710af9ea412848475d"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.00370261212810874,
+        1.2855697870254517
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000222.npy",
+      "sha256": "8ad861fed553c6a74d55cf05b9ed8e75e27efd76a29552e37100397990ec3b64"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.10580593347549438,
+        1.5276416540145874
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000223.npy",
+      "sha256": "8536bc1c70a0df4d5a913fb57a53774f88463bd5a2dab7feacba15a1c3753c36"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03574085980653763,
+        1.4698551893234253
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000224.npy",
+      "sha256": "79dfcd735f5d032b0e04710a1896f02d986e48b1079adbe8eeca3548dbddd775"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.004910822492092848,
+        1.2640669345855713
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000225.npy",
+      "sha256": "157fb2a20117246e1d7a67ef9fc5b3172f29da3ddccfac8c986ffd25334bae55"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.015467588789761066,
+        1.1080074310302734
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000226.npy",
+      "sha256": "e0f33ddde574c17a921dba208f02901a4d3c7fdb5e21839160593d93ab785cc9"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.05770381912589073,
+        1.5641529560089111
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000227.npy",
+      "sha256": "f8c5684914ebfe4d019abb50676dd8f8a8b43695f2798e4d50a7e0945f09f0cf"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0036003030836582184,
+        1.278602957725525
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000228.npy",
+      "sha256": "2ab8a3ca29c33d42f4efa6de4d081f0059c11f84c561d39fab6da3c0d029a41e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.08083527535200119,
+        2.1580159664154053
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000229.npy",
+      "sha256": "d1f1d0f42e6691f52c70fc541c02dc9406d82add2aad7e4c4b26001c9b2f1b93"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.006722195539623499,
+        1.2307008504867554
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000230.npy",
+      "sha256": "b61ed44f12ab93d6618fc3faff0061fcfc98e98ba4c70d8718e9fc5fbe2d26a7"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.006196587812155485,
+        1.4678136110305786
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000231.npy",
+      "sha256": "49323325cefaf641269e6223c9f9120f46e394ef1a27622f59ab1e74c988b190"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04639865830540657,
+        1.5570265054702759
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000232.npy",
+      "sha256": "84e99e78471b29769efd0200af7ad6b448ce8d8c536bbaf716828212c29c57c0"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.003047454636543989,
+        1.068069338798523
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000233.npy",
+      "sha256": "df71fa0e5a7d65403ea77aaeb8e0ddcb4db3739955b5beff69eb5a46017cd8b7"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.009596585296094418,
+        1.5161138772964478
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000234.npy",
+      "sha256": "325c1d7721af6f29f0c45255f262d34af4703e025c19bc06e4bfeb01a12ff825"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.16593611240386963,
+        1.444203495979309
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000235.npy",
+      "sha256": "e17f1f2297043195bf051a8e62d32d738ef7c64633febe1ad0aa9f905d52cf2a"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.027026453986763954,
+        1.7186055183410645
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000236.npy",
+      "sha256": "7082fb23a2b002b746a986669e43e6bd80bef4f4609829fd66d8bea03407affd"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.13556601107120514,
+        1.470136046409607
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000237.npy",
+      "sha256": "d9ba4cdf3d58f3ad2f9ebf419bd1e93f4fadc3400424508d2dfb1b652fea09a9"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04290296882390976,
+        1.196617603302002
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000238.npy",
+      "sha256": "883af280d2a2fc2ab74e5685fdf2f426d8aaf0e0c3f54cbc5c5bbfba136332e3"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.029254859313368797,
+        1.9805463552474976
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000239.npy",
+      "sha256": "ca91e584d5a2bcc3f7d83d99604acdd5074648aef04475c5a304c0d8af4dec9a"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0592743344604969,
+        1.1853137016296387
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000240.npy",
+      "sha256": "cda84ddb6a92edcb55fd8bd2f58f09adb7c29685f800d64f7f3df8bf0ce44065"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.08400800824165344,
+        1.5306379795074463
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000241.npy",
+      "sha256": "07b72c2886b8b859cf59b7d76bc78cfde8bbd25f24483fd0be7c3dfd5859f355"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.008582544513046741,
+        1.199292540550232
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000242.npy",
+      "sha256": "e056af4ca4915accff3780abb5277c6284da17771a575f81670275cca3752f1c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.013774593360722065,
+        1.30144464969635
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000243.npy",
+      "sha256": "e6bcd83a53f55ededf785efe3150941ab6e6ead2037d6ff13062529910b2638e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.02009228616952896,
+        1.1390843391418457
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000244.npy",
+      "sha256": "4a75f920c6e886e742ae7a19028509e05ae3206c4ee059a0d6c5431c3ecb53cd"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0021405548322945833,
+        1.6635894775390625
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000245.npy",
+      "sha256": "03723cd8ca28bffcd83bcf769091b19dc30311e68d000adb61e523f7388061d4"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0039048264734447002,
+        1.454805612564087
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000246.npy",
+      "sha256": "2912c06b04a20009a1d5ff091fe61d5cd0fbe099d433fe582384fc1549e9887f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.014668727293610573,
+        1.4358222484588623
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000247.npy",
+      "sha256": "babf787050f4665ce4e7466f8fc8c80b6cafc823dbd2793e1eb59d08b1befe36"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.02619859203696251,
+        1.3334442377090454
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000248.npy",
+      "sha256": "2a4d9f21bbe4c61e365fc331e28f51f6ff4e72465fbef6f6115297324cd6d0e8"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.018506476655602455,
+        1.4237182140350342
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000249.npy",
+      "sha256": "b3312528e4d127ed79fbabbb0a358f1db70d173810eb1895b3816ece116b1527"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.012264564633369446,
+        1.2348482608795166
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000250.npy",
+      "sha256": "258485d515be72bc52d96c233d0f0589df771b42dcdf2e331337e99342ac8326"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.03350500389933586,
+        1.5577071905136108
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000251.npy",
+      "sha256": "1b65249bc57117a7a94fdd9e99643f82f460050e7b9364386d7a8cd22fdd4a3c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.008064030669629574,
+        1.5949641466140747
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000252.npy",
+      "sha256": "dc98c6a6de130cb759271432731209eb25eaa0a9c2fc5b2bfa47ddccf5eab860"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.024399327114224434,
+        1.1917483806610107
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000253.npy",
+      "sha256": "aeb12eab78b2b0fdf5e5e3bd50993ded85faa45042e764b1c997fcc27da4e279"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.019754232838749886,
+        1.3456019163131714
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000254.npy",
+      "sha256": "c2c971a87b200437847a6b2f22f0da62332b7b016d8f3402134afe0c9fa24947"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.01807372085750103,
+        1.3732950687408447
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000255.npy",
+      "sha256": "dee21487185a0a212052f0bcf343d9fe473816402d0cd3130ceba0979ba46ba1"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.06467993557453156,
+        1.621803879737854
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000256.npy",
+      "sha256": "2af9a2501e85e2f2d019f6ac6b1db88d30936a699c9b4d5a7a5d9c7e0e6ccd7b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.09713438153266907,
+        1.6614760160446167
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000257.npy",
+      "sha256": "98df8a39313f8afca13f47ca49850ae1a00bb24d6859367f264cd348cec4a270"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.05243159458041191,
+        1.4484214782714844
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000258.npy",
+      "sha256": "de29540382fb6b9fd73f2efc4fae7b9c5d6d1f0d497ad07b236d2779f7dda135"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0006009404314681888,
+        1.2004930973052979
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000259.npy",
+      "sha256": "b73391a9c3440b98e29b87f15965e72e7efd49ec4da2d038a11a5f83ec0d5bf1"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.028776565566658974,
+        1.2739707231521606
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000260.npy",
+      "sha256": "e6d0c7b8aca2ddd837156929eada6338c7eae68790822214eeb47e97382f668f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0005406063864938915,
+        1.5255025625228882
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000261.npy",
+      "sha256": "ecd4c6cb370c2682c4b113a7010f05adeffc71fea3d96d3b136c677ea01237f0"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.013352115638554096,
+        1.4022771120071411
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000262.npy",
+      "sha256": "c047c8a32e29bf76207fc03da6c5fa8276181855c9f6df88fbf87204a6658212"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.010695797391235828,
+        1.1987329721450806
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000263.npy",
+      "sha256": "359936bc25d6843c740221f1e5c223375f5b1c1897eb74b9116be98196fb7f8c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.01113532017916441,
+        1.408621072769165
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000264.npy",
+      "sha256": "8e7eae11ea098c59003168169419f7d0391c3e60b919d6df8fe3153fecc8bc54"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.049451932311058044,
+        1.3507373332977295
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000265.npy",
+      "sha256": "1a00d094d390378c7289e10cf936d5a4076de40d6565b5663956631f4331da67"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04221761226654053,
+        1.5706326961517334
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000266.npy",
+      "sha256": "518490e1a1590cd60238a57e35436333c0347e29ad97e76ebfef9d06811bf689"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.018699511885643005,
+        1.3499045372009277
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000267.npy",
+      "sha256": "0f64b29323c6bb7276ec8f3b71c200a48fc18d5c62c26bf20438ee61a9b07414"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.09237958490848541,
+        1.7252663373947144
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000268.npy",
+      "sha256": "dc517bf6fd7011051ea51beb99d0bda53e73c6192c58455aced83c994c701c7e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.015741147100925446,
+        1.2863755226135254
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000269.npy",
+      "sha256": "d18d3d0e030408cc124cd24f965fbd359a933a8165e0b5c083eb7ffcc88df2e8"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.03999300301074982,
+        1.4179590940475464
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000270.npy",
+      "sha256": "1c8e845241682e23ea5c48b66bdf5bf4ecd37e21f4f34d1f924afe472c1b5f39"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.008079023100435734,
+        1.3459534645080566
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000271.npy",
+      "sha256": "94942dd81acd129667d80b32e1aa97a35ba8ed3a281f98744e322a0a1d10ab18"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.05023403465747833,
+        1.292218565940857
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000272.npy",
+      "sha256": "fc3a8306e0f751e444293f8d8d29a80ffef0cbca812ca1762e74fe2bcc2f4994"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.006472595501691103,
+        1.6226141452789307
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000273.npy",
+      "sha256": "8048352171cd77ff127b92afb60e311a4d482f7233ded1b721751c19c8caf343"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0002022566768573597,
+        1.5297354459762573
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000274.npy",
+      "sha256": "7eed606c0263dc8a669bad7abdedae698736d978e9942e7b40c1670233d13635"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.010325714945793152,
+        1.3142740726470947
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000275.npy",
+      "sha256": "95a38d6f1df8a402c10ef809b8f4d152a91bfa6a67afc16f2e186da77d86a7c5"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.01744251511991024,
+        1.5276596546173096
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000276.npy",
+      "sha256": "c16967c3048266a1755162bb981bfcf07791558d7823486d8a365b45b657395d"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.00937891099601984,
+        1.4410432577133179
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000277.npy",
+      "sha256": "1d27b29da101e51a3449948765e47b0be62cbaf1b56d359864b7519e87da117e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.002848622389137745,
+        1.3848469257354736
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000278.npy",
+      "sha256": "ea1c18e53ff335d6248a25848194fe781da873cc41d4a1de4aa20d9e3577874f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.015020359307527542,
+        1.6760345697402954
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000279.npy",
+      "sha256": "e79e8808bf6462cd10d047ad8e1fd08bbf8bce2b69c73b6738bf8736a6ba6181"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0006720983074046671,
+        1.4229761362075806
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000280.npy",
+      "sha256": "38c2ab90d79edbc2ff2eef77498b18646244843f8f401ab8c6b1e5aaa5cb6b15"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.011957516893744469,
+        1.3561007976531982
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000281.npy",
+      "sha256": "33deeb58e7c46f0aae2caf84b907f91602ddec1d2e67b962a92401ad329b9cc0"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.003521833335980773,
+        1.2966710329055786
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000282.npy",
+      "sha256": "774dbc47e8d990635220baea40b9d733771418c9a1c78b5b8bb5dd953aff7583"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.06869719922542572,
+        1.2668263912200928
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000283.npy",
+      "sha256": "dd9bb41174d165525d6b2725512e2034d2e06717e06a8ad62bacf85aac3efea8"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0028147511184215546,
+        1.4007649421691895
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000284.npy",
+      "sha256": "9733eb832d018a24f14801b68d2f0c5f9f9cb74e0cdcceddb0499048df6a3642"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.02535351552069187,
+        1.5975691080093384
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000285.npy",
+      "sha256": "07b23b39e2942cbf05f464b86f69fc9560134d15767c19d98b8533095dfd7a50"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0015759655507281423,
+        1.583655595779419
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000286.npy",
+      "sha256": "b7fc77ffbdb56dcb0fa18456297744b45d27af993605a23192207c7936d0c928"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.00975376833230257,
+        1.3166009187698364
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000287.npy",
+      "sha256": "a61b902014aac73c7e138a093102c51ff8616de4ae0bc76c584a6ecab5a9225f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0028943463694304228,
+        1.1491285562515259
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000288.npy",
+      "sha256": "0116588cebf3b4cece019c0fc221a2f82ceff1b27a07b00cb9cb1b48f8f8f134"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.018538901582360268,
+        1.4444243907928467
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000289.npy",
+      "sha256": "7fcfd131af8c47518276469657d2db72c11c9bcaf62bdcfe2abea235f831c941"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.003286534920334816,
+        1.5517125129699707
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000290.npy",
+      "sha256": "a94a1a58c185c863ae5547fa4b6e1ba6d23d57b5372a4080729cbe36db0b06aa"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.006745918653905392,
+        1.3653637170791626
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000291.npy",
+      "sha256": "475aa3c48afe234c690f64103369c1ede4580f10432c9544301c8d4934f614dc"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0016762330196797848,
+        1.4005528688430786
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000292.npy",
+      "sha256": "4db20bc8af4f28beb5a0bb29f1614d2e9bb138e836e17363a204c6187a85e5f5"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.07749991863965988,
+        1.4959043264389038
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000293.npy",
+      "sha256": "fd4f2b57283c1bb71b3c8964cc3cfc3b26b5d0e2b3fd64c524371172d66b1285"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04371035844087601,
+        1.398461103439331
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000294.npy",
+      "sha256": "6261338b2be9824c9ec6fc6d21604f16f7719b6eb9a4db9a8289bed3a63c08d6"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.012360253371298313,
+        0.9229504466056824
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000295.npy",
+      "sha256": "386ae86f43ed3173ad09781124a0a64ed1669a5214694391d26364559322e085"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.021400190889835358,
+        1.226149320602417
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000296.npy",
+      "sha256": "b1c8a8d7f5813683b419f322f413dbec5b076db49b03e762b948b185e0bf38c7"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.008063359186053276,
+        1.4474290609359741
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000297.npy",
+      "sha256": "d622762920282290e4b0c07610905d23e686e6bfe2efcd86784c06c226022d12"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.011358770541846752,
+        1.365562081336975
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000298.npy",
+      "sha256": "585369dc41f50f9da6bbe43fb6f105a1845d367e64fc3626927e3a7f55e436ac"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0011872118338942528,
+        1.2193917036056519
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000299.npy",
+      "sha256": "85d1b5ba0a898b5c0a2f668cc819c46c21b1ab9afb268e7079c323b2904bd27a"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.009246460162103176,
+        1.4028072357177734
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000300.npy",
+      "sha256": "b7ff608113f4ea1861854f1faf6e9f2601e9fb6c024f904d95ea1a6fbefced52"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.042495645582675934,
+        1.2217644453048706
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000301.npy",
+      "sha256": "f577a9db0ec74ed9618a41d015d91cc987beb9c2f7f4bb7041d8c0d85adf4933"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.001304810168221593,
+        1.5574926137924194
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000302.npy",
+      "sha256": "4fb262d495994857756ebfafff25850036d3fa3602ddbe0aeb95ea002f473b00"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03738531470298767,
+        1.5303854942321777
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000303.npy",
+      "sha256": "44b85070e8c1cc3773063ca9dd85d0c1b425d70eb9b6c556237a77d92efd3965"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.008650568313896656,
+        1.4984687566757202
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000304.npy",
+      "sha256": "f25bd68996aaf646f37787d691c90b5c1bd2c4ecef0075f603711b6e90738c86"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.00585475517436862,
+        1.3611119985580444
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000305.npy",
+      "sha256": "19ec2486ce536243c7797570bb6f4e61d9bd8a441cf8a1c4c6c9ef605d1cb1e2"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.008300292305648327,
+        1.569043517112732
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000306.npy",
+      "sha256": "9387f634d5bc9189defeac92b5dadd18e08462a38e1d936bf3d3bfe5ff881f46"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.026137733832001686,
+        1.4491583108901978
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000307.npy",
+      "sha256": "a9ee7b3ce36756f3a691c554c3f3a8a54e1f0d345d83d28a19af4e6770fad6b0"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.12360581755638123,
+        1.3338584899902344
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000308.npy",
+      "sha256": "558ba005a0b0e5abe8b3c25ecbbb4baf37d96f1de1781ebfb9b2ae0ee4a12c23"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0030077495612204075,
+        1.3201426267623901
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000309.npy",
+      "sha256": "afe878f8d4848b256ba835b53fa1fface433bb30f74f736b22e7164baeeb2994"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03375782445073128,
+        1.8187159299850464
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000310.npy",
+      "sha256": "d5d9eaa620e362e00a80f492f8c01bf2a417acfa948839b28e6cbb676c4e97a2"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0023912249598652124,
+        1.409946084022522
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000311.npy",
+      "sha256": "d6a4ba77bd82b33fb25bd963fbe10cda9059e8198f4ece8e4c2ad25d7f188d48"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.10119883716106415,
+        1.591367244720459
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000312.npy",
+      "sha256": "bd1477242aaf0dcc3a1e6225f405cd556b51da3fded4499bf38c7c7020c68307"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.02087881974875927,
+        1.3425424098968506
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000313.npy",
+      "sha256": "16417300fc61c14d95f45cf8a152e54defbd34186aa15c7a1b12ce8457f37341"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.10106885433197021,
+        1.4718859195709229
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000314.npy",
+      "sha256": "944e3a62317e62f53f5d05d363621f643b92dfd3e4b39ed4b5ecb3e3231751fc"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04576440528035164,
+        1.1672528982162476
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000315.npy",
+      "sha256": "0f47d1f9c73adaab55e8fdbae412d22a07fc014dd65bbf0b05e3b21715a53f8e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.06940025836229324,
+        1.403804063796997
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000316.npy",
+      "sha256": "7ccf05cf81f76be1392ff8b17ee6376a25488713707edd020f4dbe1324c7a8f4"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0026780343614518642,
+        1.3346055746078491
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000317.npy",
+      "sha256": "fdc04133b820f499955bf336ba963b743578738cbea00f3aec1e09baf6ffe76f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.015681283548474312,
+        1.3641937971115112
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000318.npy",
+      "sha256": "e410998dbfea20e9ce6bced161d4a80814a03ba09f98353e27f20a6ccc5e1e6d"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.011161690577864647,
+        1.1163805723190308
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000319.npy",
+      "sha256": "d60bfa8679acc119420740ffd961a684a55f8a4311633f83f0c685471092564f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.01397382840514183,
+        1.0584362745285034
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000320.npy",
+      "sha256": "a7891fa2716a8b9df8316ef1475ebd50edad341eca373c758cc89412f206e7af"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04374291002750397,
+        1.4088475704193115
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000321.npy",
+      "sha256": "72825e7fa88f2cfd25b0d0cbb1006b2037e8ecb5eb40eba1293d3821ab794b9f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0801914781332016,
+        1.6954163312911987
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000322.npy",
+      "sha256": "4f62b4a21fc55db126106bfa2cfb5acba494b9cbb67c011db2c47d2efd3b66ea"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.014197816140949726,
+        1.6621967554092407
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000323.npy",
+      "sha256": "d26b818d24a6c1cb7ad76c0210b478eaf9071e0e998f9d710a757ad5c062ba71"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.011499404907226562,
+        1.2883501052856445
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000324.npy",
+      "sha256": "2a66b815f2dd69922eceff7b7f2df3b74da7b5f7b1b031551fa9d3d03650a0a3"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.05804039537906647,
+        1.4840595722198486
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000325.npy",
+      "sha256": "b19ae10148190f213e9a233f6ad7cb19e293efdf5fe1bbf8eb57fdb85f7ae8aa"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.013295629061758518,
+        1.4696526527404785
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000326.npy",
+      "sha256": "f14229aa588262852a6a74c6904b4713e4953924650fdead2bb2b50641ed37f5"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.08961980044841766,
+        1.2548933029174805
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000327.npy",
+      "sha256": "938b124dd2cd9c1a5e392a2ba1d31d8d57a4e770f42c75147919ccbec6e4de75"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.007732819300144911,
+        0.9658975005149841
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000328.npy",
+      "sha256": "59d4e31c28c27e126bf8eb51ff300feebe7d146d9cb2afce76dd5c48a8e771a1"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.06835786253213882,
+        1.455024242401123
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000329.npy",
+      "sha256": "cf51ebb7878630d2415361c9631ed92ba7467fed9d8cb25bdcfb1d05a34e7632"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.013283457607030869,
+        1.328734040260315
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000330.npy",
+      "sha256": "2f90079c60a47e2bc83ab593da366424b6a36127b4a65768cacd7c8df37e0973"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.10019194334745407,
+        1.7245302200317383
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000331.npy",
+      "sha256": "f7f64a024d0f7e350d8356ddba0f9c426b25805fe6e25955523eb691ccbe14e1"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.08843426406383514,
+        1.3961507081985474
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000332.npy",
+      "sha256": "b8a6a3789789ff4efbd443243deb97b7750272f8a6810e19ef7d2274d6d69086"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.01306201983243227,
+        1.3602242469787598
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000333.npy",
+      "sha256": "4e9019a48ae9bc83ff4f9de396d81f0189b99c323c08489e52789dfa6d0058bf"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.008074219338595867,
+        0.7741618752479553
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000334.npy",
+      "sha256": "57c44cdd0c74a448a6b57d1e3a85b7d32f8928c5aad66ddf9537b2444cc8cf77"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.026231642812490463,
+        1.494429111480713
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000335.npy",
+      "sha256": "6533d8a5ca2fccb5742a6c5dafba066b234d6121ba398f4467ecd92b3f13f59f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.005358983762562275,
+        1.4885348081588745
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000336.npy",
+      "sha256": "8e72cefe42dbfb860dd5abb55abdc38556a2e7868091051f7445b974480778a9"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.019032232463359833,
+        1.4411269426345825
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000337.npy",
+      "sha256": "dca93826d3afbec296275d986a2c02a12f5357c1b2e6443969367fc007555bad"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.005008060950785875,
+        1.446400761604309
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000338.npy",
+      "sha256": "1234867a641538f64841981540bc21397a1dc543acb0edd107dc2bfee73e3f3b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.011701195500791073,
+        1.4666279554367065
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000339.npy",
+      "sha256": "d5356a148f8e506d8e3c43d7a093e4c339c9e32e64c5528973ce49b9dd338045"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0022448215167969465,
+        1.6298307180404663
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000340.npy",
+      "sha256": "344533c2cc7f1a13abb9bba2bbf7de26af43df7f3554ea87f5a103273f7423bf"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.019036810845136642,
+        1.483958125114441
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000341.npy",
+      "sha256": "ffc5332b23d7f318f728a7efd4fbbc9ba9cf7bb83db43292e89eb2c576c00f07"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.10326054692268372,
+        1.4393017292022705
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000342.npy",
+      "sha256": "de28a8d84ce10fd696cdae1366061c4a1bc615e7180a0190667489b3f453caae"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.004197604954242706,
+        1.310407280921936
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000343.npy",
+      "sha256": "f700815a13967e83842f3aadeebdc759640aa1992225fee4d105a110ac427a63"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.07446321099996567,
+        1.6638340950012207
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000344.npy",
+      "sha256": "501341acb69c26a5066b254e23cc5ed8864d0a1011e81fbee7605f5c0906266b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04328726977109909,
+        1.6306205987930298
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000345.npy",
+      "sha256": "7e3a5352a2496b3739914625a09f8200e36ca6931dcfb85dce5449a951058718"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.057212185114622116,
+        1.6799969673156738
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000346.npy",
+      "sha256": "ce9f2390d6c42ec8f2e9c9cb70215780f82e42b80f26153642c293f10a025f3e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.14952951669692993,
+        1.3654146194458008
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000347.npy",
+      "sha256": "f6839277310d377b298788ea65187954f791c95912a4fe49f7bcaff09ac88d17"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.04549931734800339,
+        1.069275975227356
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000348.npy",
+      "sha256": "8b52241b484f9d8741eab3df2c590eb15f33da2a01bc63b0aa3e4d933a5c15f7"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.01260601356625557,
+        1.5909589529037476
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000349.npy",
+      "sha256": "156caa9ff755821a4f6454c9e13d2f5ed4e68898cf43b7942f865da0c10ebff8"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0026620214339345694,
+        1.2438236474990845
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000350.npy",
+      "sha256": "7f33b02aa0fa0d2713abdcfa0e41537101267f503c809243e1acccf51a7305f2"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.05303094908595085,
+        1.449216365814209
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000351.npy",
+      "sha256": "08ed279b045c3d3b03ab6faeb65664fe1668bb81f7a5d0a9be4b836cc28d2a5c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04753640294075012,
+        1.6494837999343872
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000352.npy",
+      "sha256": "f44b580f9ca95af90c38ce612b5a6f0a9a36eba8c7f69d10f40312a777b5088b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.02552168443799019,
+        1.872218132019043
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000353.npy",
+      "sha256": "1befd5487b49887e0662de7595dae3186ab99121d67ca1d6e854517f76f7a224"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04371796175837517,
+        1.4129070043563843
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000354.npy",
+      "sha256": "516663a52eed1c7934a6cd09799f76937262777d8b0b5a85eee7f665f108c418"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.001959349727258086,
+        1.6737196445465088
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000355.npy",
+      "sha256": "359ec26fd27aa1e356495b8dfc9325d7709df6921ae996f4bc1a90c3330d589a"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04743840917944908,
+        1.5673483610153198
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000356.npy",
+      "sha256": "bcd10b8b22a9be6cbf94ef8dfc4ac442f5ea6c8512a8b50f81e681b99d30d934"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.08205857127904892,
+        1.4217780828475952
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000357.npy",
+      "sha256": "9a9385f34853f3a683ee3d07d1eff3d0b99274601a9554fc958f411fe2d1a18b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.04395294189453125,
+        1.3889331817626953
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000358.npy",
+      "sha256": "ec463f24d833c8c76110f62f34203784004be0946208e53aab182e6a0206f1af"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.009596752002835274,
+        1.5086629390716553
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000359.npy",
+      "sha256": "107cb30c5fd4730518f0b34a96e87d9a240511d6dfd8608d2b37a2a2580955bb"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.005979682318866253,
+        1.066195011138916
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000360.npy",
+      "sha256": "6f49eb427c18a04c139e018835074ca648f2e8db61c40f1150530f47dbca459d"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04528970643877983,
+        1.3274842500686646
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000361.npy",
+      "sha256": "b8c88e09b5d80b276080374155ae65e76faeb25ed2331b2fd97272f4844c6ab2"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0061253695748746395,
+        1.2238284349441528
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000362.npy",
+      "sha256": "f0583268912880f30e6cead7c99fdb0e0b21e3f5edcb48c18d7600158454a0bf"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.046948011964559555,
+        1.536615014076233
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000363.npy",
+      "sha256": "2083e42f1554e2da65d66714cdedcbc5a469c62c30ab36146171c6932bbba66d"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.007864399813115597,
+        1.6263840198516846
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000364.npy",
+      "sha256": "15c8ea1cdf93b58cfedc0a9bac82e0a520b3dec7f5b727fb2b2fc51f8e03b149"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.012195222079753876,
+        1.2434496879577637
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000365.npy",
+      "sha256": "14b34f14613130ca6eb13df5a4177a0de671080e1f61c6c7cc007cfbe1fe290c"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.01937791518867016,
+        1.3717498779296875
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000366.npy",
+      "sha256": "b0a13eccdfa16e60651b1dcacf14045aa71301173423d10d6873d5a4d84008cd"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.004003873094916344,
+        1.3422695398330688
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000367.npy",
+      "sha256": "518143797a97d9f1c1bec60aac8f9930eefe97148216312c252fe36d8db0aac6"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.07811375707387924,
+        1.557612657546997
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000368.npy",
+      "sha256": "18f36c1e3f359def24b3f319d8bd138bb6856eae613aea93cce4e9bfcd20c4cc"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.002342626452445984,
+        1.634762167930603
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000369.npy",
+      "sha256": "9f22263e48bb766e549b8a239620f28d163ccd8752c19b64f62907c7ecab6717"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.04810762405395508,
+        1.5848841667175293
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000370.npy",
+      "sha256": "4d0e697e32771f53dc7940fa90fe3ae83c03ec6b6884e70defa5a686292f4270"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.004926159046590328,
+        1.221471905708313
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000371.npy",
+      "sha256": "ef0259ab5a9e3f4df5045de241200e673a27d64f6c9b5856fd870d954396b23e"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.07160180807113647,
+        1.3404022455215454
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000372.npy",
+      "sha256": "51db6fbc264524bd92e0a902e8d57ac9d93d749fa6b33c51c9bfa12c8f53de18"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0016691121272742748,
+        1.316662311553955
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000373.npy",
+      "sha256": "a8c1713be09087b30e86a2c519a4f6434b37d3e16548f47103ec11ba5756eb55"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0647653341293335,
+        1.4385699033737183
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000374.npy",
+      "sha256": "ad65f5234095be9ba6c59ab071d3397c3ab61206f2d2152317550f79ea178ec8"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.02726326882839203,
+        1.5563228130340576
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000375.npy",
+      "sha256": "53de186f52c47dc186de762e318eb86da3123167144962795c74e86ea5141ba2"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.023693786934018135,
+        1.5381722450256348
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000376.npy",
+      "sha256": "17610fc658e945128c7bcca93b87d001f2221cf3f1947e90c3be6ed7a2eed293"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0230029858648777,
+        1.402793526649475
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000377.npy",
+      "sha256": "dedd655168d0b88b2697ae33a1eea448cba7980749f5f303e8cc8716cf7ea998"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.011493119411170483,
+        1.3546228408813477
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000378.npy",
+      "sha256": "443f39f027df31c28fa880b4cd75ef6d3dd2c959ce73ae77e38d41e81e62a8fd"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.01273605041205883,
+        1.793714165687561
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000379.npy",
+      "sha256": "69599dbf8a9fceca1045ed1176a39233e73664e82d35f36aa6ac04b6791f9b67"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.041996728628873825,
+        1.4728341102600098
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000380.npy",
+      "sha256": "d9d8ed6c1770415ac92076c88faf7b00bb93918cefe54d1cb557b7ea030e59e8"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.10302102565765381,
+        1.4710392951965332
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000381.npy",
+      "sha256": "efda16341d38921248f98363f9417faf76b0319091667bb408edf01bfdf43d9f"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        7.734713290119544e-05,
+        1.4852286577224731
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000382.npy",
+      "sha256": "395b4b1d5411b47bdcaae9825c85dcc85b9f240132587e15d2043af9dacec615"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.06689439713954926,
+        1.7189780473709106
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000383.npy",
+      "sha256": "1578cc896f13906be7b25dbd0a8f79eb6fecf934ac6069f0dea4de5fbd374fd2"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.06659502536058426,
+        1.2701729536056519
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000384.npy",
+      "sha256": "c02ec9b9226d204ac22a2bd60209209612d351db2a59ed662416a1d85981d703"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.022913584485650063,
+        1.3474204540252686
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000385.npy",
+      "sha256": "422e79a8357f53d9ae9b8ae4d730b4bf3a4c7fd5af61f67c5f44e8b000e683a9"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.03219083696603775,
+        1.385305643081665
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000386.npy",
+      "sha256": "088e482dc3db48f77c467a6f5462f735e47d73b94926e60ef2a3c44832174ff0"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.002018521772697568,
+        1.3878843784332275
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000387.npy",
+      "sha256": "43038140e8fa74e10e42887f0cfc9fb6d2891bb1bfbb6676cdfed740d20bd58b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.0033250029664486647,
+        1.5468097925186157
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000388.npy",
+      "sha256": "ccdc3adaf4b3107679b5f04cb9576abdb4363189fe9029c64539f11304623d97"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.008453462272882462,
+        1.919837474822998
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000389.npy",
+      "sha256": "b4b0810a377e14cd6357bf6740ccdd609b9449f41f17c266b1a2c081c416f7f1"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0010690736817196012,
+        1.3966922760009766
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000390.npy",
+      "sha256": "8121b5b90393daf3ebece08311960cfca754b54e759c48d53a4b3bd04c06a284"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.017063604667782784,
+        1.4236440658569336
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000391.npy",
+      "sha256": "c8878cc796e148682f423c7bb66647b94f094544c77b044e6726a599fbaac791"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.016910076141357422,
+        1.4529582262039185
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000392.npy",
+      "sha256": "aa9e0af572be4138205542bfd8739fd148dcf9f63d56e3ee139f55679e0d0686"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.0003427158226259053,
+        1.3540583848953247
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000393.npy",
+      "sha256": "6ef3dc0feebcd06e7196c77ffe03769e738c353bb155b2416072b387cc95eef4"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.02280237339437008,
+        1.2426011562347412
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000394.npy",
+      "sha256": "dd8136e950cf140938e086fd76cc8a813b0b76049a30d914b35e95d857d2bb01"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.03420408070087433,
+        1.6058896780014038
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000395.npy",
+      "sha256": "e6e266b1946dee0404f6a77a073d42e722b79cbacad2ccec2e0d11f91cfe5796"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        0.025122791528701782,
+        1.4205008745193481
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000396.npy",
+      "sha256": "d030bd8b326582c2835dc6fc484f6997ebcd497e0459bfbe9f1173d2b8428767"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.009148083627223969,
+        1.8090804815292358
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000397.npy",
+      "sha256": "52d6c152496ae5e467f6abef21bbe1b130a0c4446992029a04100bd88fb6d758"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.04737973213195801,
+        1.4736472368240356
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000398.npy",
+      "sha256": "923b4e081a3588ec2def0b4d1d2cd079de25359c064609e9163fbe14e63ab77b"
+    },
+    {
+      "byte_size": 65664,
+      "channels": 1,
+      "dimensions": [
+        128,
+        128
+      ],
+      "dtype": "float32",
+      "extension": ".npy",
+      "range": [
+        -0.005261037033051252,
+        1.0721888542175293
+      ],
+      "readable": true,
+      "relative_path": "NoisyLR/000399.npy",
+      "sha256": "fc9a9d619fd232ce5e7146897295ce13c1752ed415d840b6165bbdcb3b9f0627"
+    }
+  ],
+  "grouping": {
+    "hierarchy": [
+      "source_group",
+      "acquisition",
+      "sample"
+    ],
+    "note": "no acquisition/session metadata is present in the official directory; each sample is its own source unit (see docs/grouping-and-splits.md)",
+    "source_group_field": "sample-id"
+  },
+  "hash_algorithm": "sha256",
+  "manifest_version": "1",
+  "provenance": {
+    "permitted_uses": [
+      "final evaluation inference only"
+    ],
+    "restrictions": [
+      "never commit dataset files to git",
+      "must not influence training, validation, calibration, hyperparameter search, or threshold selection",
+      "kept free of development labels and metrics"
+    ],
+    "source": "official local directory (KLA problem statement)"
+  },
+  "source_root": "D:\\KLA_Hackathon\\Test_NoisyLR"
+}
