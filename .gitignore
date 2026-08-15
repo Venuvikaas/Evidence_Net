@@ -1,0 +1,62 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+wheels/
+*.so
+
+# --- Environments ---
+.venv/
+venv/
+env/
+ENV/
+.env
+.env.*
+!.env.example
+
+# --- Tooling caches ---
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+
+# --- Official local datasets (never commit) ---
+train/
+Test_NoisyLR/
+*.zip
+
+# --- Generated runs and artifacts ---
+runs/*
+!runs/.gitkeep
+artifacts/*
+!artifacts/.gitkeep
+
+# --- Model checkpoints and weights ---
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.safetensors
+
+# --- Frontend dependencies and build output ---
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.cache/
+frontend/coverage/
+
+# --- IDE / OS ---
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
