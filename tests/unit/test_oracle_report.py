@@ -36,8 +36,15 @@ def test_report_structural_impact_present() -> None:
     ids, bases, proposals, candidates, targets = _sample()
     decisions = oracle_decisions(ids, bases, proposals, candidates, targets)
     report = build_headroom_report(decisions, bases=bases, proposals=proposals, targets=targets)
-    assert "edge_displacement_px" in report.structural_impact
-    assert "structural_error" in report.structural_impact
+    # Base and oracle-patch values are reported per field (condition 4).
+    for field in ("edge_displacement_px", "structural_error"):
+        assert f"{field}.base" in report.structural_impact
+        assert f"{field}.oracle_patch" in report.structural_impact
+    # In this fixture the oracle-patch output matches the perfect candidate.
+    assert (
+        report.structural_impact["edge_displacement_px.oracle_patch"]["mean"]
+        <= report.structural_impact["edge_displacement_px.base"]["mean"]
+    )
 
 
 def test_headroom_gain_signs() -> None:

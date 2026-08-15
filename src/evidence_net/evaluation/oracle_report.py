@@ -72,15 +72,22 @@ def _structural_impact(
     proposals: Sequence[np.ndarray],
     targets: Sequence[np.ndarray],
 ) -> dict[str, dict[str, float]]:
-    """Structural metrics of base, candidate, and oracle-patch outputs."""
-    fields = ("edge_displacement_px", "structural_error")
-    results: dict[str, dict[str, float]] = {field: {} for field in fields}
+    """Structural metrics of base and oracle-patch outputs per group.
+
+    Keys are ``<field>.<output>`` so the report can compare the oracle-patch
+    output against the frozen Base (acceptance rule EXP-004 condition 4).
+    """
+    results: dict[str, dict[str, float]] = {}
     for decision, base, proposal, target in zip(decisions, bases, proposals, targets, strict=True):
         oracle_patch = oracle_output(base, proposal, decision.patch_gate)
-        results["edge_displacement_px"][decision.sample_id] = edge_displacement(
-            target, oracle_patch
-        )
-        results["structural_error"][decision.sample_id] = structural_error(target, oracle_patch)
+        for field, compute in (
+            ("edge_displacement_px", edge_displacement),
+            ("structural_error", structural_error),
+        ):
+            results.setdefault(f"{field}.base", {})[decision.sample_id] = compute(target, base)
+            results.setdefault(f"{field}.oracle_patch", {})[decision.sample_id] = compute(
+                target, oracle_patch
+            )
     return results
 
 
