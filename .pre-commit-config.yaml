@@ -32,3 +32,6 @@ repos:
     hooks:
       - id: detect-secrets
         args: ["--baseline", ".secrets.baseline"]
+        # Frozen manifests under data/manifests/ contain thousands of sha256
+        # content digests that are part of the data contract, not secrets.
+        exclude: "^data/manifests/"
