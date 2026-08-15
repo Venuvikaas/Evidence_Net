@@ -6,6 +6,7 @@ from torch import nn
 
 from evidence_net.models.base import BaseReconstruction
 from evidence_net.models.direct import DirectRestoration
+from evidence_net.models.proposal import BoundedDetailProposal, DetailProposer
 from evidence_net.training.config import ModelConfig
 
 
@@ -19,6 +20,12 @@ def build_model(config: ModelConfig) -> nn.Module:
         return BaseReconstruction(hidden_channels=config.hidden_channels, depth=config.depth)
     if config.name == "direct":
         return DirectRestoration(hidden_channels=config.hidden_channels, depth=config.depth)
+    if config.name == "proposal":
+        base = BaseReconstruction(hidden_channels=config.hidden_channels, depth=config.depth)
+        proposer = DetailProposer(
+            hidden_channels=config.hidden_channels, depth=config.depth, amplitude=config.amplitude
+        )
+        return BoundedDetailProposal(base, proposer)
     raise ModelFactoryError(f"unknown model name: {config.name}")
 
 

@@ -40,14 +40,17 @@ class ModelConfig:
     name: str = "base"
     hidden_channels: int = 32
     depth: int = 3
+    amplitude: float = 0.1
 
     def validate(self) -> None:
-        if self.name not in ("base", "direct"):
-            raise ConfigError(f"model.name must be base or direct, got {self.name}")
+        if self.name not in ("base", "direct", "proposal"):
+            raise ConfigError(f"model.name must be base, direct, or proposal, got {self.name}")
         if self.hidden_channels < 4:
             raise ConfigError(f"model.hidden_channels must be >= 4, got {self.hidden_channels}")
         if self.depth < 1:
             raise ConfigError(f"model.depth must be >= 1, got {self.depth}")
+        if self.amplitude <= 0.0:
+            raise ConfigError(f"model.amplitude must be > 0, got {self.amplitude}")
 
 
 @dataclass(frozen=True)
@@ -138,7 +141,7 @@ class _RawConfig:
             raise ConfigError(f"unknown config keys: {sorted(unknown)}")
         return cls(
             data=cls._section(raw, "data", {"split", "n_samples", "seed"}),
-            model=cls._section(raw, "model", {"name", "hidden_channels", "depth"}),
+            model=cls._section(raw, "model", {"name", "hidden_channels", "depth", "amplitude"}),
             loss=cls._section(raw, "loss", {"pixel", "structural", "edge", "frequency"}),
         )
 
@@ -197,6 +200,7 @@ def load_config(path: Path) -> TrainConfig:
     model_name = _as_str(pick(parsed.model, "name", "base"), "model.name")
     hidden_channels = _as_int(pick(parsed.model, "hidden_channels", 32), "model.hidden_channels", 4)
     depth = _as_int(pick(parsed.model, "depth", 3), "model.depth", 1)
+    amplitude = _as_float(pick(parsed.model, "amplitude", 0.1), "model.amplitude")
 
     pixel = _as_float(pick(parsed.loss, "pixel", 1.0), "loss.pixel")
     structural = _as_float(pick(parsed.loss, "structural", 0.25), "loss.structural")
@@ -217,7 +221,9 @@ def load_config(path: Path) -> TrainConfig:
         mixed_precision=_as_bool(pick(raw, "mixed_precision", False), "mixed_precision"),
         checkpoint_dir=_as_str(pick(raw, "checkpoint_dir", "checkpoints"), "checkpoint_dir"),
         data=DataConfig(split=split, n_samples=n_samples, seed=seed),
-        model=ModelConfig(name=model_name, hidden_channels=hidden_channels, depth=depth),
+        model=ModelConfig(
+            name=model_name, hidden_channels=hidden_channels, depth=depth, amplitude=amplitude
+        ),
         loss=LossConfig(pixel=pixel, structural=structural, edge=edge, frequency=frequency),
     )
     config.validate()
