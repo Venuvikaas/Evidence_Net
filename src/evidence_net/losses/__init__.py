@@ -2,6 +2,7 @@
 
 from evidence_net.losses.base_losses import (
     BaseLoss,
+    ProposalLoss,
     edge_loss,
     frequency_loss,
     pixel_loss,
@@ -10,6 +11,7 @@ from evidence_net.losses.base_losses import (
 
 __all__ = [
     "BaseLoss",
+    "ProposalLoss",
     "edge_loss",
     "frequency_loss",
     "pixel_loss",

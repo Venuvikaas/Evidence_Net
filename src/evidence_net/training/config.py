@@ -61,13 +61,17 @@ class LossConfig:
     structural: float = 0.25
     edge: float = 0.25
     frequency: float = 0.1
+    residual: float = 0.0
 
     def validate(self) -> None:
-        for name in ("pixel", "structural", "edge", "frequency"):
+        for name in ("pixel", "structural", "edge", "frequency", "residual"):
             value = getattr(self, name)
             if value < 0.0:
                 raise ConfigError(f"loss.{name} must be >= 0, got {value}")
-        if all(getattr(self, name) == 0.0 for name in ("pixel", "structural", "edge", "frequency")):
+        if all(
+            getattr(self, name) == 0.0
+            for name in ("pixel", "structural", "edge", "frequency", "residual")
+        ):
             raise ConfigError("loss weights cannot all be zero")
 
 
@@ -142,7 +146,9 @@ class _RawConfig:
         return cls(
             data=cls._section(raw, "data", {"split", "n_samples", "seed"}),
             model=cls._section(raw, "model", {"name", "hidden_channels", "depth", "amplitude"}),
-            loss=cls._section(raw, "loss", {"pixel", "structural", "edge", "frequency"}),
+            loss=cls._section(
+                raw, "loss", {"pixel", "structural", "edge", "frequency", "residual"}
+            ),
         )
 
     @staticmethod
@@ -206,6 +212,7 @@ def load_config(path: Path) -> TrainConfig:
     structural = _as_float(pick(parsed.loss, "structural", 0.25), "loss.structural")
     edge = _as_float(pick(parsed.loss, "edge", 0.25), "loss.edge")
     frequency = _as_float(pick(parsed.loss, "frequency", 0.1), "loss.frequency")
+    residual = _as_float(pick(parsed.loss, "residual", 0.0), "loss.residual")
 
     config = TrainConfig(
         seed=_as_int(pick(raw, "seed", 0), "seed", 0),
@@ -224,7 +231,13 @@ def load_config(path: Path) -> TrainConfig:
         model=ModelConfig(
             name=model_name, hidden_channels=hidden_channels, depth=depth, amplitude=amplitude
         ),
-        loss=LossConfig(pixel=pixel, structural=structural, edge=edge, frequency=frequency),
+        loss=LossConfig(
+            pixel=pixel,
+            structural=structural,
+            edge=edge,
+            frequency=frequency,
+            residual=residual,
+        ),
     )
     config.validate()
     return config

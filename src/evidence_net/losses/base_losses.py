@@ -135,3 +135,30 @@ class BaseLoss(nn.Module):
                 "edge": float(self.weights.edge * edge_loss(prediction, target)),
                 "frequency": float(self.weights.frequency * frequency_loss(prediction, target)),
             }
+
+
+class ProposalLoss(BaseLoss):
+    """Composite loss plus fidelity to the target residual (Phase 4).
+
+    ``total = BaseLoss(candidate, x) + residual * L1(d, x - stopgrad(b))``
+
+    The residual term gives the proposer a direct gradient toward the target
+    residual ``d* = x - b`` (per product definition 10.3), which the pure
+    composite candidate loss lacks when the frozen Base already minimizes it.
+    ``b`` is read from the wrapper's cached forward pass (detached) and ``d``
+    from the same pass (with its graph), so the trainer's ``(pred, target)``
+    interface needs no changes.
+    """
+
+    def __init__(self, weights: LossConfig, proposal_model) -> None:
+        super().__init__(weights)
+        self.proposal_model = proposal_model
+
+    def compute(self, prediction: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
+        total = super().compute(prediction, target)
+        if self.weights.residual > 0.0:
+            proposal = self.proposal_model.last_proposal
+            base_output = self.proposal_model.last_base
+            residual = target - base_output  # d* = x - stopgrad(b)
+            total = total + self.weights.residual * nn.functional.l1_loss(proposal, residual)
+        return total

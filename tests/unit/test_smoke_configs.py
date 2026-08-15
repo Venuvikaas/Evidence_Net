@@ -15,8 +15,9 @@ import pytest
 import torch
 from torch.utils.data import DataLoader, TensorDataset
 
-from evidence_net.losses.base_losses import BaseLoss
+from evidence_net.losses.base_losses import BaseLoss, ProposalLoss
 from evidence_net.models.factory import build_model
+from evidence_net.models.proposal import BoundedDetailProposal
 from evidence_net.training.config import ConfigError, TrainConfig, load_config
 from evidence_net.training.trainer import Trainer
 
@@ -48,11 +49,16 @@ def test_smoke_configs_training_history_and_checkpoints(tmp_path: Path) -> None:
             batch_size=config.batch_size,
         )
         model = build_model(config.model)
+        loss_fn = (
+            ProposalLoss(config.loss, model)
+            if isinstance(model, BoundedDetailProposal)
+            else BaseLoss(config.loss)
+        )
         trainer = Trainer(
             model,
             config,
             loader,
-            loss_fn=BaseLoss(config.loss),
+            loss_fn=loss_fn,
             checkpoint_dir=tmp_path / name,
         )
         history = trainer.fit()
@@ -72,10 +78,7 @@ def test_proposal_smoke_trains_against_frozen_base(tmp_path: Path) -> None:
         batch_size=config.batch_size,
     )
     model = build_model(config.model)
-    base_before = {
-        name: parameter.clone()
-        for name, parameter in model.base.named_parameters()
-    }
+    base_before = {name: parameter.clone() for name, parameter in model.base.named_parameters()}
     trainer = Trainer(
         model,
         config,
@@ -89,10 +92,7 @@ def test_proposal_smoke_trains_against_frozen_base(tmp_path: Path) -> None:
     for name, parameter in model.base.named_parameters():
         assert torch.equal(parameter, base_before[name]), f"Base param {name} changed"
     # The proposer head learned something (any parameter moved).
-    moved = any(
-        parameter.grad is not None
-        for parameter in model.proposer.parameters()
-    )
+    moved = any(parameter.grad is not None for parameter in model.proposer.parameters())
     assert moved
 
 

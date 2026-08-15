@@ -85,6 +85,8 @@ class BoundedDetailProposal(nn.Module):
         b = self.base(y)
         d = self.proposer(y, b)
         c = torch.clamp(b + d, 0.0, 1.0)
+        self.last_base = b.detach()
+        self.last_proposal = d
         return b, d, c
 
     def forward(self, y: torch.Tensor) -> torch.Tensor:

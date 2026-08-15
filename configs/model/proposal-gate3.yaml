@@ -22,3 +22,4 @@ loss:
   structural: 0.25
   edge: 0.25
   frequency: 0.1
+  residual: 1.0

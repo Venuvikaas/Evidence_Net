@@ -27,7 +27,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 
 try:
     from evidence_net.data.paths import resolve_dataset_paths
-    from evidence_net.losses.base_losses import BaseLoss
+    from evidence_net.losses.base_losses import ProposalLoss
     from evidence_net.models.factory import model_summary
     from evidence_net.models.proposal import BoundedDetailProposal, DetailProposer
     from evidence_net.reporting.run_bundle import new_run_id
@@ -38,7 +38,7 @@ try:
 except ImportError:  # allow running before `pip install -e .`
     sys.path.insert(0, str(REPO_ROOT / "src"))
     from evidence_net.data.paths import resolve_dataset_paths  # noqa: E402
-    from evidence_net.losses.base_losses import BaseLoss  # noqa: E402
+    from evidence_net.losses.base_losses import ProposalLoss  # noqa: E402
     from evidence_net.models.factory import model_summary  # noqa: E402
     from evidence_net.models.proposal import BoundedDetailProposal, DetailProposer  # noqa: E402
     from evidence_net.reporting.run_bundle import new_run_id  # noqa: E402
@@ -129,7 +129,7 @@ def main() -> int:
     train_loader = DataLoader(train_dataset, batch_size=config.batch_size, shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=config.batch_size, shuffle=False)
 
-    loss_fn = BaseLoss(config.loss)
+    loss_fn = ProposalLoss(config.loss, model)
     device = torch.device(args.device) if args.device is not None else None
     trainer = Trainer(
         model,
