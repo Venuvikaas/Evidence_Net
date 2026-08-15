@@ -63,6 +63,22 @@ def test_missing_execution_file_fails(tmp_path: Path) -> None:
         resolve_dataset_paths(env={}, repo_root=repo)
 
 
+def test_env_overrides_do_not_require_execution_file(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    train = tmp_path / "train"
+    test = tmp_path / "Test_NoisyLR"
+    train.mkdir()
+    test.mkdir()
+    datasets = resolve_dataset_paths(
+        env={"TRAIN_DATA_DIR": str(train), "TEST_NOISY_LR_DIR": str(test)},
+        repo_root=repo,
+    )
+    assert datasets.train_dir == train
+    assert datasets.test_noisylr_dir == test
+    assert datasets.source == "env"
+
+
 def test_find_execution_parent(tmp_path: Path) -> None:
     parent, repo, _ = _make_project(tmp_path)
     assert find_execution_parent(repo) == parent

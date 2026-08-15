@@ -93,7 +93,13 @@ def resolve_dataset_paths(
         environment.update(env)
     merged = {**dotenv, **environment}
 
-    execution_parent = find_execution_parent(repo_root)
+    both_from_env = bool(merged.get(TRAIN_DIR_ENV, "").strip()) and bool(
+        merged.get(TEST_NOISY_LR_DIR_ENV, "").strip()
+    )
+    # The execution file is only required when at least one dataset directory
+    # must be discovered from the execution-file parent; explicit env
+    # overrides for both directories stand on their own.
+    execution_parent = find_execution_parent(repo_root) if not both_from_env else None
     errors: list[str] = []
 
     def pick(var: str, default_name: str) -> tuple[Path | None, str]:
@@ -109,7 +115,7 @@ def resolve_dataset_paths(
     test_dir, test_source = pick(TEST_NOISY_LR_DIR_ENV, "Test_NoisyLR")
     source = train_source if train_source == test_source else f"{train_source}+{test_source}"
 
-    if execution_parent is None:
+    if execution_parent is None and not both_from_env:
         errors.append(
             "no execution file "
             + " or ".join(EXECUTION_FILE_NAMES)
