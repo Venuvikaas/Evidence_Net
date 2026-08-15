@@ -1,0 +1,32 @@
+{
+  "created_at": "2026-08-15T16:47:13Z",
+  "dataset_id": "dataset-manifest-v1",
+  "isolation": {
+    "rule": "Test_NoisyLR must never enter training, validation, calibration, hyperparameter-search, or threshold-selection manifests",
+    "test_final_entries": 0,
+    "test_source": "official-test-noisylr-source-v1"
+  },
+  "manifest_version": "1",
+  "n_samples": 3200,
+  "source_manifests": {
+    "official-test-noisylr-source-v1": {
+      "file": "official-test-noisylr-source-v1.json",
+      "sha256": "9341851e2e3f0c7ddf4f9c256b4108fd14aafd53894fe33f361d0073d0cc2dc7"
+    },
+    "official-train-source-v1": {
+      "file": "official-train-source-v1.json",
+      "sha256": "637c04f0ffdc0e2fbb617ebcf504968504021b567e6d2c6d5a2de294ce40b14e"
+    }
+  },
+  "split_counts": {
+    "calibration": 164,
+    "heldout-source": 157,
+    "train": 2551,
+    "validation": 328
+  },
+  "split_seed": 0,
+  "splits_manifest": {
+    "file": "dataset-splits-v1.json",
+    "sha256": "e3c31a362ca8e3ba831d920a30f9a422c8374b6c4b8ad67b7c44710cc04a90d9"
+  }
+}
