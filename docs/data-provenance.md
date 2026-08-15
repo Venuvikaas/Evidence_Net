@@ -28,3 +28,16 @@ hypothesis, but this is a hypothesis, not a confirmed fact:
 **Classification:** real-vs-synthetic **unknown**; targets are treated as the
 official clean reference for supervised training, and calibration claims will
 be restricted to the stated dataset domain.
+
+## Quarantine policy
+
+- Any dataset without clear permitted use is **excluded or quarantined** and
+  is never used for training, evaluation, or display.
+- Currently, only the two official local datasets are in use; the challenge
+  PPTX is documentation only.
+- The `official-test-noisylr-source-v1` manifest is quarantined from all
+  development decisions by construction (isolation tests + split builder
+  guard).
+- If additional data is introduced later, it must first be registered in this
+  inventory with source, license, and permitted use before any pipeline may
+  consume it.
