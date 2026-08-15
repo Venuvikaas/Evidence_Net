@@ -164,4 +164,25 @@ are written before examining final test results. The format is defined in
   **Redesign the proposal or the spatial unit** if the oracle finds no such
   headroom; **abandon the gated decomposition** if equal-capacity direct
   restoration matches oracle-gated outputs.
-- Status: predeclared (results recorded on execution).
+- Result (proposal trained with composite + residual-fidelity loss, 12
+  epochs): oracle patch-gated PSNR 25.66 dB vs Base 25.21 dB (+0.45), SSIM
+  0.671 vs 0.639, MAE 0.0373 vs 0.0399 (-6.3% relative); oracle pixel-gated
+  26.16 dB. Ungated candidate 25.63 dB (also +0.42 over Base). Direct CNN
+  22.60 dB — oracle output is 3 dB above the equal-capacity alternative.
+- Coverage / risk: pixel coverage 0.578 (risk 0.422); patch coverage 0.868
+  (risk 0.132) — the proposal is selective, neither always harmful nor
+  trivially redundant.
+- Structural impact: oracle-patch edge displacement 6.75 px vs Base 6.68 px
+  (delta +0.07 px, bootstrap CIs [4.06, 9.99] vs [3.95, 9.82] overlap
+  heavily → no detectable increase); structural error 0.0435 vs 0.0443.
+- Failure catalogue (EXP-004 box 12-13): benefit concentrates in flat
+  regions (0.0026), harm in periodic high-edge-density regions (0.0007,
+  oracle accept 78%); worst group 000893 gains overall while degrading
+  periodic regions; archived as FAIL-001.
+- Decision: **continue** — conditions 1-3 met (MAE -6.3% >= 5% bar; oracle
+  far above direct; coverage 86.8% in [10%, 90%]); condition 4 met (edge
+  displacement not detectably increased). The decomposition has value and
+  is worth predicting (Research Gate 3: continue).
+- Artifact path: `runs/oracle-gate3-20260815-205601/`,
+  `runs/proposal-effects-20260815-205856/`,
+  `checkpoints/train-proposal-gate3v2/best.pt`.

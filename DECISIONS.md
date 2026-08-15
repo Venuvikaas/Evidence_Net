@@ -139,3 +139,31 @@ superseded`.
   in every later phase.
 - Contracts or experiments affected: EXP-003, docs/base-failures.md,
   docs/decision-base-reconstruction.md, evaluation-protocol v1.
+
+## ADR-007 — Phase 4 proposal-oracle decision (Research Gate 3)
+- Status: accepted
+- Context: Research Gate 3 (EXECUTION.md Phase 4) requires the gated
+  decomposition to have measurable value before building a benefit
+  predictor: the oracle must find meaningful headroom beyond the frozen Base
+  and an equal-capacity direct model on declared outcomes.
+- Decision: **continue** with the Base + bounded Detail Proposal + selective
+  acceptance decomposition. EXP-004 conditions met: oracle patch MAE -6.3%
+  vs Base (>= 5% bar), oracle patch PSNR 25.66 vs direct 22.60 dB, patch
+  coverage 86.8% in [10%, 90%], edge displacement not detectably increased.
+  Promote `checkpoints/train-proposal-gate3v2/best.pt` and tag
+  `v0.3-proposal-oracle`.
+- Evidence: EXP-004, `runs/oracle-gate3-20260815-205601/`,
+  `runs/proposal-effects-20260815-205856/`,
+  `docs/decision-proposal-oracle.md`. The first trained proposal was nearly
+  inert; adding residual fidelity to the objective (per product definition
+  10.3) produced the headroom, so the objective was redesigned, not the
+  decomposition.
+- Alternatives rejected: redesigning the proposal (passing gate), changing
+  the spatial unit (patch unit matches the Phase 5 benefit event), and
+  abandoning the gated decomposition (direct model is 3 dB below oracle).
+- Consequences: Phase 5 builds the proposal-benefit predictor, starting with
+  simple baselines and requiring calibration/selective-risk reports; the
+  decision policy must be regional (periodic regions are high-risk, archived
+  as FAIL-001); the oracle stays a study tool, never used at inference.
+- Contracts or experiments affected: EXP-004, docs/proposal-contract.md,
+  docs/proposal-failures.md, FAIL-001.
