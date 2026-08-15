@@ -47,7 +47,9 @@ def _patch_grid(shape: tuple[int, int]) -> np.ndarray:
     return rows[:, None] + cols[None, :] * (height // PATCH_SIZE + 1)
 
 
-def patch_mae_map(base: np.ndarray, candidate: np.ndarray, target: np.ndarray) -> np.ndarray:
+def patch_mae_map(
+    base: np.ndarray, candidate: np.ndarray, target: np.ndarray
+) -> tuple[np.ndarray, np.ndarray]:
     """Per-patch MAE of Base and candidate vs the target.
 
     Returns ``(base_patch_mae, candidate_patch_mae)`` float arrays indexed by

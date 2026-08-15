@@ -13,7 +13,8 @@ label. Both tensor-level and dataset-level helpers are provided.
 
 from __future__ import annotations
 
-from collections.abc import Sequence
+from collections.abc import Sequence, Sized
+from typing import cast
 
 import torch
 from torch import nn
@@ -57,7 +58,7 @@ class ResidualTargetDataset(Dataset[tuple[torch.Tensor, torch.Tensor, str]]):
         self.base.eval()
 
     def __len__(self) -> int:
-        return len(self.source)
+        return len(cast(Sized, self.source))
 
     def __getitem__(self, index: int) -> tuple[torch.Tensor, torch.Tensor, str]:
         inputs, target, sample_id = self.source[index]
