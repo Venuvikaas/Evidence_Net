@@ -77,6 +77,14 @@ names, metadata, and the directory structure:
 - Per-pair uncertainty is not yet available; the dataset-level estimate is
   the documented default until a per-pair registration audit is added.
 
+## Duplicate detection
+
+- Exact duplicates (sha256): 0 groups across all 6400 train files.
+- Near duplicates (32×32 mean-pooled, 3-decimal quantized signature): 0
+  groups.
+- No duplicate handling is therefore required in the splits; the audit
+  (`scripts/audit_dataset.py`) re-checks this on every run.
+
 ## Unresolved
 
 - No acquisition/session metadata is present; each sample is treated as its
