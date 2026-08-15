@@ -168,7 +168,7 @@ def _as_int(value: object, path: str, minimum: int) -> int:
 
 
 def _as_float(value: object, path: str) -> float:
-    if not isinstance(value, (int, float)) or isinstance(value, bool):
+    if not isinstance(value, int | float) or isinstance(value, bool):
         raise ConfigError(f"{path} must be a number, got {type(value).__name__}")
     return float(value)
 
