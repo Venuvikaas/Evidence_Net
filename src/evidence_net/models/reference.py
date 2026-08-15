@@ -1,9 +1,9 @@
-"""Deterministic reference reconstruction.
+"""Deterministic reference reconstruction and classical restoration baselines.
 
-The Phase 2 comparison anchor: a deterministic bilinear up-sampling of the
-input that matches the 2x restoration contract (128x128 -> 256x256). It is
-seed-free and deterministic, so every later model can be judged against the
-same floor. See ``docs/evaluation-protocol.md``.
+Phase 2 baselines: a deterministic bilinear up-sampling reconstruction and a
+classical denoising + up-sampling restoration. Both are seed-free,
+deterministic, and suitable as comparison anchors for learned models. See
+``docs/evaluation-protocol.md``.
 """
 
 from __future__ import annotations
@@ -13,6 +13,7 @@ from collections.abc import Callable
 import numpy as np
 
 UPSCALE_FACTOR = 2
+MEDIAN_FILTER_SIZE = 5
 
 Restorer = Callable[[np.ndarray], np.ndarray]
 
@@ -54,3 +55,20 @@ def bilinear_upsample(array: np.ndarray, scale: int = UPSCALE_FACTOR) -> np.ndar
 def deterministic_reconstruction(array: np.ndarray) -> np.ndarray:
     """Deterministic reference: bilinear 2x up-sampling of the input."""
     return bilinear_upsample(array, scale=UPSCALE_FACTOR)
+
+
+def median_filter(array: np.ndarray, size: int = MEDIAN_FILTER_SIZE) -> np.ndarray:
+    """Square median filter with reflect padding (classical denoising)."""
+    if size % 2 != 1:
+        raise ValueError(f"median filter size must be odd, got {size}")
+    if array.ndim == 3:
+        return np.stack([median_filter(array[c], size) for c in range(array.shape[0])])
+    pad = size // 2
+    padded = np.pad(array, pad, mode="reflect")
+    windows = np.lib.stride_tricks.sliding_window_view(padded, (size, size))
+    return np.median(windows, axis=(-2, -1))
+
+
+def classical_restoration(array: np.ndarray) -> np.ndarray:
+    """Classical baseline: 5x5 median denoising followed by bilinear 2x up-sampling."""
+    return bilinear_upsample(median_filter(array, MEDIAN_FILTER_SIZE), scale=UPSCALE_FACTOR)
