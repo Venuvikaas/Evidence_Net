@@ -5,6 +5,26 @@ execution plan lives in `EXECUTION.md`.
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-08-16
+
+### Added (Phase 3)
+- PyTorch training stack: structured config validation, reproducible trainer
+  with checkpointing/resume/mixed-precision/seeded runs, numerical failure
+  guards (NaN, exploding gradients, empty batches).
+- Experiment provenance: run bundles with environment capture, config,
+  training history, and checkpoint references.
+- Base Reconstruction (`b = U(y) + h_b(f(y))`, deterministic anchor +
+  learned refinement) and an equal-capacity direct-restoration CNN.
+- Composite base loss with configurable pixel, structural, edge, and
+  frequency terms (differentiable; sqrt-epsilon guard on edge magnitudes).
+- Model path validation: output contract, gradient flow, checkpoint
+  roundtrip, and tiled-parity inference for fully convolutional models.
+- Training/comparison scripts (`scripts/train_base.py`,
+  `scripts/compare_restoration.py`, `scripts/catalogue_failures.py`) and
+  model configs under `configs/model/`.
+- EXP-003 records the governed comparison; failure catalogue and Research
+  Gate 2 decision doc (continue); ADR-006.
+
 ## [0.3.0] - 2026-08-15
 
 ### Added (Phase 2)

@@ -18,17 +18,21 @@ existed. Every probability names its exact event and calibration domain.
 
 ## Status
 
-**Phases 0–1 complete** — repository skeleton, contracts, automation spine, and
-the official dataset foundation are in place. The official `train/` dataset
-(3200 NoisyLR→GT pairs) is paired, audited, split deterministically, and the
-isolated `Test_NoisyLR/` set (400 inputs) is registered without touching any
-development decision.
+**Phases 0–3 complete** — repository skeleton, contracts, data foundation,
+trusted evaluation harness, and a frozen learned Base Reconstruction are in
+place. The official `train/` dataset (3200 NoisyLR→GT pairs) is paired,
+audited, split deterministically; the isolated `Test_NoisyLR/` set (400
+inputs) is registered without touching any development decision; the Base
+Reconstruction beats its deterministic anchor and the classical baselines
+through the grouped-bootstrap harness (Research Gate 2: continue).
 
 | Phase | State |
 | --- | --- |
 | 0 — Project bootstrap and contracts | ✅ complete |
 | 1 — Domain and data foundation | ✅ complete (decision: continue, ADR-005) |
-| 2+ — Evaluation, models, diagnostics, product | pending (see `EXECUTION.md`) |
+| 2 — Evaluation harness and classical baselines | ✅ complete (tag `v0.1-data-eval`) |
+| 3 — Learned Base Reconstruction | ✅ complete (decision: continue, ADR-006) |
+| 4+ — Proposal, benefit prediction, diagnostics, product | pending (see `EXECUTION.md`) |
 
 ## Phase 1 summary
 
@@ -48,6 +52,27 @@ development decision.
 - Docs: `docs/data-card.md`, `docs/train-structure.md`,
   `docs/test-noisylr-structure.md`, `docs/data-provenance.md`,
   `docs/grouping-and-splits.md`.
+
+## Phase 3 summary
+
+- PyTorch training stack: `training/config.py` (validated YAML configs),
+  `training/trainer.py` (seeded, checkpointing, resume, mixed precision,
+  NaN/explosion/empty-batch guards), `training/provenance.py` (run bundles
+  with environment capture).
+- Models: `models/base.py` (Base Reconstruction `b = U(y) + h_b(f(y))`),
+  `models/direct.py` (equal-capacity direct CNN), `models/validate.py`
+  (output contract, gradient flow, checkpoint roundtrip, tiled parity).
+- Losses: `losses/base_losses.py` — configurable pixel/structural/edge/
+  frequency composite.
+- Governed comparison (EXP-003, `runs/compare-gate2/`): Base PSNR 25.21 dB
+  [23.19, 27.45] vs deterministic anchor 25.08 [23.03, 27.45], SSIM 0.639 vs
+  0.599, MAE 0.0399 vs 0.0430; classical 24.46; direct 22.60. Failure
+  catalogue (`docs/base-failures.md`): periodic 0.096, edge 0.084, flat
+  0.030 MAE.
+- Scripts: `scripts/train_base.py`, `scripts/compare_restoration.py`,
+  `scripts/catalogue_failures.py`; configs in `configs/model/`.
+- Frozen model: `checkpoints/train-base-gate2/best.pt` (promoted, tagged
+  `v0.2-base-reconstruction`).
 
 ## Repository layout
 
