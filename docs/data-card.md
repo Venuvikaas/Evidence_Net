@@ -60,4 +60,47 @@ observed structures.
 - Target alignment between inputs and targets is not a clean 2× grid
   relationship (see `docs/train-structure.md` and the audit).
 
+## Audit findings (Phase 1, `runs/audit-*/metrics.json`)
+
+| Check | Result |
+| --- | --- |
+| Pair integrity | 3200 pairs; 0 unmatched, 0 duplicated, 0 ambiguous |
+| Readability | 6400/6400 train files, 400/400 test files readable |
+| Exact duplicates | 0 groups |
+| Near duplicates (32×32 pooled signature) | 0 groups |
+| Train/test input compatibility | compatible (extension, shape, channels, dtype, range family) |
+| Resolution ratio (GT/NoisyLR) | exactly 2.0 for all pairs |
+| Alignment (2× block-offset) | no dominant phase (56/61/42/41 of 200); mean best-offset MAE ≈ 0.067 |
+| Input range (train NoisyLR) | min −0.279 … max 2.158 (per-file vary) |
+| Target range (train GT) | exactly [0.0, 1.0] for all 3200 |
+| Test input range | min −0.225 … max 2.158 |
+| Clipping | all targets in [0, 1]; 18/3200 train inputs and 2/400 test inputs fully in [0, 1] |
+
+### Alignment and target uncertainty
+
+- Method: 2× block-offset search over offsets {(0,0),(0,1),(1,0),(1,1)}
+  comparing NoisyLR against GT sub-blocks; lowest-MAE offset recorded;
+  MAE at the best offset is the alignment residual (documented in
+  `src/evidence_net/data/audit.py`).
+- Finding: no offset dominates (56/61/42/41 of 200 pairs), so the inputs are
+  **not a clean 2× subsample** of the targets; residual MAE ≈ 0.067
+  (min 0.012, max 0.151). Box-2×2 pooling reduces MAE slightly
+  (≈ 0.03 on sampled pairs), consistent with anti-aliased down-sampling plus
+  noise.
+- Consequence: dataset-level target-alignment uncertainty is recorded in
+  every train manifest file (`target_uncertainty`); per-pair uncertainty is
+  not yet available.
+
+### Duplicates
+
+- Exact (sha256): 0 groups. Near (32×32 mean-pooled, 3-decimal quantized
+  signature): 0 groups. No duplicate handling is required in the splits.
+
+### Splits and grouping
+
+- Frozen in `data/manifests/dataset-splits-v1.json` (seed 0): train 2551,
+  validation 328, calibration 164, heldout-source 157,
+  heldout-degradation 0 (reserved). Grouping is sample-level because no
+  session metadata exists (`docs/grouping-and-splits.md`).
+
 
