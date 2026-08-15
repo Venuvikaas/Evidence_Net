@@ -190,7 +190,7 @@ def _validate_file_entry(item: dict[str, Any], index: int) -> None:
         if (
             not isinstance(rng, list)
             or len(rng) != 2
-            or not all(isinstance(v, (int, float)) for v in rng)
+            or not all(isinstance(v, int | float) for v in rng)
         ):
             raise ManifestValidationError(f"files[{index}].range must be a [min, max] pair")
 

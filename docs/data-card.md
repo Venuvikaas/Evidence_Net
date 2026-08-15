@@ -126,5 +126,3 @@ observed structures.
   the evaluation contract supplies ground truth or submission rules.
 - These limitations do not block supervised development (EXP-001, ADR-005),
   but any metric or calibration claim must stay within this stated domain.
-
-
