@@ -34,6 +34,15 @@ train/
 Test_NoisyLR/
 *.zip
 
+# --- macOS zip-extraction junk ---
+__MACOSX/
+.DS_Store
+
+# --- Dataset-derived caches and previews ---
+data/cache/
+data/previews/
+*.tmp-manifest.json
+
 # --- Generated runs and artifacts ---
 runs/*
 !runs/.gitkeep
