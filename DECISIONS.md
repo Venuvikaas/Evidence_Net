@@ -111,3 +111,31 @@ superseded`.
   must be reflected in any alignment-sensitive metric claims.
 - Contracts or experiments affected: dataset-manifest-v1, docs/data-card.md,
   docs/grouping-and-splits.md, EXP-001.
+
+## ADR-006 — Phase 3 Base Reconstruction decision (Research Gate 2)
+- Status: accepted
+- Context: Research Gate 2 (EXECUTION.md Phase 3) requires the candidate
+  Base Reconstruction to be independently useful against declared baselines,
+  understood by structural group, and any lower-intervention claim supported
+  or removed — before proposal research begins.
+- Decision: **continue** with the Base Reconstruction
+  (`b = U(y) + h_b(f(y))`, deterministic anchor + learned refinement) as the
+  frozen Phase 3 model; promote `checkpoints/train-base-gate2/best.pt` and
+  tag `v0.2-base-reconstruction`.
+- Evidence: EXP-003, `runs/compare-gate2/`, `runs/catalogue-gate2/`,
+  `docs/decision-base-reconstruction.md`. Base improves on the deterministic
+  anchor (PSNR 25.21 vs 25.08 dB, SSIM 0.639 vs 0.599, MAE 0.0399 vs 0.0430)
+  and beats classical (24.46 dB); equal-capacity direct CNN is much weaker
+  (22.60 dB). Failure catalogue: periodic MAE 0.096, edge-band 0.084, flat
+  0.030; worst samples reported individually.
+- Alternatives rejected: redesigning the objective (the anchor+refinement
+  earns its structure over an equal-capacity direct model); abandoning the
+  lower-intervention claim (the deterministic-anchor construction bounds the
+  refinement by design; the claim is stated with those bounds, not as
+  automatic safety).
+- Consequences: Phase 4's Bounded Detail Proposal must target the catalogue's
+  worst regions (periodic, edge bands) to add value; the Base model remains
+  the comparison floor and is re-evaluated through the same trusted harness
+  in every later phase.
+- Contracts or experiments affected: EXP-003, docs/base-failures.md,
+  docs/decision-base-reconstruction.md, evaluation-protocol v1.
