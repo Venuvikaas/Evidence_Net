@@ -103,4 +103,28 @@ observed structures.
   heldout-degradation 0 (reserved). Grouping is sample-level because no
   session metadata exists (`docs/grouping-and-splits.md`).
 
+## Frozen manifests and hashes (dataset-manifest-v1)
+
+- `official-train-source-v1.json` — 6400 files (3200 inputs + 3200 targets),
+  sha256 `c504b2dded0f3a04…`.
+- `official-test-noisylr-source-v1.json` — 400 inputs, sha256
+  `aab75186e9a46982…`.
+- `dataset-splits-v1.json` — seed 0, counts above.
+- The aggregate `data/manifests/dataset-manifest-v1.json` records the sha256
+  of every referenced manifest; `scripts/verify_manifests.py` re-verifies
+  them.
+
+## Limitations (honest statement)
+
+- License terms are unstated in the local files; use is limited to the
+  official challenge scope.
+- Target provenance (real vs. synthetic) is unknown; degradation labels are
+  absent.
+- Target alignment is not a clean 2× grid; supervised training should treat
+  per-pixel target correspondence as approximate.
+- `Test_NoisyLR/` has no local targets; final evaluation is output-only until
+  the evaluation contract supplies ground truth or submission rules.
+- These limitations do not block supervised development (EXP-001, ADR-005),
+  but any metric or calibration claim must stay within this stated domain.
+
 
