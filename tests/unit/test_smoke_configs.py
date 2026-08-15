@@ -21,7 +21,7 @@ from evidence_net.training.config import ConfigError, TrainConfig, load_config
 from evidence_net.training.trainer import Trainer
 
 CONFIGS_DIR = Path(__file__).resolve().parents[2] / "configs" / "model"
-SMOKE_CONFIGS = ("base-smoke.yaml",)
+SMOKE_CONFIGS = ("base-smoke.yaml", "proposal-smoke.yaml")
 
 
 def _configs() -> list[Path]:
@@ -59,6 +59,41 @@ def test_smoke_configs_training_history_and_checkpoints(tmp_path: Path) -> None:
         assert len(history.rows) == config.epochs
         assert (tmp_path / name / "best.pt").is_file()
         assert (tmp_path / name / "last.pt").is_file()
+
+
+def test_proposal_smoke_trains_against_frozen_base(tmp_path: Path) -> None:
+    """Proposal smoke training keeps the Base frozen (box 10)."""
+    config = load_config(CONFIGS_DIR / "proposal-smoke.yaml")
+    rng = torch.Generator().manual_seed(config.seed)
+    inputs = torch.rand(4, 1, 16, 16, generator=rng)
+    targets = torch.rand(4, 1, 32, 32, generator=rng)
+    loader = DataLoader(
+        TensorDataset(inputs, targets, torch.arange(4).float()),
+        batch_size=config.batch_size,
+    )
+    model = build_model(config.model)
+    base_before = {
+        name: parameter.clone()
+        for name, parameter in model.base.named_parameters()
+    }
+    trainer = Trainer(
+        model,
+        config,
+        loader,
+        loss_fn=BaseLoss(config.loss),
+        checkpoint_dir=tmp_path / "proposal-smoke",
+    )
+    history = trainer.fit()
+    assert len(history.rows) == config.epochs
+    # The frozen Base parameters must be bit-identical after training.
+    for name, parameter in model.base.named_parameters():
+        assert torch.equal(parameter, base_before[name]), f"Base param {name} changed"
+    # The proposer head learned something (any parameter moved).
+    moved = any(
+        parameter.grad is not None
+        for parameter in model.proposer.parameters()
+    )
+    assert moved
 
 
 @pytest.mark.parametrize(

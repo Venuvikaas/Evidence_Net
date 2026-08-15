@@ -1,0 +1,24 @@
+# Research Gate 3 Detail Proposal config (Phase 4 governed training).
+# Trains the bounded proposer head against the frozen Base (train-base-gate2).
+seed: 0
+epochs: 12
+batch_size: 8
+learning_rate: 0.001
+weight_decay: 0.0001
+grad_clip: 1.0
+mixed_precision: false
+checkpoint_dir: checkpoints
+data:
+  split: train
+  n_samples: 256
+  seed: 0
+model:
+  name: proposal
+  hidden_channels: 16
+  depth: 3
+  amplitude: 0.1
+loss:
+  pixel: 1.0
+  structural: 0.25
+  edge: 0.25
+  frequency: 0.1
