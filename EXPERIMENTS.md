@@ -115,4 +115,18 @@ are written before examining final test results. The format is defined in
   only averaged; (4) the harness exposes worst groups, not just means.
   **Redesign the objective / do not imply safety** if the Base is merely
   weaker or indistinguishable everywhere.
-- Status: predeclared (results recorded on execution).
+- Result: Base Reconstruction after 12 epochs improves on the anchor:
+  PSNR 25.21 dB vs 25.08 dB (deterministic), SSIM 0.639 vs 0.599, MAE 0.0399
+  vs 0.0430; classical median anchor 24.46 dB. Direct CNN of equal capacity
+  is much weaker (PSNR 22.60 dB, MAE 0.0452). Failure catalogue: edge-band
+  MAE 0.084, periodic-region MAE 0.096, flat-region MAE 0.030 — errors are
+  structurally concentrated, and worst samples are reported individually.
+- Confidence interval / uncertainty: group bootstrap over 12 validation
+  groups; PSNR CIs for base and anchor overlap ([23.19, 27.45] vs
+  [23.03, 27.45]), so the gain is consistent but not statistically strong at
+  this sample size; the direct model is clearly worse.
+- Decision: **continue** — the Base Reconstruction earns its place against
+  the declared baselines (condition 1), improves on the anchor (condition 2),
+  and failures are understood by structural group (conditions 3-4).
+- Artifact path: `runs/compare-gate2/` (comparison report + sheets),
+  `runs/catalogue-gate2/` (regional error decomposition).
