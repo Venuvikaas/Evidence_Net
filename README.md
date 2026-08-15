@@ -18,14 +18,36 @@ existed. Every probability names its exact event and calibration domain.
 
 ## Status
 
-**Phase 0 complete** — repository skeleton, initial contracts, and automation
-spine are in place. The project is reproducible before research begins.
+**Phases 0–1 complete** — repository skeleton, contracts, automation spine, and
+the official dataset foundation are in place. The official `train/` dataset
+(3200 NoisyLR→GT pairs) is paired, audited, split deterministically, and the
+isolated `Test_NoisyLR/` set (400 inputs) is registered without touching any
+development decision.
 
 | Phase | State |
 | --- | --- |
 | 0 — Project bootstrap and contracts | ✅ complete |
-| 1 — Domain and data foundation | pending |
+| 1 — Domain and data foundation | ✅ complete (decision: continue, ADR-005) |
 | 2+ — Evaluation, models, diagnostics, product | pending (see `EXECUTION.md`) |
+
+## Phase 1 summary
+
+- Frozen source manifests: `data/manifests/official-train-source-v1.json`
+  (6400 files) and `official-test-noisylr-source-v1.json` (400 files), each
+  with per-file sha256 and the test set kept free of development labels.
+- Pairing: 3200/3200 clean pairs by 6-digit base name; 0 unmatched, 0
+  duplicated, 0 ambiguous. Exact and near duplicates: 0.
+- Alignment: no dominant 2× phase — target-alignment uncertainty recorded in
+  the train manifest (`target_uncertainty`).
+- Splits (seed 0): train 2551 / validation 328 / calibration 164 /
+  heldout-source 157 / heldout-degradation 0 (reserved); frozen in
+  `dataset-splits-v1.json` and aggregated in `dataset-manifest-v1.json`.
+- Key scripts: `validate_dataset_paths.py`, `resolve_dataset_paths.py`,
+  `inventory_dataset.py`, `audit_dataset.py`, `build_splits.py`,
+  `dryrun_loader.py`, `verify_manifests.py`.
+- Docs: `docs/data-card.md`, `docs/train-structure.md`,
+  `docs/test-noisylr-structure.md`, `docs/data-provenance.md`,
+  `docs/grouping-and-splits.md`.
 
 ## Repository layout
 

@@ -5,6 +5,23 @@ execution plan lives in `EXECUTION.md`.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-08-15
+
+### Added (Phase 1)
+- Official local dataset path validation and resolution (execution-file
+  parent or `TRAIN_DATA_DIR` / `TEST_NOISY_LR_DIR`).
+- Frozen source manifests for `train/` (3200 pairs) and `Test_NoisyLR/`
+  (400 inputs) with per-file hashes and target-alignment uncertainty.
+- Pairing adapter, pair-integrity audit, alignment audit, duplicate
+  detection, and dataset audit pipeline (`scripts/audit_dataset.py`).
+- Deterministic grouped development splits (train / validation / calibration
+  / heldout-source; heldout-degradation reserved) and the frozen
+  `dataset-manifest-v1`.
+- Raw-preserving `.npy` loader with tensor-contract validation and a
+  dry-run loader for the isolated test inputs.
+- Test_NoisyLR isolation tests and docs: data card, train/test structure,
+  provenance, grouping-and-splits.
+
 ## [0.1.0] - 2026-08-15
 
 ### Added
