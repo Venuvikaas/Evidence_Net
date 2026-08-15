@@ -5,6 +5,24 @@ execution plan lives in `EXECUTION.md`.
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-08-16
+
+### Added (Phase 4)
+- Bounded Detail Proposal (`d = alpha*tanh(h_d(y, b))`, |d| <= alpha) with
+  the ungated candidate `c = b + d` and fusion rule `x = b + g*d`; the Base
+  is frozen (stop-gradient) inside the wrapper.
+- Target residual generation (`d* = x - stopgrad(b)`) and structural effect
+  summaries (magnitude, edge, multi-scale energy, structural change,
+  4-connected components).
+- Ground-truth oracle gating at pixel and 16x16 patch granularity with
+  coverage/risk and headroom reports (group-bootstrap CIs).
+- Proposal training/comparison scripts and configs; the proposal objective
+  includes residual fidelity after the first governed run showed the
+  composite-only objective was locally flat (documented objective fix).
+- EXP-004 oracle study: oracle patch MAE -6.3% vs Base, oracle PSNR 3 dB
+  above the equal-capacity direct model, coverage 86.8%; Research Gate 3
+  continue (ADR-007). Natural harmful proposals archived (FAIL-001).
+
 ## [0.4.0] - 2026-08-16
 
 ### Added (Phase 3)

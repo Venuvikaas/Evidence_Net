@@ -18,13 +18,15 @@ existed. Every probability names its exact event and calibration domain.
 
 ## Status
 
-**Phases 0–3 complete** — repository skeleton, contracts, data foundation,
-trusted evaluation harness, and a frozen learned Base Reconstruction are in
-place. The official `train/` dataset (3200 NoisyLR→GT pairs) is paired,
-audited, split deterministically; the isolated `Test_NoisyLR/` set (400
-inputs) is registered without touching any development decision; the Base
-Reconstruction beats its deterministic anchor and the classical baselines
-through the grouped-bootstrap harness (Research Gate 2: continue).
+**Phases 0–4 complete** — repository skeleton, contracts, data foundation,
+trusted evaluation harness, a frozen learned Base Reconstruction, and a
+bounded Detail Proposal with oracle-measured headroom are in place. The
+official `train/` dataset (3200 NoisyLR→GT pairs) is paired, audited, split
+deterministically; the isolated `Test_NoisyLR/` set (400 inputs) is
+registered without touching any development decision; the Base beats the
+classical baselines (Gate 2: continue) and the oracle shows selective
+acceptance of the proposal improves MAE by 6.3% and PSNR by 3 dB over the
+equal-capacity direct model (Gate 3: continue).
 
 | Phase | State |
 | --- | --- |
@@ -32,7 +34,8 @@ through the grouped-bootstrap harness (Research Gate 2: continue).
 | 1 — Domain and data foundation | ✅ complete (decision: continue, ADR-005) |
 | 2 — Evaluation harness and classical baselines | ✅ complete (tag `v0.1-data-eval`) |
 | 3 — Learned Base Reconstruction | ✅ complete (decision: continue, ADR-006) |
-| 4+ — Proposal, benefit prediction, diagnostics, product | pending (see `EXECUTION.md`) |
+| 4 — Bounded Detail Proposal + oracle study | ✅ complete (tag `v0.3-proposal-oracle`, decision: continue, ADR-007) |
+| 5+ — Benefit prediction, diagnostics, product | pending (see `EXECUTION.md`) |
 
 ## Phase 1 summary
 
@@ -52,6 +55,22 @@ through the grouped-bootstrap harness (Research Gate 2: continue).
 - Docs: `docs/data-card.md`, `docs/train-structure.md`,
   `docs/test-noisylr-structure.md`, `docs/data-provenance.md`,
   `docs/grouping-and-splits.md`.
+
+## Phase 4 summary
+
+- Proposal: `models/proposal.py` — bounded branch `d = α tanh(h_d(y, b))`
+  (|d| ≤ α), ungated candidate `c = b + d`, fusion `x = b + g·d`;
+  `proposal/targets.py` (residual targets, stop-gradient),
+  `evaluation/proposal_metrics.py` (structural effect summaries).
+- Oracle study: `evaluation/oracle.py` + `evaluation/oracle_report.py` —
+  pixel and 16×16 patch gates from ground truth, coverage/risk, headroom
+  reports with group bootstraps.
+- Scripts: `train_proposal.py`, `measure_oracle.py`,
+  `analyze_proposal_effects.py`; configs under `configs/model/proposal-*.yaml`.
+- Governed oracle study (EXP-004, `runs/oracle-gate3-20260815-205601/`):
+  oracle patch MAE 0.0373 vs Base 0.0399 (-6.3%), PSNR 25.66 vs 25.21 dB,
+  vs equal-capacity direct 22.60 dB; pixel oracle 26.16 dB; coverage 86.8%.
+  Harm concentrates in periodic regions (FAIL-001); Gate 3: continue.
 
 ## Phase 3 summary
 

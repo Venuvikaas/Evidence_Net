@@ -82,9 +82,7 @@ def patch_gate(base: np.ndarray, candidate: np.ndarray, target: np.ndarray) -> n
     return accept
 
 
-def oracle_output(
-    base: np.ndarray, proposal: np.ndarray, gate: np.ndarray
-) -> np.ndarray:
+def oracle_output(base: np.ndarray, proposal: np.ndarray, gate: np.ndarray) -> np.ndarray:
     """Compose the gated output ``x_hat = b + g * d`` from a gate map."""
     b = _as_float64(base)
     d = _as_float64(proposal)

@@ -68,9 +68,7 @@ def test_patch_gate_accepts_fixed_patch_rejects_broken_patch() -> None:
 
 
 def test_patch_gate_map_shape_matches_grid() -> None:
-    gate = patch_gate(
-        np.zeros((32, 32)), np.ones((32, 32)), np.full((32, 32), 0.5)
-    )
+    gate = patch_gate(np.zeros((32, 32)), np.ones((32, 32)), np.full((32, 32), 0.5))
     assert gate.shape == (32, 32)
     assert set(np.unique(gate)).issubset({0, 1})
 

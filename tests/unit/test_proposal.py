@@ -24,10 +24,15 @@ def _proposal(
     return BoundedDetailProposal(base, proposer)
 
 
+def _input() -> torch.Tensor:
+    # Seeded so b + d stays within [0, 1] and the clamp does not mask the
+    # fusion identities (the model clamps composed images; fuse is raw).
+    return torch.rand(1, 1, 16, 16, generator=torch.Generator().manual_seed(7)) * 0.5 + 0.25
+
+
 def test_gate_zero_returns_base() -> None:
     model = _proposal()
-    y = torch.rand(1, 1, 16, 16)
-    b, d, _c = model.propose(y)
+    b, d, _c = model.propose(_input())
     gated = fuse(b, d, 0.0)
     assert torch.equal(gated, b)
     assert not torch.equal(gated, b + d)
@@ -35,22 +40,22 @@ def test_gate_zero_returns_base() -> None:
 
 def test_gate_one_returns_candidate() -> None:
     model = _proposal()
-    y = torch.rand(1, 1, 16, 16)
-    b, d, c = model.propose(y)
+    b, d, c = model.propose(_input())
     gated = fuse(b, d, 1.0)
-    assert torch.allclose(gated, c)
+    # fuse is the raw b + g*d; the model clamps the composed image.
     assert torch.allclose(gated, b + d)
+    assert torch.allclose(torch.clamp(gated, 0.0, 1.0), c)
 
 
 def test_forward_matches_ungated_candidate() -> None:
     model = _proposal()
-    y = torch.rand(1, 1, 16, 16)
+    y = _input()
     assert torch.allclose(model(y), model.propose(y)[2])
 
 
 def test_proposal_is_amplitude_bounded() -> None:
     model = _proposal(amplitude=0.05)
-    y = torch.rand(1, 1, 16, 16)
+    y = _input()
     _b, d, _c = model.propose(y)
     assert d.abs().max().item() <= 0.05 + 1e-6
 
@@ -68,7 +73,7 @@ def test_base_is_frozen_during_proposal_training() -> None:
     assert all(not parameter.requires_grad for parameter in model.base.parameters())
     assert any(parameter.requires_grad for parameter in model.proposer.parameters())
     # A backward pass must not touch base parameters.
-    y = torch.rand(1, 1, 16, 16, requires_grad=True)
+    y = _input().requires_grad_(True)
     _b, d, _c = model.propose(y)
     d.sum().backward()
     assert all(parameter.grad is None for parameter in model.base.parameters())
@@ -77,7 +82,7 @@ def test_base_is_frozen_during_proposal_training() -> None:
 
 def test_patch_gate_broadcast() -> None:
     model = _proposal()
-    y = torch.rand(1, 1, 16, 16)
+    y = _input()
     b, d, c = model.propose(y)
     # 4x4 patch gate map expanded to the 32x32 pixel grid (nearest neighbor).
     patch_gate = torch.tensor(
@@ -100,6 +105,6 @@ def test_proposal_module_state_dict_roundtrip() -> None:
     payload = model.state_dict()
     rebuilt = _proposal()
     rebuilt.load_state_dict(payload)
-    y = torch.rand(1, 1, 16, 16)
+    y = _input()
     with torch.no_grad():
         assert torch.allclose(model(y), rebuilt(y))
