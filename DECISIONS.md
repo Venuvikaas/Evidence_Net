@@ -87,3 +87,27 @@ superseded`.
   labeled as compatibility/stability/familiarity, never truth.
 - Contracts or experiments affected: docs/modality-contract.md, Phase 10 and 18
   gates in EXECUTION.md.
+
+## ADR-005 — Phase 1 dataset decision
+- Status: accepted
+- Context: Research Gate 1 (EXECUTION.md) requires one decision — continue,
+  repair, change scope, or use benchmark-only positioning — before learned
+  model comparison begins.
+- Decision: **continue** with supervised restoration on the official
+  `train/` dataset. Begin the evaluation harness and learned-model work on
+  the approved splits.
+- Evidence: EXP-001. Pairing clean (3200/3200); 0 exact and 0 near
+  duplicates; 100% readable; train/test input compatibility confirmed;
+  Test_NoisyLR isolation enforced; target meaning and alignment uncertainty
+  recorded in the source manifest and data card.
+- Alternatives rejected: repair (no corrupted or unreadable files exist);
+  change scope (degradation labels are absent, but none are required to
+  proceed with supervised restoration); benchmark-only positioning (the
+  official paired data is suitable for supervised development with the
+  documented limitations).
+- Consequences: Phase 2/3 model work may start on the frozen splits;
+  degradation-held-out remains reserved (0 members) until degradation labels
+  exist; alignment uncertainty is carried in `target_uncertainty` records and
+  must be reflected in any alignment-sensitive metric claims.
+- Contracts or experiments affected: dataset-manifest-v1, docs/data-card.md,
+  docs/grouping-and-splits.md, EXP-001.

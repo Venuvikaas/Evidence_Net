@@ -43,4 +43,15 @@ are written before examining final test results. The format is defined in
   documented and recorded. **Repair / change scope** if any of (1)-(5)
   fails; **benchmark-only** if the pairing or target meaning cannot be
   trusted for supervised learning.
-- Result: _pending — recorded after Research Gate 1 review._
+- Result: all acceptance conditions met. 3200/3200 clean pairs; 0 exact and
+  0 near duplicates; 100% readable; compatibility confirmed; 400/400 test
+  inputs dry-run readable; isolation enforced by tests. Alignment: no
+  dominant 2x phase (offsets 0,0: 56 / 0,1: 61 / 1,0: 42 / 1,1: 41 of 200),
+  mean best-offset MAE residual ≈ 0.067 — recorded as dataset-level target
+  uncertainty in the train source manifest. Degradation labels absent;
+  degradation-held-out group reserved with zero members.
+- Confidence interval / uncertainty: deterministic audit; only
+  alignment/degradation use fixed-seed sampling (n = 200 pairs); statistics
+  grouped by pair, never by pixel.
+- Decision: **continue** (ADR-005).
+- Artifact path: `runs/audit-*/` (metrics, summary, alignment examples).
