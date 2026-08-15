@@ -10,6 +10,7 @@ from evidence_net.data.audit import (
     compatibility_summary,
     degradation_summary,
     exact_duplicate_groups,
+    export_alignment_examples,
     near_duplicate_signature,
     range_summary,
 )
@@ -114,3 +115,17 @@ def test_degradation_summary_reports_resolution_ratio(tmp_path: Path) -> None:
     result = degradation_summary([(noisy_path, gt_path)])
     assert result["resolution_ratio_gt_over_noisy"]["ratio_mean"] == pytest.approx(2.0)
     assert result["n_pairs"] == 1
+
+
+def test_export_alignment_examples_writes_artifacts(tmp_path: Path) -> None:
+    gt = np.random.default_rng(0).random((32, 32), dtype=np.float32)
+    noisy = gt[::2, ::2]
+    gt_path = tmp_path / "gt.npy"
+    noisy_path = tmp_path / "noisy.npy"
+    np.save(gt_path, gt)
+    np.save(noisy_path, noisy)
+    out = tmp_path / "artifacts"
+    names = export_alignment_examples([(noisy_path, gt_path)], out, n=2)
+    assert len(names) == 1
+    assert (out / "alignment_example_0_input.npy").is_file()
+    assert (out / "alignment_example_0_target.npy").is_file()
