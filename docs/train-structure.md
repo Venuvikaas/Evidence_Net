@@ -68,6 +68,15 @@ names, metadata, and the directory structure:
 - Conclusion: the NoisyLR input is **not** a clean 2× subsample of the
   target; per-pixel target correspondence should be treated as approximate.
 
+## Target-alignment uncertainty (recorded)
+
+- The dataset-level alignment result above is recorded as
+  `target_uncertainty` on **every** file entry of
+  `data/manifests/official-train-source-v1.json` (method, offsets,
+  residual statistics, estimate).
+- Per-pair uncertainty is not yet available; the dataset-level estimate is
+  the documented default until a per-pair registration audit is added.
+
 ## Unresolved
 
 - No acquisition/session metadata is present; each sample is treated as its
