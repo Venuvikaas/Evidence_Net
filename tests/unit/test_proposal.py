@@ -85,10 +85,14 @@ def test_patch_gate_broadcast() -> None:
     ).view(1, 1, 4, 4)
     gate = torch.nn.functional.interpolate(patch_gate, size=(32, 32), mode="nearest-exact")
     gated = fuse(b, d, gate)
-    # Top-left quadrant matches base; bottom-right matches the candidate
-    # (the model clamps the composed image, so compare against the clamp).
+    # Gate pattern: top-left 2x2 patches = 0, top-right = 1,
+    # bottom-left = 1, bottom-right = 0. Compare quadrant-wise against the
+    # base or the clamped candidate accordingly.
+    candidate = torch.clamp(b + d, 0.0, 1.0)
     assert torch.allclose(gated[0, 0, :16, :16], b[0, 0, :16, :16])
-    assert torch.allclose(gated[0, 0, 16:, 16:], torch.clamp(b + d, 0.0, 1.0)[0, 0, 16:, 16:])
+    assert torch.allclose(gated[0, 0, :16, 16:], candidate[0, 0, :16, 16:])
+    assert torch.allclose(gated[0, 0, 16:, :16], candidate[0, 0, 16:, :16])
+    assert torch.allclose(gated[0, 0, 16:, 16:], b[0, 0, 16:, 16:])
 
 
 def test_proposal_module_state_dict_roundtrip() -> None:
