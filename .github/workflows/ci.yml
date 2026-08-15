@@ -39,3 +39,25 @@ jobs:
 
       - name: Verify run bundle contents
         run: python scripts/smoke.py --run-id smoke-ci-verify | tail -n 1
+
+      - name: Proposal smoke training (synthetic)
+        run: python scripts/train_proposal.py --config configs/model/proposal-smoke.yaml --synthetic --run-id smoke-ci-proposal
+
+      - name: Verify proposal run bundle
+        run: |
+          python -c "
+          import json
+          from pathlib import Path
+
+          run_dir = Path('runs/smoke-ci-proposal')
+          assert run_dir.is_dir(), f'missing run dir {run_dir}'
+          manifest = json.loads((run_dir / 'manifest.json').read_text(encoding='utf-8'))
+          metrics = json.loads((run_dir / 'metrics.json').read_text(encoding='utf-8'))
+          assert manifest['model']['name'] == 'BoundedDetailProposal', manifest['model']
+          assert 'final_train_loss' in metrics, list(metrics)
+          assert (run_dir / 'logs' / 'training-history.json').is_file()
+          checkpoint_ref = (run_dir / 'checkpoint-or-reference.txt').read_text(encoding='utf-8').strip()
+          assert checkpoint_ref and checkpoint_ref != 'no-checkpoint'
+          assert Path(checkpoint_ref).is_file(), checkpoint_ref
+          print('proposal run bundle verified')
+          "
