@@ -130,3 +130,38 @@ are written before examining final test results. The format is defined in
   and failures are understood by structural group (conditions 3-4).
 - Artifact path: `runs/compare-gate2/` (comparison report + sheets),
   `runs/catalogue-gate2/` (regional error decomposition).
+
+---
+
+## EXP-004 — Oracle gating headroom of the Detail Proposal
+- Question: Does the bounded Detail Proposal provide meaningful oracle
+  headroom — i.e. would selective acceptance of the proposal (an oracle that
+  sees ground truth) improve declared outcomes over the frozen Base and the
+  equal-capacity direct model (Research Gate 3)?
+- Primary metric: PSNR / SSIM / MAE on a seeded validation sample with 95%
+  group bootstraps, for Base, ungated candidate, oracle pixel-gated, and
+  oracle patch-gated outputs (identical paired groups).
+- Secondary diagnostics: pixel/patch coverage and risk (fraction of units
+  where accepting the proposal would increase error), edge displacement and
+  structural error of the oracle-patch output, proposal magnitude/energy
+  summaries.
+- Baselines: frozen Base (Phase 3 floor); ungated candidate; equal-capacity
+  direct-restoration CNN; classical median-5 + bilinear.
+- Configs: `configs/model/proposal-gate3.yaml` (12 epochs, batch 8, lr 1e-3,
+  amplitude 0.1, composite loss pixel 1.0 / structural 0.25 / edge 0.25 /
+  frequency 0.1); frozen Base checkpoint `checkpoints/train-base-gate2/best.pt`;
+  `scripts/train_proposal.py`; `scripts/measure_oracle.py --n-samples 12`.
+- Acceptance rule (predeclared): **continue** (Research Gate 3) if all of:
+  (1) oracle patch-gated output improves mean PSNR over the frozen Base by
+  at least 0.5 dB, or mean MAE by at least 5% relative, on the seeded
+  validation sample (headroom beyond the Phase 3 floor);
+  (2) oracle patch-gated PSNR/MAE is not worse than the equal-capacity direct
+  model (headroom beyond an equal-capacity alternative);
+  (3) patch coverage is between 10% and 90% — the proposal is neither always
+  harmful nor trivially redundant (selection is meaningfully informative);
+  (4) the oracle-patch output does not increase mean edge displacement vs the
+  frozen Base (structural impact bounded).
+  **Redesign the proposal or the spatial unit** if the oracle finds no such
+  headroom; **abandon the gated decomposition** if equal-capacity direct
+  restoration matches oracle-gated outputs.
+- Status: predeclared (results recorded on execution).
