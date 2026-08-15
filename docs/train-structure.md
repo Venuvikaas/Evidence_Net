@@ -54,6 +54,20 @@ names, metadata, and the directory structure:
   inventory, pairing, and splitting.
 - `train/train/.DS_Store` is excluded (non-`.npy`).
 
+## Alignment audit
+
+- Method: 2× block-offset search over offsets {(0,0),(0,1),(1,0),(1,1)}
+  comparing NoisyLR against GT sub-blocks; the lowest-MAE offset is the
+  estimated alignment phase; the MAE at the best offset is the alignment
+  residual (`src/evidence_net/data/audit.py`).
+- Result (200 sampled pairs, fixed seed): **no dominant phase** — offsets
+  0,0: 56 / 0,1: 61 / 1,0: 42 / 1,1: 41 of 200. Mean best-offset MAE
+  residual ≈ 0.067 (min 0.012, max 0.151). Box-2×2 pooling reduces the
+  residual slightly (≈ 0.03), consistent with anti-aliased down-sampling
+  plus noise.
+- Conclusion: the NoisyLR input is **not** a clean 2× subsample of the
+  target; per-pixel target correspondence should be treated as approximate.
+
 ## Unresolved
 
 - No acquisition/session metadata is present; each sample is treated as its
