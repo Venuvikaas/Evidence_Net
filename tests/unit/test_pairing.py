@@ -72,3 +72,44 @@ def test_audit_pairing_duplicate_names(tmp_path: Path) -> None:
     report = audit_pairing(gt, noisy)
     # 000000_alt has no noisy partner -> unmatched, reported not silent
     assert "000000_alt" in report.unmatched_gt
+
+
+def test_pair_integrity_report_clean(tmp_path: Path) -> None:
+    from evidence_net.data.manifests import FileEntry
+    from evidence_net.data.pairing import pair_integrity_report
+
+    def entry(path: str) -> FileEntry:
+        return FileEntry(
+            relative_path=path,
+            extension=".npy",
+            byte_size=1,
+            sha256="a" * 64,
+            readable=True,
+        )
+
+    entries = [entry(f"train/NoisyLR/{i:06d}.npy") for i in range(3)] + [
+        entry(f"train/GT/{i:06d}.npy") for i in range(3)
+    ]
+    report = pair_integrity_report(entries)
+    assert report["is_clean"]
+    assert report["n_pairs"] == 3
+
+
+def test_pair_integrity_report_reports_missing(tmp_path: Path) -> None:
+    from evidence_net.data.manifests import FileEntry
+    from evidence_net.data.pairing import pair_integrity_report
+
+    def entry(path: str) -> FileEntry:
+        return FileEntry(
+            relative_path=path,
+            extension=".npy",
+            byte_size=1,
+            sha256="a" * 64,
+            readable=True,
+        )
+
+    entries = [entry("train/NoisyLR/000000.npy"), entry("train/GT/000001.npy")]
+    report = pair_integrity_report(entries)
+    assert not report["is_clean"]
+    assert "000000" in report["missing_partners"]
+    assert "000001" in report["missing_partners"]
