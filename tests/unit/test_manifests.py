@@ -90,3 +90,42 @@ def test_write_manifest_round_trip(tmp_path: Path) -> None:
     loaded = json.loads(path.read_text(encoding="utf-8"))
     assert verify_dataset_hash(loaded)
     assert loaded["files"][0]["relative_path"] == "NoisyLR/000000.npy"
+
+
+def test_index_samples_is_deterministic_and_sorted() -> None:
+    from evidence_net.data.manifests import FileEntry, index_samples
+
+    def entry(path: str, sha: str) -> FileEntry:
+        return FileEntry(
+            relative_path=path,
+            extension=".npy",
+            byte_size=1,
+            sha256=sha,
+            readable=True,
+        )
+
+    entries = [entry("NoisyLR/000002.npy", "a" * 64), entry("NoisyLR/000001.npy", "b" * 64)]
+    indexed = index_samples(entries)
+    assert list(indexed) == ["NoisyLR/000001.npy", "NoisyLR/000002.npy"]
+    assert index_samples(entries) == indexed
+
+
+def test_index_samples_reports_duplicate_keys() -> None:
+    from evidence_net.data.manifests import (
+        FileEntry,
+        ManifestValidationError,
+        index_samples,
+    )
+
+    def entry(path: str, sha: str) -> FileEntry:
+        return FileEntry(
+            relative_path=path,
+            extension=".npy",
+            byte_size=1,
+            sha256=sha,
+            readable=True,
+        )
+
+    entries = [entry("NoisyLR/000000.npy", "a" * 64), entry("NoisyLR/000000.npy", "b" * 64)]
+    with pytest.raises(ManifestValidationError, match="duplicate sample key"):
+        index_samples(entries)
