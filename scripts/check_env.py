@@ -17,7 +17,7 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
-REQUIRED_PACKAGES = ("numpy", "yaml")
+REQUIRED_PACKAGES = ("numpy", "yaml", "torch")
 
 REQUIRED_DIRECTORIES = (
     "configs",
@@ -81,10 +81,10 @@ def check_directories() -> bool:
 
 
 def check_devices() -> bool:
-    """Report optional compute devices; torch is only required from Phase 3."""
+    """Report the available compute device (torch required from Phase 3)."""
     if importlib.util.find_spec("torch") is None:
-        print("[INFO] torch not installed; device detection skipped (optional before Phase 3)")
-        return True
+        print("[FAIL] torch not installed (required from Phase 3)")
+        return False
     try:
         torch_module: Any = importlib.import_module("torch")
         if torch_module.cuda.is_available():
