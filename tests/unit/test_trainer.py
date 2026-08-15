@@ -1,16 +1,17 @@
-"""Trainer sanity tests (Phase 3 box 4). Failure-guard tests land in box 5."""
+"""Trainer sanity and failure-guard tests (Phase 3 boxes 4-5)."""
 
 from __future__ import annotations
 
 from pathlib import Path
 
 import numpy as np
+import pytest
 import torch
 from torch import nn
 from torch.utils.data import DataLoader, Dataset, TensorDataset
 
 from evidence_net.training.config import TrainConfig
-from evidence_net.training.trainer import Trainer, set_seed
+from evidence_net.training.trainer import Trainer, TrainingFailure, set_seed
 
 
 class _TinyModel(nn.Module):
@@ -88,6 +89,50 @@ def test_checkpoint_and_resume(tmp_path: Path) -> None:
     )
     assert resumed.start_epoch == 2
     assert len(resumed.history.rows) == 2
+
+
+def test_empty_train_loader_raises(tmp_path: Path) -> None:
+    model = _TinyModel()
+    empty = DataLoader(_synthetic_dataset(0))
+    trainer = Trainer(model, _config(), empty, checkpoint_dir=tmp_path)
+    with pytest.raises(TrainingFailure, match="empty"):
+        trainer.fit()
+
+
+def test_nan_loss_raises(tmp_path: Path) -> None:
+    class _ExplodingLoss(nn.Module):
+        def forward(self, _pred: torch.Tensor, _target: torch.Tensor) -> torch.Tensor:
+            return torch.tensor(float("nan"), requires_grad=True)
+
+    model = _TinyModel()
+    loader = DataLoader(_synthetic_dataset(4), batch_size=4)
+    trainer = Trainer(model, _config(), loader, checkpoint_dir=tmp_path, loss_fn=_ExplodingLoss())
+    with pytest.raises(TrainingFailure, match="non-finite loss"):
+        trainer.fit()
+
+
+def test_infinite_gradient_raises(tmp_path: Path) -> None:
+    class _BombParameter(nn.Module):
+        def __init__(self) -> None:
+            super().__init__()
+            self.weight = nn.Parameter(torch.tensor(1000.0))
+
+        def forward(self, x: torch.Tensor) -> torch.Tensor:
+            # exp(1000 * x) overflows to inf for x > 0 -> inf loss -> inf grads.
+            return torch.exp(self.weight * x)
+
+    model = _BombParameter()
+    loader = DataLoader(
+        TensorDataset(
+            torch.ones(2, 1, 4, 4),
+            torch.ones(2, 1, 4, 4),
+            torch.arange(2).float(),
+        ),
+        batch_size=2,
+    )
+    trainer = Trainer(model, _config(), loader, checkpoint_dir=tmp_path)
+    with pytest.raises(TrainingFailure, match="non-finite"):
+        trainer.fit()
 
 
 def test_history_export(tmp_path: Path) -> None:

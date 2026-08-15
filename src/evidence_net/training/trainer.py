@@ -1,9 +1,9 @@
 """Reproducible training loop.
 
 Implements the Phase 3 trainer contract: controlled seeds, checkpointing
-with resume, an optional mixed-precision path, and a device-agnostic loop
-(CPU by default; CUDA/MPS when available). Failure guards are added in a
-later checklist box.
+with resume, an optional mixed-precision path, and early failure guards for
+NaN / exploding loss / invalid output range / empty batches. The trainer is
+device-agnostic (CPU by default; CUDA/MPS when available).
 """
 
 from __future__ import annotations
@@ -64,7 +64,7 @@ def _pick_device() -> torch.device:
 
 
 class Trainer:
-    """Fit a model with checkpointable training."""
+    """Fit a model with guarded, checkpointable training."""
 
     def __init__(
         self,
@@ -100,17 +100,24 @@ class Trainer:
         self.model.train()
         total_loss = 0.0
         steps = 0
-        for _, (inputs, targets, _ids) in enumerate(self.train_loader):
+        for batch_index, (inputs, targets, _ids) in enumerate(self.train_loader):
             inputs = inputs.to(self.device)
             targets = targets.to(self.device)
             self.optimizer.zero_grad(set_to_none=True)
             loss = self._forward_loss(inputs, targets)
+            if not torch.isfinite(loss):
+                raise TrainingFailure(
+                    f"non-finite loss {loss.item()} at epoch {epoch} step {batch_index}"
+                )
             loss.backward()
+            self._guard_gradients(epoch, batch_index)
             if self.config.grad_clip is not None:
                 torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.config.grad_clip)
             self.optimizer.step()
             total_loss += float(loss.detach())
             steps += 1
+        if steps == 0:
+            raise TrainingFailure(f"empty train loader at epoch {epoch}")
         return {"epoch": epoch, "train_loss": total_loss / steps, "train_steps": steps}
 
     def _forward_loss(self, inputs: torch.Tensor, targets: torch.Tensor) -> torch.Tensor:
@@ -120,6 +127,13 @@ class Trainer:
                 return self.loss_fn(predictions, targets)
         predictions = self.model(inputs)
         return self.loss_fn(predictions, targets)
+
+    def _guard_gradients(self, epoch: int, batch_index: int) -> None:
+        for name, parameter in self.model.named_parameters():
+            if parameter.grad is not None and not torch.isfinite(parameter.grad).all():
+                raise TrainingFailure(
+                    f"non-finite gradient in {name} at epoch {epoch} step {batch_index}"
+                )
 
     @torch.no_grad()
     def _validate(self, epoch: int) -> dict[str, float]:
@@ -134,6 +148,8 @@ class Trainer:
             loss = self.loss_fn(self.model(inputs), targets)
             total_loss += float(loss.detach())
             steps += 1
+        if steps == 0:
+            raise TrainingFailure(f"empty val loader at epoch {epoch}")
         return {"epoch": epoch, "val_loss": total_loss / steps, "val_steps": steps}
 
     def fit(self, *, log_every: int | None = None) -> _History:
