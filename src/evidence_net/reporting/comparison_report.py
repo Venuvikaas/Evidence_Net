@@ -73,7 +73,9 @@ def _resize_to_grid(array: np.ndarray, target_shape: tuple[int, int]) -> np.ndar
     target_height, target_width = target_shape
     if target_height % height or target_width % width:
         raise ValueError("input panel must be an integer factor of the sheet grid")
-    return np.repeat(np.repeat(array, target_height // height, axis=0), target_width // width, axis=1)
+    return np.repeat(
+        np.repeat(array, target_height // height, axis=0), target_width // width, axis=1
+    )
 
 
 def _error_map(target: np.ndarray, prediction: np.ndarray) -> np.ndarray:

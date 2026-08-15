@@ -53,9 +53,7 @@ def test_reject_pixel_level_detects_pixel_counts() -> None:
 def test_aggregate_by_group_one_value_per_group() -> None:
     predictions = [np.zeros((4, 4)), np.ones((4, 4))]
     targets = [np.ones((4, 4)), np.ones((4, 4))]
-    per_group, aggregate = aggregate_by_group(
-        mae, predictions, targets, ["a", "b"], n_boot=50
-    )
+    per_group, aggregate = aggregate_by_group(mae, predictions, targets, ["a", "b"], n_boot=50)
     assert per_group == {"a": 1.0, "b": 0.0}
     assert aggregate.mean == pytest.approx(0.5)
     assert aggregate.n_groups == 2
