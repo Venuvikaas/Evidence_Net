@@ -88,3 +88,31 @@ are written before examining final test results. The format is defined in
   floor; harness reusable for every later model (Phase 8/9 onward).
 - Artifact path: `runs/baseline-eval-20260815-171136/` (comparison sheets,
   comparison-report.md, metrics.json).
+
+---
+
+## EXP-003 — Learned Base Reconstruction vs classical baselines
+- Question: Is the learned Base Reconstruction independently useful against
+  the deterministic and classical anchors, and is its behavior understood by
+  structural region (Research Gate 2)?
+- Primary metric: PSNR / SSIM / MAE on a seeded validation sample, with 95%
+  group bootstraps; all models on identical paired groups.
+- Secondary diagnostics: edge displacement, structural error, failure
+  catalogue by region (edge band / periodic / flat).
+- Baselines: deterministic bilinear 2x; classical median-5 + bilinear;
+  direct-restoration CNN of equal capacity.
+- Dataset manifest: `official-train-source-v1.json` +
+  `dataset-splits-v1.json`; training on 256 train groups (seed 0),
+  evaluation on 12 validation groups (seed 0).
+- Configs: `configs/model/base-gate2.yaml`, `configs/model/direct-gate2.yaml`
+  (12 epochs, batch 8, lr 1e-3, composite loss pixel 1.0 / structural 0.25 /
+  edge 0.25 / frequency 0.1); `scripts/compare_restoration.py --n-samples 12`;
+  `scripts/catalogue_failures.py --n-samples 12`.
+- Acceptance rule (predeclared): **continue** if (1) the Base Reconstruction
+  is not statistically worse than the deterministic anchor on PSNR/SSIM/MAE;
+  (2) its learned refinement improves over the anchor on at least one primary
+  metric; (3) failures are characterized by structural region rather than
+  only averaged; (4) the harness exposes worst groups, not just means.
+  **Redesign the objective / do not imply safety** if the Base is merely
+  weaker or indistinguishable everywhere.
+- Status: predeclared (results recorded on execution).
