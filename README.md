@@ -1,144 +1,65 @@
 # EVIDENCE-Net
 
 Evidence-aware selective restoration and validation for semiconductor-like
-structural imagery. EVIDENCE-Net separates a lower-intervention **Base
-Reconstruction** from an explicit **Bounded Detail Proposal**, estimates a
-calibrated **Proposal-Benefit Probability**, exposes independent
-measurement-consistency, stability, and familiarity diagnostics, applies a
-versioned **Decision Policy** (accept / attenuate / reject / abstain), and
-marks **Unresolved Regions** where neither output is sufficiently validated.
+structural imagery.
 
-It does **not** claim that a score proves a reconstructed structure physically
-existed. Every probability names its exact event and calibration domain.
+EVIDENCE-Net separates a lower-intervention **Base Reconstruction** from an
+explicit, amplitude-bounded **Detail Proposal**, and applies a **Decision
+Policy** that accepts, attenuates, or rejects the proposal per region. It
+reports **Unresolved Regions** where neither output is sufficiently
+validated, and exposes independent diagnostics — measurement consistency,
+model stability, and structural risk — as separate review layers.
 
-- Full product definition: [`docs/product-definition.md`](docs/product-definition.md)
-- Governing execution plan: [`EXECUTION.md`](EXECUTION.md)
-- Governance ledgers: [`DECISIONS.md`](DECISIONS.md), [`EXPERIMENTS.md`](EXPERIMENTS.md),
-  [`FAILURES.md`](FAILURES.md), [`CHANGELOG.md`](CHANGELOG.md), [`BACKLOG.md`](BACKLOG.md)
+**What it does not claim:** no score in the system proves that a
+reconstructed structure physically existed. Every probability names its
+exact event and calibration domain, and the release claims only what the
+recorded evidence supports.
 
 ## Status
 
-**Phases 0–4 complete; four-developer handoff accepted (ADR-008)** —
-repository skeleton, contracts, data foundation, trusted evaluation harness,
-a frozen learned Base Reconstruction, and a bounded Detail Proposal with
-oracle-measured headroom are in place. The official `train/` dataset
-(3200 NoisyLR→GT pairs) is paired, audited, split deterministically; the
-isolated `Test_NoisyLR/` set (400 inputs) is registered without touching any
-development decision; the Base beats the classical baselines (Gate 2:
-continue) and the oracle shows selective acceptance of the proposal improves
-MAE by 6.3% and PSNR by 3 dB over the equal-capacity direct model (Gate 3:
-continue).
+**v1.0.0 — validated release (tagged, CI green, 338 tests passing).**
 
-After the handoff, four lanes work in parallel per
-[`docs/four-developer-workflow.md`](docs/four-developer-workflow.md):
+The full pipeline is frozen and verified: the promoted Base and Proposal
+checkpoints are hash-pinned, all research gates 1–10 are decided and
+recorded (ADR-005…015), and the final one-pass evaluation ran on all 400
+supported `Test_NoisyLR/` inputs with output coverage and the output
+contract verified (see [release report](docs/release-report-v1.md)).
 
-- **A** — Benefit Prediction, Calibration, Decision Policy, Abstention
-  (Phases 5–6).
-- **B** — Measurement Consistency, Stability, Familiarity, Structural Risk,
-  Downstream Validation (Phases 7–10).
-- **C** — Unified Inference, Metadata, API, Review UI, Human-Interpretation
-  Tooling (Phases 11–14).
-- **D** — Deployment, Optimization, Security, Monitoring, Release (Phases
-  15–17).
+Key results from the governed real evaluations:
 
-Frozen handoff contracts live in [`docs/contracts/`](docs/contracts/README.md),
-kill switches in [`docs/kill-switches.md`](docs/kill-switches.md), promoted
-checkpoint hashes in
-[`docs/handoff/checkpoint-registry.md`](docs/handoff/checkpoint-registry.md),
-and lane ownership in [`CODEOWNERS`](CODEOWNERS).
+| Gate | Decision | Evidence |
+| --- | --- | --- |
+| 4 — Proposal-benefit prediction | **Simplify**: predictors at chance; the benefit event is the norm (79.4% of patches beneficial) | EXP-009, ADR-009 |
+| 5 — Selective policy | **Continue**: default-accept + unresolved abstention beats the frozen Base (PSNR 25.38 vs 24.89 dB, MAE 0.0382 vs 0.0408) | EXP-010, ADR-010 |
+| 6 — Measurement consistency | Keep (bounded operator residuals) | EXP-005, ADR-011 |
+| 7 — Model stability | Keep (max perturbation drift 0.015) | EXP-006, ADR-012 |
+| 8 — Distribution familiarity | **Not promoted**: 0% shift detection, rare-valid false warnings exceed cap | EXP-007, ADR-013 |
+| 9 — Structural risk | Continue (five distinct evidence categories, hidden tests frozen) | EXP-008, ADR-014 |
+| 10 — Human interpretation | Registered; participants unavailable — explicit limitation | EXP-011, ADR-015 |
 
-| Phase | State |
-| --- | --- |
-| 0 — Project bootstrap and contracts | ✅ complete |
-| 1 — Domain and data foundation | ✅ complete (decision: continue, ADR-005) |
-| 2 — Evaluation harness and classical baselines | ✅ complete (tag `v0.1-data-eval`) |
-| 3 — Learned Base Reconstruction | ✅ complete (decision: continue, ADR-006) |
-| 4 — Bounded Detail Proposal + oracle study | ✅ complete (tag `v0.3-proposal-oracle`, decision: continue, ADR-007) |
-| 5+ — Four parallel lanes after handoff | ready (handoff accepted, ADR-008; see `docs/four-developer-workflow.md`) |
+## Honest limitations
 
-## Phase 1 summary
+Published in full in the [release report](docs/release-report-v1.md):
 
-- Frozen source manifests: `data/manifests/official-train-source-v1.json`
-  (6400 files) and `official-test-noisylr-source-v1.json` (400 files), each
-  with per-file sha256 and the test set kept free of development labels.
-- Pairing: 3200/3200 clean pairs by 6-digit base name; 0 unmatched, 0
-  duplicated, 0 ambiguous. Exact and near duplicates: 0.
-- Alignment: no dominant 2× phase — target-alignment uncertainty recorded in
-  the train manifest (`target_uncertainty`).
-- Splits (seed 0): train 2551 / validation 328 / calibration 164 /
-  heldout-source 157 / heldout-degradation 0 (reserved); frozen in
-  `dataset-splits-v1.json` and aggregated in `dataset-manifest-v1.json`.
-- Key scripts: `validate_dataset_paths.py`, `resolve_dataset_paths.py`,
-  `inventory_dataset.py`, `audit_dataset.py`, `build_splits.py`,
-  `dryrun_loader.py`, `verify_manifests.py`.
-- Docs: `docs/data-card.md`, `docs/train-structure.md`,
-  `docs/test-noisylr-structure.md`, `docs/data-provenance.md`,
-  `docs/grouping-and-splits.md`.
+- Per-patch benefit prediction is not discriminative on the frozen event, so
+  no support-aware gating claim is made — the policy defaults to accept.
+- The familiarity diagnostic failed its gate on real data and is disabled by
+  default.
+- Human interpretation is untested: no participants were available; the
+  study protocol and capture machinery are ready, but results are never
+  simulated.
+- The final `Test_NoisyLR/` set has no local targets, so final evaluation
+  measures outputs only.
+- No industrial modality validation, downstream labels, or expert user study
+  was available — this is a research platform for semiconductor-like
+  structural imagery.
 
-## Phase 4 summary
+## Getting started
 
-- Proposal: `models/proposal.py` — bounded branch `d = α tanh(h_d(y, b))`
-  (|d| ≤ α), ungated candidate `c = b + d`, fusion `x = b + g·d`;
-  `proposal/targets.py` (residual targets, stop-gradient),
-  `evaluation/proposal_metrics.py` (structural effect summaries).
-- Oracle study: `evaluation/oracle.py` + `evaluation/oracle_report.py` —
-  pixel and 16×16 patch gates from ground truth, coverage/risk, headroom
-  reports with group bootstraps.
-- Scripts: `train_proposal.py`, `measure_oracle.py`,
-  `analyze_proposal_effects.py`; configs under `configs/model/proposal-*.yaml`.
-- Governed oracle study (EXP-004, `runs/oracle-gate3-20260815-205601/`):
-  oracle patch MAE 0.0373 vs Base 0.0399 (-6.3%), PSNR 25.66 vs 25.21 dB,
-  vs equal-capacity direct 22.60 dB; pixel oracle 26.16 dB; coverage 86.8%.
-  Harm concentrates in periodic regions (FAIL-001); Gate 3: continue.
-
-## Phase 3 summary
-
-- PyTorch training stack: `training/config.py` (validated YAML configs),
-  `training/trainer.py` (seeded, checkpointing, resume, mixed precision,
-  NaN/explosion/empty-batch guards), `training/provenance.py` (run bundles
-  with environment capture).
-- Models: `models/base.py` (Base Reconstruction `b = U(y) + h_b(f(y))`),
-  `models/direct.py` (equal-capacity direct CNN), `models/validate.py`
-  (output contract, gradient flow, checkpoint roundtrip, tiled parity).
-- Losses: `losses/base_losses.py` — configurable pixel/structural/edge/
-  frequency composite.
-- Governed comparison (EXP-003, `runs/compare-gate2/`): Base PSNR 25.21 dB
-  [23.19, 27.45] vs deterministic anchor 25.08 [23.03, 27.45], SSIM 0.639 vs
-  0.599, MAE 0.0399 vs 0.0430; classical 24.46; direct 22.60. Failure
-  catalogue (`docs/base-failures.md`): periodic 0.096, edge 0.084, flat
-  0.030 MAE.
-- Scripts: `scripts/train_base.py`, `scripts/compare_restoration.py`,
-  `scripts/catalogue_failures.py`; configs in `configs/model/`.
-- Frozen model: `checkpoints/train-base-gate2/best.pt` (promoted, tagged
-  `v0.2-base-reconstruction`).
-
-## Repository layout
-
-```text
-evidence-net/
-├── configs/                 # versioned configuration (data, modality, model, ...)
-├── data/
-│   ├── manifests/           # frozen, versioned data manifests
-│   └── fixtures/            # deterministic smoke fixtures
-├── src/evidence_net/        # package: data, models, decision, losses, evaluation,
-│                            #          stress_tests, training, inference, reporting, api
-├── scripts/                 # check_env.py, smoke.py, ...
-├── tests/                   # unit, numerical, integration, calibration,
-│                            # decision_parity, regression
-├── runs/                    # generated run bundles (never committed)
-├── artifacts/               # generated artifacts (never committed)
-├── frontend/                # review UI (Phase 13)
-└── docs/                    # contracts and scientific cards
-```
-
-The official datasets (`train/`, `Test_NoisyLR/`) live **outside** this
-repository, in the project parent directory. They are never committed to Git.
-`Test_NoisyLR/` is isolated evaluation input and must never influence
-development decisions (training, validation, calibration, or policy tuning).
-
-## Setup (clean clone)
-
-Requirements: Python >= 3.10.
+Requirements: Python >= 3.10. The official datasets (`train/`,
+`Test_NoisyLR/`) live **outside** this repository in the project parent
+directory; they are never committed to Git, and `Test_NoisyLR/` never
+influences training, validation, calibration, or policy tuning.
 
 ```bash
 python -m venv .venv
@@ -147,7 +68,7 @@ pip install -e ".[dev]"
 pre-commit install
 ```
 
-## Reproduction commands
+Then:
 
 ```bash
 # Environment check (packages, directories, optional devices)
@@ -156,25 +77,77 @@ python scripts/check_env.py
 # Smoke pipeline: loads a fixture and writes a run bundle to runs/<run_id>/
 python scripts/smoke.py
 
+# Frozen evaluation on Test_NoisyLR/ (one pass, outputs-only, coverage +
+# contract verified; needs the local checkpoints)
+python scripts/run_final_inference.py
+
 # Quality gates
 ruff check .
 ruff format --check .
 mypy src/evidence_net scripts
 pytest
-
-# All pre-commit checks (formatting, lint, typing, large files, secrets)
 pre-commit run --all-files
 ```
 
-CI runs lint, format check, type check, unit tests, environment check, and the
-smoke pipeline on every push (`.github/workflows/ci.yml`).
+CI runs lint, format, type checks, tests, environment check, smoke
+pipelines, and the final-inference smoke on every push
+([`.github/workflows/ci.yml`](.github/workflows/ci.yml)).
 
-## One change per checked box
+## Repository layout
 
-Work proceeds sequentially through the boxes in the execution plan. Each
-completed box ends with a Conventional Commit; contracts and experiments are
-recorded in the governance ledgers before code relies on them. After the
-Phase 4 handoff, four lanes work in parallel: one lane objective per PR,
-consumed contract versions named in every PR (template in
-`.github/PULL_REQUEST_TEMPLATE.md`), and `python scripts/verify_handoff.py`
-passing before merge. See `CONTRIBUTING.md`.
+```text
+evidence-net/
+├── configs/                 # versioned configuration (data, model, decision, ...)
+├── data/
+│   ├── manifests/           # frozen, versioned data manifests
+│   ├── fixtures/            # deterministic smoke fixtures
+│   ├── stress/              # frozen hidden stress definitions
+│   └── failures/            # natural failure bank
+├── src/evidence_net/        # package: data, models, benefit, decision, evaluation,
+│                            #          stress_tests, training, inference, api,
+│                            #          monitoring, security, reporting
+├── scripts/                 # training, measurement, release, and smoke scripts
+├── tests/                   # unit, numerical, integration, calibration,
+│                            # decision_parity, regression
+├── runs/                    # generated run bundles (never committed)
+├── deploy/                  # Dockerfile, docker-compose, ONNX export
+├── frontend/                # technical review UI
+└── docs/                    # contracts, scientific cards, reports
+```
+
+## Key components
+
+- **Models** — Base Reconstruction (`src/evidence_net/models/base.py`) and
+  the bounded Detail Proposal (`models/proposal.py`, `|d| <= α`, ungated
+  candidate `c = b + d`, fusion `x = b + g·d`).
+- **Benefit & calibration** (`src/evidence_net/benefit/`) — deterministic
+  benefit labels, declared baselines, a minimal learned predictor, and
+  calibration fit on the calibration split only.
+- **Decision policy** (`src/evidence_net/decision/`) — accept /
+  attenuate / reject actions with an orthogonal unresolved mask; rejection
+  never certifies the Base output.
+- **Inference & provenance** (`src/evidence_net/inference/`) — unified
+  pipeline producing the full artifact contract with per-artifact hashes
+  and semantic versions.
+- **API & UI** — FastAPI service (`src/evidence_net/api/`) and the review
+  frontend (`frontend/`) that displays only backend-computed values.
+- **Operations** — deployment (`deploy/`), security controls
+  (`src/evidence_net/security/`), and monitoring
+  (`src/evidence_net/monitoring/`).
+
+## Documentation
+
+- [Product definition](docs/product-definition.md)
+- [Release report v1](docs/release-report-v1.md)
+- [Contracts](docs/contracts/README.md)
+- [Data card](docs/data-card.md) · [Evaluation protocol](docs/evaluation-protocol.md)
+- [Security & privacy operations](docs/security-and-privacy-operations.md)
+- [Operational signals & monitoring](docs/operational-signals-and-monitoring.md)
+- Governance ledgers: [DECISIONS](DECISIONS.md) ·
+  [EXPERIMENTS](EXPERIMENTS.md) · [FAILURES](FAILURES.md) ·
+  [CHANGELOG](CHANGELOG.md)
+
+The governing execution plan lives in [`EXECUTION.md`](EXECUTION.md) and the
+four-developer workflow in
+[`docs/four-developer-workflow.md`](docs/four-developer-workflow.md);
+contributions follow [`CONTRIBUTING.md`](CONTRIBUTING.md).
