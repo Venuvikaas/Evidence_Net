@@ -228,3 +228,49 @@ are written before examining final test results. The format is defined in
   never sample counts; stochastic operators report seeded spread.
 - Decision: pending (Research Gate 6).
 - Artifact path: `runs/measure-consistency-*/` (synthetic smoke runs).
+
+---
+
+## EXP-006 — Does the model-stability diagnostic add held-out value?
+- Question: Does the stability diagnostic (`stability-v1`, Phase 8) —
+  perturbation deviation, checkpoint agreement, and measured error
+  diversity — improve selective-risk ordering or restoration decisions
+  beyond simple benefit features (Lane A) and the measurement-consistency
+  features (Phase 7), or provide independently useful review information
+  (Research Gate 7)?
+- Primary metric: change in selective-risk ordering quality (e.g. AUROC of
+  the oracle-accept event) and/or calibration-domain-valid mean absolute
+  error of the frozen benefit predictor, with vs without the stability
+  feature set; for the review arm: fraction of documented cases where
+  perturbation/checkpoint agreement or the diversity guard changes the
+  review verdict on a predeclared case bank.
+- Secondary diagnostics: per-perturbation deviation means and CIs (group
+  bootstrap), arg-max perturbation, pairwise checkpoint agreement, pairwise
+  error diversity (correlation / disagreement / complementarity) and the
+  included-model set after the diversity guard.
+- Baselines: no stability features; benefit features only; benefit +
+  consistency features; benefit + consistency + stability features.
+- Dataset manifest: `official-train-source-v1.json` + `dataset-splits-v1.json`
+  (validation + calibration splits only; Test_NoisyLR untouched).
+- Configs: `configs/modality/stability-v1.yaml`;
+  `scripts/measure_stability.py --synthetic` (harness smoke, CI); real
+  governed run on the frozen validation sample with the promoted Base
+  checkpoints (`base-output-v1`) and, when present, the direct model.
+- Acceptance rule (predeclared, Gate 7): **keep** the diagnostic if (1) the
+  stability feature set improves a declared held-out outcome by a
+  predeclared margin over benefit+consistency features alone, OR (2) the
+  review information arm shows agreement/diversity changes review verdicts
+  on a predeclared fraction of the case bank. **Remove** the diagnostic if it
+  adds no held-out value and no independently useful review information.
+  Agreement is stability, never correctness; a stable wrong output is still
+  wrong.
+- Result: pending — machinery (perturbations, checkpoint agreement,
+  diversity guard, script, tests) is complete; the governed comparison needs
+  Lane A's simple benefit features (Phase 5) and runs at Integration II when
+  those are promoted. The synthetic smoke run validates the harness
+  end-to-end in CI.
+- Confidence interval / uncertainty: group bootstrap over samples; pixels
+  are never sample counts; synthetic checkpoint pairs are labeled synthetic
+  and never used in scientific reports.
+- Decision: pending (Research Gate 7).
+- Artifact path: `runs/measure-stability-*/` (synthetic smoke runs).

@@ -5,6 +5,26 @@ execution plan lives in `EXECUTION.md`.
 
 ## [Unreleased]
 
+### Added (Lane B, Phase 8 — Model Stability)
+- `stability-v1` draft contract (`docs/contracts/stability-v1.md`):
+  stability = agreement under invertible perturbations, across same-
+  architecture checkpoints, and measured error diversity before combining
+  models; prohibited interpretations (agreement is never correctness,
+  never a probability of truth, never calibration); promotes at Gate 7.
+- Stability diagnostics (`src/evidence_net/stress_tests/stability.py`):
+  invertible perturbation family (bounded shifts + flips) with output-grid
+  inverses, perturbation deviation distribution with grouped bootstrap CIs,
+  pairwise checkpoint agreement, and error-diversity metrics (correlation /
+  disagreement / complementarity) with the `add_if_diverse` guard.
+- `scripts/measure_stability.py` (seeded synthetic smoke, CI-safe; real mode
+  uses the promoted Base checkpoints) writing run bundles;
+  `configs/modality/stability-v1.yaml`.
+- Analytical tests in `tests/numerical/test_stability.py` (identity
+  perturbation, flip equivariance, subpixel shift sensitivity, checkpoint
+  self-agreement, diversity metrics, guard behavior).
+- EXP-006 registered (Gate 7 incremental-value question); governed
+  comparison pending Lane A's simple benefit features (Integration II).
+
 ### Added (Lane B, Phase 7 — Measurement Consistency)
 - `forward-model-v1` draft contract (`docs/contracts/forward-model-v1.md`):
   bounded operator family (bilinear / area / blur / noisy-blur), parameter

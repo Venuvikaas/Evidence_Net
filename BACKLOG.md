@@ -14,3 +14,12 @@ not interrupted unless new information invalidates its assumptions.
   simple Benefit features (Phase 5) for the governed with/without comparison.
   The consistency feature set (`per_image_residuals` in
   `src/evidence_net/stress_tests/consistency.py`) is ready to consume.
+
+## Integration dependency (Lane B, Phase 8 -> Integration II)
+
+- EXP-006 (model-stability incremental value, Gate 7) needs Lane A's simple
+  Benefit features (Phase 5) for the governed with/without comparison.
+  The stability feature set (perturbation deviation, checkpoint agreement,
+  error diversity in `src/evidence_net/stress_tests/stability.py`) is ready
+  to consume; the diversity guard's included-model set is part of the
+  review information.
