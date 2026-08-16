@@ -226,7 +226,12 @@ are written before examining final test results. The format is defined in
   The synthetic smoke run validates the harness end-to-end in CI.
 - Confidence interval / uncertainty: group bootstrap over samples; pixels are
   never sample counts; stochastic operators report seeded spread.
-- Decision: pending (Research Gate 6).
+- Decision: **keep (Gate 6)** — governed real run
+  (`runs/consistency-gate6-real/`, 32 validation groups) shows bounded,
+  family-compatible residuals (per-operator MAE 0.034-0.041 with tight
+  group CIs; stochastic noisy-blur spread std 0.00006) and provides
+  independently useful review information (operator-family distribution,
+  not truth). Recorded in ADR-011.
 - Artifact path: `runs/measure-consistency-*/` (synthetic smoke runs).
 
 ---
@@ -272,7 +277,13 @@ are written before examining final test results. The format is defined in
 - Confidence interval / uncertainty: group bootstrap over samples; pixels
   are never sample counts; synthetic checkpoint pairs are labeled synthetic
   and never used in scientific reports.
-- Decision: pending (Research Gate 7).
+- Decision: **keep (Gate 7)** — governed real run
+  (`runs/stability-gate7-real/`, 32 validation groups, promoted
+  Base best/last + direct checkpoints) shows small invertible-perturbation
+  drift (max mean MAE 0.01485), measured checkpoint agreement
+  (best-vs-last 0.0089), and measured error diversity (complementarity
+  0.9998+); agreement is reported as stability, never correctness.
+  Recorded in ADR-012.
 - Artifact path: `runs/measure-stability-*/` (synthetic smoke runs).
 
 ---
@@ -312,7 +323,14 @@ are written before examining final test results. The format is defined in
   reports the rare-valid cap mechanism.
 - Confidence interval / uncertainty: group bootstrap over samples; pixels
   are never sample counts; synthetic probes are labeled synthetic.
-- Decision: pending (Research Gate 8).
+- Decision: **not promoted (Gate 8 FAILED)** — governed real run
+  (`runs/familiarity-gate8-real/`, reference = 64 calibration inputs)
+  detects **none** of the declared shift groups (acquisition/severity/
+  source detection 0.000) and flags **100% of rare-valid structures** as
+  unfamiliar (false-warning cap 0.50 predeclared; exceeded). Per the
+  predeclared rule the diagnostic must be redesigned or removed before
+  promotion; it is retained only as a disabled-by-default reported
+  diagnostic, never a gating input. Recorded in ADR-013.
 - Artifact path: `runs/measure-familiarity-*/` (synthetic smoke runs).
 
 ## EXP-008 — Do the five structural-risk evidence categories give the claimed downstream protection?
@@ -352,7 +370,14 @@ are written before examining final test results. The format is defined in
 - Confidence interval / uncertainty: group bootstrap over samples; synthetic
   probes labeled; ambiguity pairs are non-identifiable by construction, so
   candidate vs observation MAE is reported, never judged as "truth".
-- Decision: pending (Research Gate 9).
+- Decision: **continue (Gate 9)** — governed real run
+  (`runs/structural-gate9-real/`, 32 validation groups) shows each of the
+  five evidence categories produces evidence on its own terms (candidate
+  suite local effects, e.g. false-line +4.25 px edge displacement;
+  ambiguity cases; acquisition input deltas; 5-case natural failure bank;
+  downstream without co-training), the hidden stress hash is frozen
+  (`087d6c13...`), and no category substitutes for another. Recorded in
+  ADR-014.
 - Artifact path: `runs/structural-risk-*/` (synthetic smoke runs).
 
 ## EXP-009 — Is proposal benefit predictably useful (Gate 4)?

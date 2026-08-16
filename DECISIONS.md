@@ -272,3 +272,90 @@ superseded`.
   unresolved-abstention configuration is the promoted v1; kill-switch rule
   (rejection never certifies the Base) stays regression-tested.
 - Contracts or experiments affected: `decision-policy-v1`, EXP-010.
+
+## ADR-011 — Phase 7 measurement-consistency decision (Research Gate 6)
+
+- Status: accepted
+- Context: Research Gate 6 requires the consistency diagnostic to add
+  held-out value or independently useful review information, labeled
+  compatibility never truth. The governed real run
+  (`runs/consistency-gate6-real/`, 32 validation groups) reports
+  per-operator residual MAE 0.034-0.041 with tight group CIs and a tiny
+  stochastic spread (noisy-blur std 0.00006).
+- Decision: **keep** the measurement-consistency diagnostic as a review
+  layer reporting the operator-family residual distribution; it stays
+  labeled compatibility (never truth) and is not a benefit-prediction
+  input.
+- Evidence: EXP-005, `runs/consistency-gate6-real/`.
+- Alternatives rejected: removing it (provides the operator-family
+  distribution the review workflow needs); promoting it as a correctness
+  signal (prohibited by the forward-model contract).
+- Consequences: `forward-model-v1` freezes at v1; the consistency layer is
+  available to C (UI legend) and D (monitoring) as a separate diagnostic.
+- Contracts or experiments affected: `forward-model-v1`, EXP-005.
+
+## ADR-012 — Phase 8 model-stability decision (Research Gate 7)
+
+- Status: accepted
+- Context: Research Gate 7 requires stability to be measured agreement,
+  never correctness. The governed real run (`runs/stability-gate7-real/`,
+  32 validation groups; promoted Base best/last + direct checkpoints)
+  reports max mean perturbation drift 0.01485 (flip-v), checkpoint
+  agreement best-vs-last 0.0089 MAE, and measured error diversity with
+  complementarity 0.9998+ across the diverse comparison.
+- Decision: **keep** the stability diagnostic (perturbation + checkpoint +
+  diversity) as a reported review layer; agreement is labeled stability,
+  never probability of truth.
+- Evidence: EXP-006, `runs/stability-gate7-real/`.
+- Alternatives rejected: removing it (adds the review information arm);
+  treating agreement as correctness (prohibited by `stability-v1`).
+- Consequences: `stability-v1` freezes; stability is a separate UI layer
+  and monitoring signal, not a gating input.
+- Contracts or experiments affected: `stability-v1`, EXP-006.
+
+## ADR-013 — Phase 9 familiarity decision (Research Gate 8)
+
+- Status: accepted
+- Context: Research Gate 8 requires the familiarity diagnostic to detect
+  declared shifts without systematically suppressing rare valid
+  structures. The governed real run (`runs/familiarity-gate8-real/`;
+  reference = 64 calibration inputs) detected **none** of the declared
+  shift groups (acquisition/severity/source detection 0.000) and flagged
+  **100% of rare-valid structures** unfamiliar (predeclared false-warning
+  cap 0.50 exceeded).
+- Decision: **do not promote** the familiarity diagnostic as a gating or
+  warning input. It fails the predeclared Gate 8 acceptance rule; it is
+  retained only as a disabled-by-default reported diagnostic pending a
+  redesigned representation/threshold, and it never gates actions or
+  certifies outputs.
+- Evidence: EXP-007, `runs/familiarity-gate8-real/`.
+- Alternatives rejected: lowering the threshold or cap post-hoc to pass
+  (post-hoc tuning is prohibited); promoting it despite the cap breach
+  (systematically suppresses rare valid structures).
+- Consequences: `familiarity-v1` remains a draft contract; C must show the
+  layer only when enabled and always with the exact legend; D must not
+  monitor it as a production signal; Integration II is not triggered for
+  familiarity.
+- Contracts or experiments affected: `familiarity-v1`, EXP-007.
+
+## ADR-014 — Phase 10 structural-risk decision (Research Gate 9)
+
+- Status: accepted
+- Context: Research Gate 9 requires distinct candidate, ambiguity,
+  acquisition, natural-failure, and downstream evidence with frozen hidden
+  stress definitions. The governed real run (`runs/structural-gate9-real/`,
+  32 validation groups) shows each category producing evidence on its own
+  terms (e.g. false-line +4.25 px edge displacement in the candidate
+  suite; ambiguity cases; acquisition input deltas; 5-case natural failure
+  bank; downstream evaluated without co-training) and the hidden stress
+  hash is frozen (`087d6c13...`).
+- Decision: **continue** with the structural-risk program as the
+  validated-release threat model; no hallucination-resistance claim follows
+  from any single suite.
+- Evidence: EXP-008, `runs/structural-gate9-real/`.
+- Alternatives rejected: removing suites (each category is a distinct
+  threat model); merging categories into one claim (prohibited by the
+  contract).
+- Consequences: `structural-risk-v1` freezes; Integration III publishes
+  the reports; hidden tests remain isolated from training.
+- Contracts or experiments affected: `structural-risk-v1`, EXP-008.

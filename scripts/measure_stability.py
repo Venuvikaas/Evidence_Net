@@ -87,7 +87,10 @@ def torch_model_fn(model: torch.nn.Module) -> Any:
     """Wrap a torch model as a numpy ``(H, W) -> (2H, 2W)`` callable."""
 
     def fn(y: np.ndarray) -> np.ndarray:
-        tensor = torch.from_numpy(np.asarray(y, dtype=np.float32))[None, None]
+        # ``y`` may be a non-contiguous view (negative strides from a
+        # tensor ``.numpy()`` view); copy so ``torch.from_numpy`` accepts it.
+        array = np.ascontiguousarray(np.asarray(y, dtype=np.float32))
+        tensor = torch.from_numpy(array)[None, None]
         with torch.no_grad():
             output = model(tensor)
         return output[0, 0].numpy()

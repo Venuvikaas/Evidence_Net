@@ -144,7 +144,10 @@ def _load_natural_bank() -> dict[str, Any]:
 
 def torch_model_fn(model: torch.nn.Module) -> Any:
     def fn(y: np.ndarray) -> np.ndarray:
-        tensor = torch.from_numpy(np.asarray(y, dtype=np.float32))[None, None]
+        # ``y`` may be a non-contiguous view (negative strides from a
+        # tensor ``.numpy()`` view); copy so ``torch.from_numpy`` accepts it.
+        array = np.ascontiguousarray(np.asarray(y, dtype=np.float32))
+        tensor = torch.from_numpy(array)[None, None]
         with torch.no_grad():
             output = model(tensor)
         return output[0, 0].numpy()
@@ -182,8 +185,11 @@ def real_case(n_samples: int, seed: int) -> tuple[dict[str, Any], dict[str, Any]
     proposal_model = load_torch_model(
         REPO_ROOT / "checkpoints" / "train-proposal-gate3v2" / "best.pt"
     )
+    from evidence_net.models.proposal import BoundedDetailProposal
+
+    if not isinstance(proposal_model, BoundedDetailProposal):
+        raise SystemExit("FAIL: proposal checkpoint is not a BoundedDetailProposal")
     base_fn = torch_model_fn(base_model)
-    proposal_fn = torch_model_fn(proposal_model)
 
     bases: list[np.ndarray] = []
     proposals: list[np.ndarray] = []
@@ -195,9 +201,15 @@ def real_case(n_samples: int, seed: int) -> tuple[dict[str, Any], dict[str, Any]
         input_, target, sample_id = dataset[index]
         y = input_.squeeze(0).numpy()
         x = target.squeeze(0).numpy()
-        b = base_fn(y)
-        d = proposal_fn(y)
-        c = np.clip(b + d, 0.0, 1.0)
+        # The proposal checkpoint is a full BoundedDetailProposal: calling it
+        # directly returns the *candidate* (b + d). Use ``propose`` so ``d``
+        # is the bounded detail residual (matching measure_oracle.py).
+        tensor = torch.from_numpy(np.ascontiguousarray(np.asarray(y, dtype=np.float32)))[None, None]
+        with torch.no_grad():
+            b, d, c = proposal_model.propose(tensor)
+        b = b.squeeze().numpy()
+        d = d.squeeze().numpy()
+        c = c.squeeze().numpy()
         gate = patch_gate(b, c, x)
         bases.append(b)
         proposals.append(d)
