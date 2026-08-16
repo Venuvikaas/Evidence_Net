@@ -34,6 +34,8 @@ frozen when their research gate passes. Lane-owned drafts:
 | Model stability — [`stability-v1.md`](stability-v1.md) | v1 | draft | B | Gate 7 (Phase 8) |
 | Distribution familiarity — [`familiarity-v1.md`](familiarity-v1.md) | v1 | draft | B | Gate 8 (Phase 9) |
 | Structural risk — [`structural-risk-v1.md`](structural-risk-v1.md) | v1 | draft | B | Gate 9 (Phase 10) |
+| Proposal benefit event — [`support-definition-v1.md`](support-definition-v1.md) | v1 | draft | A | Gate 4 (Phase 5) |
+| Benefit calibration — [`calibration-version-v1.md`](calibration-version-v1.md) | v1 | draft | A | Gate 4 (Phase 5) |
 
 ## How to read a contract file
 

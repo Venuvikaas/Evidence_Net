@@ -1,0 +1,12 @@
+# CalibrationVersion-v1 — benefit probability calibration (Lane A, Phase 5).
+# Mirrors docs/contracts/calibration-version-v1.md. Fit on the calibration
+# split only; pre-calibration scores are always preserved.
+schema: calibration-version-v1
+version: calibration-v1
+fit_split: calibration
+default_method: platt
+candidate_methods: [platt, temperature, isotonic]
+preserve_pre_calibration: true
+report:
+  n_bins: 10
+  n_boot: 1000

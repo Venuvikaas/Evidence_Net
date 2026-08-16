@@ -1,0 +1,15 @@
+# SupportDefinition-v1 — proposal benefit event definition (Lane A, Phase 5).
+# Mirrors docs/contracts/support-definition-v1.md. Changing any field here
+# requires support-definition-v2 (contract-change procedure).
+schema: support-definition-v1
+labels_version: labels-v1
+event:
+  region: patch
+  patch_size: 16
+  output_grid: 256
+  rule: "strict: MAE(x, c) < MAE(x, b) per patch"
+  tie: rejected
+population:
+  splits: [train, validation, calibration]
+  test_noisylr: never
+features_version: features-v1
