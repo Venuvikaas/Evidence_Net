@@ -1,0 +1,19 @@
+# DecisionPolicy-v1 — selective action semantics (Lane A, Phase 6).
+# Mirrors docs/contracts/decision-policy-v1.md. Thresholds are chosen on
+# validation/calibration data only and frozen before held-out evaluation.
+schema: decision-policy-v1
+version: policy-v1
+actions:
+  accept_threshold: 0.75
+  reject_threshold: 0.35
+  attenuation: linear
+  attenuation_note: "g(p) = (p - reject) / (accept - reject), clamped to [0, 1]"
+unresolved:
+  method: input-edge-density
+  edge_density_threshold: 0.35
+  rationale: "EXP-004 failure catalogue: harm concentrates in periodic high-edge-density regions"
+costs:
+  false_accept: 1.0
+  false_reject: 0.5
+fit_splits: [validation, calibration]
+freeze: before final held-out evaluation

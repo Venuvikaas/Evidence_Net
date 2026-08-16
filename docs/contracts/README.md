@@ -36,6 +36,7 @@ frozen when their research gate passes. Lane-owned drafts:
 | Structural risk — [`structural-risk-v1.md`](structural-risk-v1.md) | v1 | draft | B | Gate 9 (Phase 10) |
 | Proposal benefit event — [`support-definition-v1.md`](support-definition-v1.md) | v1 | draft | A | Gate 4 (Phase 5) |
 | Benefit calibration — [`calibration-version-v1.md`](calibration-version-v1.md) | v1 | draft | A | Gate 4 (Phase 5) |
+| Decision policy — [`decision-policy-v1.md`](decision-policy-v1.md) | v1 | draft | A | Gate 5 (Phase 6) |
 
 ## How to read a contract file
 
