@@ -23,6 +23,15 @@ These nine contracts are the freeze list of the four-developer handoff gate
 freeze"). Every post-handoff lane (A, B, C, D) consumes exactly these
 versions; a lane may only add optional fields, never change a frozen field.
 
+## Post-handoff contracts (draft until their gate)
+
+New contracts introduced after the handoff start as **draft** and promote to
+frozen when their research gate passes. Lane-owned drafts:
+
+| Contract | Version | Status | Owner | Gate to freeze |
+| --- | --- | --- | --- | --- |
+| Forward model (measurement consistency) — [`forward-model-v1.md`](forward-model-v1.md) | v1 | draft | B | Gate 6 (Phase 7) |
+
 ## How to read a contract file
 
 Each contract records:
