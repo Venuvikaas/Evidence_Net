@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  evidence-net-api:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: evidence_net_service
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - TRAIN_DATA_DIR=/app/data/train
+      - TEST_NOISY_LR_DIR=/app/data/Test_NoisyLR
+    volumes:
+      - ../runs:/app/runs
+      - ../data/metadata.db:/app/data/metadata.db
+      - ../scratch:/app/scratch
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

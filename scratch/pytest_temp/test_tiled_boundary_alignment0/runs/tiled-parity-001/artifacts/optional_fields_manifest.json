@@ -2,67 +2,67 @@
   "frozen_fields": {
     "base.npy": {
       "dtype": "float32",
-      "hash": "sha256:2f16616fd5e5b5ad1ea371585e136207853342f26fcf247eb57a021fa07d1f58",
+      "hash": "sha256:503dacab322699d927bb9e87d4b1e31bd39862326b6857b3e0cf601015c20d74",
       "range": [
-        0.0,
-        0.9415854811668396
+        0.0071647437289357185,
+        0.9883503317832947
       ],
       "shape": [
         1,
-        128,
-        128
+        256,
+        256
       ]
     },
     "candidate.npy": {
       "dtype": "float32",
-      "hash": "sha256:2aba9f0f23dda0576e7f2c2b93f46ab9d3dfbccf7c16258873bc65b3abe5211b",
+      "hash": "sha256:503dacab322699d927bb9e87d4b1e31bd39862326b6857b3e0cf601015c20d74",
       "range": [
-        0.001557847368530929,
-        0.9431419968605042
+        0.0071647437289357185,
+        0.9883503317832947
       ],
       "shape": [
         1,
-        128,
-        128
+        256,
+        256
       ]
     },
     "final.npy": {
       "dtype": "float32",
-      "hash": "sha256:2aba9f0f23dda0576e7f2c2b93f46ab9d3dfbccf7c16258873bc65b3abe5211b",
+      "hash": "sha256:503dacab322699d927bb9e87d4b1e31bd39862326b6857b3e0cf601015c20d74",
       "range": [
-        0.001557847368530929,
-        0.9431419968605042
+        0.0071647437289357185,
+        0.9883503317832947
       ],
       "shape": [
         1,
-        128,
-        128
+        256,
+        256
       ]
     },
     "input.npy": {
       "dtype": "float32",
-      "hash": "sha256:fc7e461a71b302f108f8aa4a48115c084273a5d0a17131f96e213589826f5418",
+      "hash": "sha256:2a886a9a3e6ba14a626c77a78c31348ea9915b313cc0409278b16f173b0942a9",
       "range": [
-        0.0005187441711314023,
-        0.9997653365135193
-      ],
-      "shape": [
-        1,
-        64,
-        64
-      ]
-    },
-    "proposal.npy": {
-      "dtype": "float32",
-      "hash": "sha256:84e2668e7b96ad27a75a39bebb788afe0d16d6cf1e84f273e5f9d07e57fc5b55",
-      "range": [
-        -0.0006062986794859171,
-        0.002500261180102825
+        2.1725849364884198e-05,
+        0.9999495148658752
       ],
       "shape": [
         1,
         128,
         128
+      ]
+    },
+    "proposal.npy": {
+      "dtype": "float32",
+      "hash": "sha256:8a39d2abd3999ab73c34db2476849cddf303ce389b35826850f9a700589b4a90",
+      "range": [
+        0.0,
+        0.0
+      ],
+      "shape": [
+        1,
+        256,
+        256
       ]
     }
   },
@@ -78,7 +78,7 @@
   "provenance": {
     "base_model_version": "base-model-v1",
     "calibration_version": "not-defined",
-    "dataset_manifest_hash": "sha256:test1234",
+    "dataset_manifest_hash": "not-defined",
     "decision_policy_version": "not-defined",
     "forward_model_version": "not-defined",
     "pipeline_version": "unified-inference-v1",
