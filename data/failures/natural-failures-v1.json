@@ -1,0 +1,53 @@
+{
+  "schema": "natural-failures-v1",
+  "frozen": true,
+  "curated_from": ["FAIL-001", "docs/base-failures.md", "runs/proposal-effects-20260815-205856"],
+  "note": "Per-case numeric metrics live in the archived (uncommitted) run bundles; this bank pins the case ids, regions, and effects for the Gate 9 evidence set. Entries are immutable.",
+  "cases": [
+    {
+      "case_id": "000893",
+      "kind": "proposal-harm",
+      "region": "periodic",
+      "effect": "overall MAE improves (-0.0048) while periodic-region MAE degrades (+0.0053); oracle accepts only 78% of periodic patches",
+      "source_run": "runs/proposal-effects-20260815-205856",
+      "source_manifest": "official-train-source-v1",
+      "review_note": "archived in FAIL-001; primary periodic-harm exemplar"
+    },
+    {
+      "case_id": "002672",
+      "kind": "proposal-harm",
+      "region": "periodic",
+      "effect": "archived stress case from the Phase 4 proposal-effects study; periodic-region harm class",
+      "source_run": "runs/proposal-effects-20260815-205856",
+      "source_manifest": "official-train-source-v1",
+      "review_note": "listed in FAIL-001 as an archived stress case; per-case metrics in the run bundle"
+    },
+    {
+      "case_id": "000250",
+      "kind": "proposal-harm",
+      "region": "periodic",
+      "effect": "archived stress case from the Phase 4 proposal-effects study; periodic-region harm class",
+      "source_run": "runs/proposal-effects-20260815-205856",
+      "source_manifest": "official-train-source-v1",
+      "review_note": "listed in FAIL-001 as an archived stress case; per-case metrics in the run bundle"
+    },
+    {
+      "case_id": "002051",
+      "kind": "proposal-harm",
+      "region": "periodic",
+      "effect": "archived stress case from the Phase 4 proposal-effects study; periodic-region harm class",
+      "source_run": "runs/proposal-effects-20260815-205856",
+      "source_manifest": "official-train-source-v1",
+      "review_note": "listed in FAIL-001 as an archived stress case; per-case metrics in the run bundle"
+    },
+    {
+      "case_id": "001977",
+      "kind": "proposal-harm",
+      "region": "periodic",
+      "effect": "archived stress case from the Phase 4 proposal-effects study; periodic-region harm class",
+      "source_run": "runs/proposal-effects-20260815-205856",
+      "source_manifest": "official-train-source-v1",
+      "review_note": "listed in FAIL-001 as an archived stress case; per-case metrics in the run bundle"
+    }
+  ]
+}

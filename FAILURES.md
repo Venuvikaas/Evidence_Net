@@ -49,3 +49,20 @@ _Empty._
   must be regional; periodic regions are high-risk for acceptance. `000893`,
   `002672`, `000250`, `002051`, `001977` are archived stress cases.
 - Artifact path: `docs/proposal-failures.md`, `runs/proposal-effects-20260815-205856/`.
+
+## FAIL-002 — Natural failure bank curated (Phase 10)
+- Category: Natural hallucination examples (bank curation).
+- Context: Phase 10 structural-risk program needs unedited frozen-model
+  failures as the ``natural`` threat-model evidence, separate from
+  candidate/ambiguity/acquisition evidence (Gate 9).
+- What was tried: curated the archived Phase 4 proposal-effects stress cases
+  (000893, 002672, 000250, 002051, 001977) plus the base failure catalogue
+  into an immutable bank (`data/failures/natural-failures-v1.json`).
+- Observed result: bank pins case ids, regions (periodic), effects, source
+  runs, and review notes; per-case numeric metrics remain in the archived
+  (uncommitted) run bundles and are referenced, not duplicated.
+- Root cause hypothesis: n/a (curation, not a new failure).
+- Consequence for design: the bank feeds the Gate 9 evidence set and the
+  hidden-stress isolation program; entries are immutable once frozen.
+- Artifact path: `data/failures/natural-failures-v1.json`,
+  `runs/proposal-effects-20260815-205856/`, `docs/base-failures.md`.
