@@ -402,3 +402,43 @@ are written before examining final test results. The format is defined in
 - Decision: pending (Research Gate 4).
 - Artifact path: `runs/benefit-eval-*/` and `runs/benefit-predictor-*/`
   (synthetic smoke runs).
+
+## EXP-010 — Does selective action reduce risk (Gate 5)?
+- Question: Does the frozen decision-policy-v1 (accept/attenuate/reject from
+  the calibrated benefit probability, plus the orthogonal unresolved mask)
+  improve a pre-declared endpoint without unacceptable regressions, lower
+  measured risk via abstention at usable coverage, and avoid disguising
+  unresolved Base errors — Research Gate 5?
+- Primary metric: restoration outcome (PSNR/SSIM/MAE) and structural risk
+  (edge displacement) of the gated output vs the frozen Base and the ungated
+  candidate on held-out validation data; coverage (fraction with gate > 0)
+  and unresolved area (input edge-density mask) reported alongside.
+- Secondary diagnostics: action-map fractions (accept/attenuate/reject),
+  per-action patch MAE vs the target, critical-region (high edge-density)
+  outcome breakout, and the rejected-and-unresolved overlap (the
+  fallback-uncertainty rule).
+- Baselines: ungated candidate (coverage 1.0), frozen Base (coverage 0),
+  full-accept oracle as the upper reference (Phase 4 headroom).
+- Dataset manifest: `dataset-splits-v1.json` (calibration split for
+  threshold fit and calibration; validation split for evaluation;
+  `Test_NoisyLR/` untouched). Synthetic fixtures are labeled synthetic.
+- Configs: `configs/decision_policy/decision-policy-v1.yaml`;
+  `scripts/measure_policy.py --synthetic` (CI smoke); governed real run on
+  the frozen calibration/validation splits with the trained predictor.
+- Acceptance rule (predeclared, Gate 5): **continue** if (1) the gated
+  output improves the pre-declared endpoint over the frozen Base without
+  increasing mean edge displacement vs the ungated candidate, (2)
+  abstention (unresolved mask) lowers measured risk at a usable coverage
+  (unresolved area below a declared cap), and (3) the report shows rejected
+  patches that are unresolved (the policy never certifies the Base on
+  rejection). **Redesign the policy or the unresolved rule** if rejection
+  disguises Base errors.
+- Result: pending — machinery (policy, thresholds, unresolved mask, action
+  maps, coverage-risk reports, script, tests) is complete; the governed real
+  run at Integration I decides the gate. The synthetic smoke run validates
+  the policy path end-to-end in CI with split-isolated threshold fitting.
+- Confidence interval / uncertainty: group bootstrap over source groups;
+  patches pooled only inside the action-map report; synthetic probes
+  labeled; thresholds frozen before evaluation.
+- Decision: pending (Research Gate 5).
+- Artifact path: `runs/policy-eval-*/` (synthetic smoke runs).

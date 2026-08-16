@@ -5,6 +5,26 @@ execution plan lives in `EXECUTION.md`.
 
 ## [Unreleased]
 
+### Added (Lane A, Phase 6 — Decision Policy, Gating, and Abstention)
+- `decision-policy-v1` draft contract (`docs/contracts/decision-policy-v1.md`):
+  accept / attenuate / reject semantics from the calibrated benefit
+  probability, an **orthogonal unresolved mask** (input edge density, from
+  the EXP-004 failure catalogue), and the kill-switch rule that rejection
+  never certifies the Base. Thresholds fit on validation/calibration only
+  and frozen before held-out evaluation.
+- Policy implementation (`src/evidence_net/decision/policy.py`): validated
+  `PolicyConfig`, linear attenuation mapping, per-patch action maps,
+  unresolved-mask computation, threshold fitting with split isolation, and
+  action-map / coverage-risk reports.
+- `configs/decision_policy/decision-policy-v1.yaml`;
+  `scripts/measure_policy.py` (synthetic smoke for CI; real mode at
+  Integration I) writing run bundles with the frozen thresholds.
+- Tests in `tests/calibration/test_policy.py` (11 tests): action assignment,
+  attenuation gate, the rejected-and-unresolved coexistence rule, threshold
+  split isolation, and coverage-risk reports.
+- EXP-010 registered with a predeclared Gate 5 acceptance rule; CI gains the
+  policy smoke step.
+
 ### Added (Lane A, Phase 5 — Proposal-Benefit Definition, Predictor, and Calibration)
 - `support-definition-v1` draft contract (`docs/contracts/support-definition-v1.md`):
   the benefit event is a strict patch-level comparison (16x16 grid, ungated

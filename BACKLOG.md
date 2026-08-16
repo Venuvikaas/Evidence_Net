@@ -33,6 +33,17 @@ not interrupted unless new information invalidates its assumptions.
   natural failures, Phase 10) will feed the gate. Familiarity integrates
   into warnings/abstention only after Gate 8 (Lane A policy).
 
+## Lane A, Phase 6 -> Gate 5 (Integration I)
+
+- EXP-010 (selective action, Gate 5) machinery is complete: the
+  decision-policy-v1 contract, threshold fit on calibration/validation only
+  with a frozen config, accept/attenuate/reject actions, the orthogonal
+  unresolved mask (input edge density — the rejected-proposal-never-certifies-
+  Base rule), action-map and coverage-risk reports, and the evaluation
+  script (`scripts/measure_policy.py`, CI synthetic smoke). The governed
+  real run at Integration I (with the trained predictor) decides the gate;
+  the synthetic smoke validates the path end-to-end.
+
 ## Lane A, Phase 5 -> Gate 4 (Integration I)
 
 - EXP-009 (benefit predictability, Gate 4) machinery is complete: deterministic

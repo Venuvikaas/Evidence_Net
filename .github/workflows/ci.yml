@@ -52,6 +52,9 @@ jobs:
       - name: Benefit predictor eval smoke (Lane A, synthetic)
         run: python scripts/measure_benefit.py --synthetic --n-samples 6 --run-id smoke-ci-benefit-eval
 
+      - name: Decision policy smoke (Lane A, synthetic)
+        run: python scripts/measure_policy.py --synthetic --n-samples 6 --run-id smoke-ci-policy
+
       - name: Environment check
         run: python scripts/check_env.py
 
