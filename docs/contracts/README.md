@@ -31,6 +31,7 @@ frozen when their research gate passes. Lane-owned drafts:
 | Contract | Version | Status | Owner | Gate to freeze |
 | --- | --- | --- | --- | --- |
 | Forward model (measurement consistency) — [`forward-model-v1.md`](forward-model-v1.md) | v1 | draft | B | Gate 6 (Phase 7) |
+| Model stability — [`stability-v1.md`](stability-v1.md) | v1 | draft | B | Gate 7 (Phase 8) |
 
 ## How to read a contract file
 
