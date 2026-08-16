@@ -58,6 +58,9 @@ jobs:
       - name: Pipeline benchmark smoke (Lane D, synthetic)
         run: python scripts/benchmark_pipeline.py --synthetic --n-samples 4 --run-id smoke-ci-benchmark
 
+      - name: Phase 18 final-inference smoke (needs local checkpoints; skips if absent)
+        run: python scripts/run_final_inference.py --smoke --run-id smoke-ci-final-inference
+
       - name: Environment check
         run: python scripts/check_env.py
 

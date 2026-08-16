@@ -5,6 +5,31 @@ execution plan lives in `EXECUTION.md`.
 
 ## [Unreleased]
 
+### Added (Phase 18 — Final Validation and Release)
+- `scripts/run_final_inference.py`: frozen one-pass evaluation on all 400
+  supported `Test_NoisyLR/` inputs, preserving original relative names,
+  verifying one-output-per-input coverage and the output contract
+  ((256,256) float32 in [0,1]), and recording provenance hashes for the
+  source manifest, checkpoints, and outputs.
+- `docs/release-report-v1.md`: frozen release report recording the
+  candidate versions, final evaluation protocol and results, all gate
+  decisions (ADR-009..015), and published failures/limitations.
+
+### Decided (Research Gates 4–10)
+- Gate 4 **simplify**: benefit prediction is at chance on the frozen event
+  (all predictors pooled AUC 0.48–0.59; the event is the norm — 79.4% of
+  validation patches beneficial); per-patch benefit claim not promoted.
+  ADR-009, EXP-009.
+- Gate 5 **continue (simplified)**: default-accept + unresolved abstention
+  beats the frozen Base (PSNR 25.376 vs 24.888 dB, MAE 0.0382 vs 0.0408).
+  ADR-010, EXP-010.
+- Gate 6 **keep** (consistency), Gate 7 **keep** (stability). ADR-011/012.
+- Gate 8 **NOT promoted**: familiarity detects 0% of declared shifts and
+  flags 100% of rare-valid structures (cap 0.50 exceeded). ADR-013.
+- Gate 9 **continue** (structural-risk). ADR-014.
+- Gate 10 **pending participants** (human interpretation untested; protocol
+  and capture ready). ADR-015, EXP-011.
+
 ### Added (Lane A, Phase 6 — Decision Policy, Gating, and Abstention)
 - `decision-policy-v1` draft contract (`docs/contracts/decision-policy-v1.md`):
   accept / attenuate / reject semantics from the calibrated benefit
