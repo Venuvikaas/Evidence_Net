@@ -34,11 +34,13 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 
 try:
     from evidence_net.models.factory import build_model
+    from evidence_net.models.proposal import BoundedDetailProposal
     from evidence_net.reporting.run_bundle import create_run_bundle, new_run_id
     from evidence_net.training.config import ModelConfig
 except ImportError:  # allow running before `pip install -e .`
     sys.path.insert(0, str(REPO_ROOT / "src"))
     from evidence_net.models.factory import build_model  # noqa: E402
+    from evidence_net.models.proposal import BoundedDetailProposal  # noqa: E402
     from evidence_net.reporting.run_bundle import create_run_bundle, new_run_id  # noqa: E402
     from evidence_net.training.config import ModelConfig  # noqa: E402
 
@@ -104,21 +106,38 @@ def _measure_rss_mb() -> float:
     return total / (1024 * 1024)
 
 
+def _synthetic_models() -> tuple[torch.nn.Module, BoundedDetailProposal]:
+    """Random Base + BoundedDetailProposal for CI smoke (no checkpoints)."""
+    from evidence_net.models.base import BaseReconstruction
+    from evidence_net.models.proposal import DetailProposer
+
+    base = BaseReconstruction(hidden_channels=8, depth=2)
+    proposer = DetailProposer(hidden_channels=8, depth=2, amplitude=0.1)
+    return base, BoundedDetailProposal(base, proposer)
+
+
 def main() -> int:
     args = parse_args()
-    base = _load_model(REPO_ROOT / "checkpoints" / "train-base-gate2" / "best.pt")
-    proposal = _load_model(REPO_ROOT / "checkpoints" / "train-proposal-gate3v2" / "best.pt")
-    from evidence_net.models.proposal import BoundedDetailProposal
-
-    if not isinstance(proposal, BoundedDetailProposal):
-        raise SystemExit("FAIL: proposal checkpoint is not a BoundedDetailProposal")
-
-    base_params = sum(p.numel() for p in base.parameters())
-    proposal_params = sum(p.numel() for p in proposal.parameters())
-    base_bytes = (REPO_ROOT / "checkpoints" / "train-base-gate2" / "best.pt").stat().st_size
-    proposal_bytes = (
-        (REPO_ROOT / "checkpoints" / "train-proposal-gate3v2" / "best.pt").stat().st_size
-    )
+    base_path = REPO_ROOT / "checkpoints" / "train-base-gate2" / "best.pt"
+    proposal_path = REPO_ROOT / "checkpoints" / "train-proposal-gate3v2" / "best.pt"
+    base: torch.nn.Module
+    proposal: BoundedDetailProposal
+    if args.synthetic or not (base_path.is_file() and proposal_path.is_file()):
+        base, proposal = _synthetic_models()
+        base_params = sum(p.numel() for p in base.parameters())
+        proposal_params = sum(p.numel() for p in proposal.parameters())
+        base_bytes = 0
+        proposal_bytes = 0
+    else:
+        base = _load_model(base_path)
+        loaded = _load_model(proposal_path)
+        if not isinstance(loaded, BoundedDetailProposal):
+            raise SystemExit("FAIL: proposal checkpoint is not a BoundedDetailProposal")
+        proposal = loaded
+        base_params = sum(p.numel() for p in base.parameters())
+        proposal_params = sum(p.numel() for p in proposal.parameters())
+        base_bytes = base_path.stat().st_size
+        proposal_bytes = proposal_path.stat().st_size
 
     ids, arrays = _inputs(args.n_samples, args.seed, synthetic=args.synthetic)
     latencies_ms: list[float] = []
@@ -179,8 +198,9 @@ def _build_summary(run_id: str, metrics: dict[str, object]) -> str:
         "",
         f"- Mode: {metrics['mode']}; resolution {metrics['resolution']}.",
         f"- Model sizes: Base {metrics['base_parameters']} params "
-        f"({metrics['base_checkpoint_bytes']} B), Proposal "
-        f"{metrics['proposal_parameters']} params ({metrics['proposal_checkpoint_bytes']} B).",
+        f"(checkpoint {metrics['base_checkpoint_bytes']} B), Proposal "
+        f"{metrics['proposal_parameters']} params (checkpoint "
+        f"{metrics['proposal_checkpoint_bytes']} B; 0 = synthetic in-memory).",
         f"- Latency: mean {metrics['latency_mean_ms']} ms, p50 "
         f"{metrics['latency_p50_ms']} ms, p95 {metrics['latency_p95_ms']} ms.",
         f"- Throughput: {metrics['throughput_samples_per_sec']} samples/s.",
