@@ -5,6 +5,28 @@ execution plan lives in `EXECUTION.md`.
 
 ## [Unreleased]
 
+### Added (Lane B, Phase 7 — Measurement Consistency)
+- `forward-model-v1` draft contract (`docs/contracts/forward-model-v1.md`):
+  bounded operator family (bilinear / area / blur / noisy-blur), parameter
+  bounds, operation order, seeded stochastic treatment, non-identifiability
+  threat model; promotes to frozen at Research Gate 6.
+- Bounded forward operators (`src/evidence_net/stress_tests/forward.py`) with
+  construction-time bounds validation (misspecification raises
+  `ForwardError`), config loading, and canonical non-identifiability cases
+  (stripe and line-present/absent pairs).
+- Measurement-consistency compatibility report
+  (`src/evidence_net/stress_tests/consistency.py`): per-operator residual
+  distribution (min / median / max, never minimum only) with grouped
+  bootstrap CIs, per-image feature extraction for Lane A, and stochastic
+  spread reporting.
+- `scripts/measure_consistency.py` (synthetic smoke mode, CI-safe) writing
+  run bundles; `configs/modality/forward-v1.yaml`.
+- Analytical tests in `tests/numerical/` (exact pooling, constants,
+  bounds/misspecification, seeded stochasticity, operation-order
+  sensitivity, non-identifiability, report discipline).
+- EXP-005 registered (Gate 6 incremental-value question); governed
+  comparison pending Lane A's simple benefit features (Integration I).
+
 ### Added (Four-Developer Handoff, after Phase 4)
 - Frozen handoff contracts in `docs/contracts/`: `dataset-v1`, `tensor-v1`,
   `metrics-v1`, `artifacts-v1`, `base-output-v1`, `proposal-output-v1`,

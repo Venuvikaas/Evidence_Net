@@ -186,3 +186,45 @@ are written before examining final test results. The format is defined in
 - Artifact path: `runs/oracle-gate3-20260815-205601/`,
   `runs/proposal-effects-20260815-205856/`,
   `checkpoints/train-proposal-gate3v2/best.pt`.
+
+---
+
+## EXP-005 — Does the measurement-consistency diagnostic add held-out value?
+- Question: Does the per-operator residual distribution of the
+  measurement-consistency diagnostic (`forward-model-v1`, Phase 7) improve
+  selective-risk ordering or restoration decisions beyond simple benefit
+  features (Lane A), or provide independently useful review information that
+  changes a review decision (Research Gate 6)?
+- Primary metric: change in selective-risk ordering quality (e.g. AUROC of
+  the oracle-accept event) and/or calibration-domain-valid mean absolute
+  error of the frozen benefit predictor, with vs without the consistency
+  feature set; for the review-information arm: fraction of documented cases
+  where the per-operator residual structure changes the review verdict on a
+  predeclared case bank.
+- Secondary diagnostics: per-operator residual means and CIs (group
+  bootstrap), arg-min operator spread, bias, stochastic spread; whether
+  consistency features are redundant with simple residual-magnitude and
+  local-signal benefit features.
+- Baselines: no consistency features (benefit features only); consistency
+  features only; combined.
+- Dataset manifest: `official-train-source-v1.json` + `dataset-splits-v1.json`
+  (validation + calibration splits only; Test_NoisyLR untouched).
+- Configs: `configs/modality/forward-v1.yaml`;
+  `scripts/measure_consistency.py --synthetic` (harness smoke, CI); real
+  governed run on the frozen validation sample with the deterministic anchor
+  and, once available, the frozen Base (`base-output-v1`).
+- Acceptance rule (predeclared, Gate 6): **keep** the diagnostic if (1) the
+  consistency feature set improves a declared held-out outcome by a
+  predeclared margin over benefit features alone, OR (2) the review
+  information arm shows the residual structure changes review verdicts on a
+  predeclared fraction of the case bank. **Remove** the diagnostic if it adds
+  no held-out value and no independently useful review information.
+  The diagnostic is always labeled compatibility, never truth.
+- Result: pending — machinery (operators, report, script, stress cases,
+  tests) is complete; the governed comparison needs Lane A's simple benefit
+  features (Phase 5) and runs at Integration I when those are promoted.
+  The synthetic smoke run validates the harness end-to-end in CI.
+- Confidence interval / uncertainty: group bootstrap over samples; pixels are
+  never sample counts; stochastic operators report seeded spread.
+- Decision: pending (Research Gate 6).
+- Artifact path: `runs/measure-consistency-*/` (synthetic smoke runs).
