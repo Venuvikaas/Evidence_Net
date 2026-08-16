@@ -49,7 +49,11 @@ try:
 except ImportError:  # allow running before `pip install -e .`
     sys.path.insert(0, str(REPO_ROOT / "src"))
     from evidence_net.benefit.calibration import fit_calibration  # noqa: E402
-    from evidence_net.benefit.labels import OUTPUT_GRID, PATCH_SIZE, patch_benefit_labels  # noqa: E402
+    from evidence_net.benefit.labels import (  # noqa: E402
+        OUTPUT_GRID,
+        PATCH_SIZE,
+        patch_benefit_labels,
+    )
     from evidence_net.benefit.predictors import (  # noqa: E402
         LocalSignalBaseline,
         ResidualMagnitudeBaseline,
@@ -263,7 +267,11 @@ def main() -> int:
         # orthogonal unresolved mask, never by certifying the Base.
         band_fit_issue = f"{type(exc).__name__}: {exc}"
         config = PolicyConfig()
-        print(f"NOTE: policy band fit degenerate ({band_fit_issue}); " "using default-accept + unresolved abstention", file=sys.stderr)
+        print(
+            f"NOTE: policy band fit degenerate ({band_fit_issue}); "
+            "using default-accept + unresolved abstention",
+            file=sys.stderr,
+        )
 
     # With a degenerate band fit (benefit at chance), the honest policy is
     # default-accept: the candidate is better than the Base on most patches,
@@ -289,9 +297,7 @@ def main() -> int:
     # certified); everything else keeps the gated candidate.
     abstained: list[np.ndarray] = []
     for action_map, base, proposal in zip(maps, bases, proposals, strict=True):
-        gate_map = np.repeat(
-            np.repeat(action_map.gates, PATCH_SIZE, axis=0), PATCH_SIZE, axis=1
-        )
+        gate_map = np.repeat(np.repeat(action_map.gates, PATCH_SIZE, axis=0), PATCH_SIZE, axis=1)
         fallback = np.repeat(
             np.repeat(action_map.unresolved.astype(np.float64), PATCH_SIZE, axis=0),
             PATCH_SIZE,

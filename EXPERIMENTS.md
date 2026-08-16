@@ -503,3 +503,45 @@ are written before examining final test results. The format is defined in
   cap. Recorded in ADR-010; the probability-band variant is not promoted.
 - Artifact path: `runs/policy-eval-gate5-real/` (governed real run);
   `runs/policy-eval-*/` (synthetic smoke runs).
+
+## EXP-011 — Can users interpret the outputs correctly (Gate 10)?
+
+- Question: Can technical reviewers distinguish Proposal Benefit,
+  compatibility, stability, familiarity, rejection, and unresolved output
+  without treating them as physical proof — Research Gate 10?
+- Primary metric: interpretation accuracy on the study protocol's prepared
+  cases (success, ambiguity, failure, unfamiliarity, abstention) and
+  decision quality, with the systematic-misunderstanding rule (rename,
+  redesign, or remove a layer that participants misunderstand).
+- Secondary diagnostics: per-layer misunderstanding rates, over-trust
+  signals, and review-event capture completeness.
+- Baselines: expert agreement on the same cases; the protocol's
+  pre-registered interpretation criteria.
+- Dataset manifest: synthetic study fixtures only (labeled synthetic);
+  `Test_NoisyLR/` untouched; no raw-tensor logging by default.
+- Configs: `docs/human-interpretation-study-protocol.md`,
+  `docs/research-data-handling-and-consent.md`; review-event capture via
+  the API `POST /review/events` endpoint.
+- Acceptance rule (predeclared, Gate 10): **continue** if participants can
+  explain that proposal benefit is not physical proof, distinguish
+  compatibility/stability/familiarity/benefit, and understand abstention
+  and unresolved Base output; otherwise rename, redesign, or remove the
+  systematically misunderstood layers. Any unavailable participant
+  population is documented as a limitation, never simulated.
+- Result: **machinery complete, human evidence pending** — the study
+  protocol (v1, frozen), data-handling/consent documentation, prepared
+  synthetic cases, and anonymous review-event capture are implemented and
+  CI-tested. No participant population is currently available to the team,
+  so the pilot and expert-review runs cannot be conducted; this is
+  recorded as an explicit validation gap (never simulated), per the
+  acceptance rule.
+- Confidence interval / uncertainty: interpretation findings are
+  participant-count bounded; without participants there is no statistical
+  evidence, only the documented protocol and capture machinery.
+- Decision: **pending participants (Gate 10)** — the release limitation is
+  "human interpretation untested in this environment; participants not
+  available"; the protocol and capture machinery are ready for the pilot
+  and remain part of the release candidate. Registered with ADR-015.
+- Artifact path: `docs/human-interpretation-study-protocol.md`,
+  `docs/research-data-handling-and-consent.md`, review-event capture
+  endpoint and tests.

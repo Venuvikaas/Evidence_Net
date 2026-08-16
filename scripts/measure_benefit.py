@@ -40,6 +40,7 @@ try:
         AttentionGateBaseline,
         LocalSignalBaseline,
         MinimalBenefitPredictor,
+        Predictor,
         ResidualMagnitudeBaseline,
     )
     from evidence_net.reporting.run_bundle import create_run_bundle, new_run_id
@@ -56,6 +57,7 @@ except ImportError:  # allow running before `pip install -e .`
         AttentionGateBaseline,
         LocalSignalBaseline,
         MinimalBenefitPredictor,
+        Predictor,
         ResidualMagnitudeBaseline,
     )
     from evidence_net.reporting.run_bundle import create_run_bundle, new_run_id  # noqa: E402
@@ -315,7 +317,7 @@ def main() -> int:
 
     # Declared baselines on validation (including the reconstruction-trained
     # attention gate from the predictor run, per support-definition-v1).
-    baseline_predictors = {
+    baseline_predictors: dict[str, Predictor | AttentionGateBaseline] = {
         "residual-magnitude": ResidualMagnitudeBaseline(),
         "local-signal": LocalSignalBaseline(),
     }

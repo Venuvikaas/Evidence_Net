@@ -359,3 +359,28 @@ superseded`.
 - Consequences: `structural-risk-v1` freezes; Integration III publishes
   the reports; hidden tests remain isolated from training.
 - Contracts or experiments affected: `structural-risk-v1`, EXP-008.
+
+## ADR-015 — Phase 14 human-interpretation registration (Research Gate 10)
+
+- Status: accepted
+- Context: Research Gate 10 requires users to distinguish Proposal
+  Benefit, compatibility, stability, familiarity, rejection, and
+  unresolved output without treating them as physical proof. The study
+  protocol (`docs/human-interpretation-study-protocol.md` v1, frozen),
+  consent/data-handling documentation, prepared synthetic cases, and
+  anonymous review-event capture (`POST /review/events`) are implemented
+  and CI-tested (EXP-011). No participant population is currently
+  available to the team.
+- Decision: **register Gate 10 with the honest limitation** — the release
+  claim states "human interpretation untested in this environment;
+  participants not available", never simulated; the protocol and capture
+  machinery remain part of the release candidate for the pilot.
+- Evidence: EXP-011, protocol + data-handling docs, review-event endpoint
+  and tests.
+- Alternatives rejected: simulating participant results (prohibited by the
+  acceptance rule and the honest-release claim); silently dropping the
+  gate (Gate 10 is a declared research gate).
+- Consequences: Integration IV records the limitation; C's layer wording
+  follows the protocol; D's privacy/retention/audit behavior is validated
+  by `docs/security-and-privacy-operations.md`.
+- Contracts or experiments affected: EXP-011, `human-interpretation-study-protocol.md`.

@@ -179,9 +179,7 @@ def _real_dataset(
             b, d, _c = proposal.propose(batch)
             grids.append((y, b.squeeze().numpy(), d.squeeze().numpy()))
             labels.append(
-                patch_benefit_labels(b.squeeze().numpy(), d.squeeze().numpy(), x).astype(
-                    np.float32
-                )
+                patch_benefit_labels(b.squeeze().numpy(), d.squeeze().numpy(), x).astype(np.float32)
             )
     return grids, labels
 

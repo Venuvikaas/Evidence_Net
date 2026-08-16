@@ -55,6 +55,9 @@ jobs:
       - name: Decision policy smoke (Lane A, synthetic)
         run: python scripts/measure_policy.py --synthetic --n-samples 6 --run-id smoke-ci-policy
 
+      - name: Pipeline benchmark smoke (Lane D, synthetic)
+        run: python scripts/benchmark_pipeline.py --synthetic --n-samples 4 --run-id smoke-ci-benchmark
+
       - name: Environment check
         run: python scripts/check_env.py
 

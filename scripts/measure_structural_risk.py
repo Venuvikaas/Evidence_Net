@@ -181,7 +181,6 @@ def real_case(n_samples: int, seed: int) -> tuple[dict[str, Any], dict[str, Any]
 
     paths = resolve_dataset_paths()
     dataset = RestorationDataset(paths.train_dir, split="validation", n_samples=n_samples, seed=0)
-    base_model = load_torch_model(REPO_ROOT / "checkpoints" / "train-base-gate2" / "best.pt")
     proposal_model = load_torch_model(
         REPO_ROOT / "checkpoints" / "train-proposal-gate3v2" / "best.pt"
     )
@@ -189,7 +188,6 @@ def real_case(n_samples: int, seed: int) -> tuple[dict[str, Any], dict[str, Any]
 
     if not isinstance(proposal_model, BoundedDetailProposal):
         raise SystemExit("FAIL: proposal checkpoint is not a BoundedDetailProposal")
-    base_fn = torch_model_fn(base_model)
 
     bases: list[np.ndarray] = []
     proposals: list[np.ndarray] = []
@@ -206,10 +204,10 @@ def real_case(n_samples: int, seed: int) -> tuple[dict[str, Any], dict[str, Any]
         # is the bounded detail residual (matching measure_oracle.py).
         tensor = torch.from_numpy(np.ascontiguousarray(np.asarray(y, dtype=np.float32)))[None, None]
         with torch.no_grad():
-            b, d, c = proposal_model.propose(tensor)
-        b = b.squeeze().numpy()
-        d = d.squeeze().numpy()
-        c = c.squeeze().numpy()
+            b_t, d_t, c_t = proposal_model.propose(tensor)
+        b = b_t.squeeze().numpy()
+        d = d_t.squeeze().numpy()
+        c = c_t.squeeze().numpy()
         gate = patch_gate(b, c, x)
         bases.append(b)
         proposals.append(d)
