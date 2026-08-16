@@ -274,3 +274,43 @@ are written before examining final test results. The format is defined in
   and never used in scientific reports.
 - Decision: pending (Research Gate 7).
 - Artifact path: `runs/measure-stability-*/` (synthetic smoke runs).
+
+---
+
+## EXP-007 — Does the familiarity diagnostic detect declared shifts without suppressing rare valid structures?
+- Question: Does the reference-distance baseline (`familiarity-v1`, Phase 9)
+  detect the declared source, severity, degradation, and acquisition shifts,
+  and does it avoid systematically suppressing rare **valid** structures
+  (thin lines, isolated points, small defects) — Research Gate 8?
+- Primary metric: per-shift-group detection rate (fraction of probes flagged
+  unfamiliar) with grouped CIs; rare-valid false-warning rate (fraction of
+  rare-valid probes flagged unfamiliar) against the declared cap
+  (`rare_valid_max_false_warning_rate = 0.5` default).
+- Secondary diagnostics: mean distance per group, distance distributions,
+  per-feature z-contributions (which features drive the flag), and the
+  applicability statement bound to the reference feature domain.
+- Baselines: no familiarity signal (no shift warnings); random threshold;
+  per-feature threshold variants.
+- Dataset manifest: `official-train-source-v1.json` + `dataset-splits-v1.json`
+  (calibration reference; validation + heldout-source probes; Test_NoisyLR
+  untouched). Synthetic rare-valid structures are labeled and never used as
+  scientific evidence.
+- Configs: `configs/modality/familiarity-v1.yaml`;
+  `scripts/measure_familiarity.py --synthetic` (harness smoke, CI); real
+  governed run on the frozen calibration reference.
+- Acceptance rule (predeclared, Gate 8): **continue** if (1) every declared
+  shift group is detected at a predeclared rate (e.g. >= 0.8 detection on
+  severity and degradation groups), (2) the rare-valid false-warning rate
+  stays below the declared cap (no systematic suppression), and (3) the
+  applicability limits are published with the output. **Redesign the
+  representation** if detection fails; **do not integrate into warnings or
+  abstention** before this gate passes (Lane A policy).
+- Result: pending — machinery (features, baseline, shift suites, report,
+  script, tests) is complete; the governed run on the real calibration
+  reference and curated rare-valid cases (Phase 10 failure bank) decides the
+  gate. The synthetic smoke run validates the harness end-to-end in CI and
+  reports the rare-valid cap mechanism.
+- Confidence interval / uncertainty: group bootstrap over samples; pixels
+  are never sample counts; synthetic probes are labeled synthetic.
+- Decision: pending (Research Gate 8).
+- Artifact path: `runs/measure-familiarity-*/` (synthetic smoke runs).

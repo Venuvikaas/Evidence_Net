@@ -5,6 +5,26 @@ execution plan lives in `EXECUTION.md`.
 
 ## [Unreleased]
 
+### Added (Lane B, Phase 9 — Distribution Familiarity and Shift)
+- `familiarity-v1` draft contract (`docs/contracts/familiarity-v1.md`):
+  frozen 6-component feature representation on the input grid, reference
+  population rule (development data only), RMS standardized reference
+  distance, configurable threshold, applicability limits, and the separate
+  evaluation of rare valid structures (no systematic suppression, Gate 8).
+- Familiarity diagnostics (`src/evidence_net/stress_tests/familiarity.py`):
+  feature extraction with epsilon guards (flat images never NaN), the
+  reference-distance baseline (`ReferenceFamiliarity`), a seeded synthetic
+  shift suite (source / severity / degradation / acquisition / rare-valid),
+  and a report with per-group detection rates and the rare-valid
+  false-warning rate against the declared cap.
+- `scripts/measure_familiarity.py` (synthetic smoke, CI-safe; real mode fits
+  the calibration split and probes validation / heldout-source / shifts /
+  rare-valid) writing run bundles; `configs/modality/familiarity-v1.yaml`.
+- Analytical tests in `tests/numerical/test_familiarity.py` (feature guards,
+  in-distribution familiarity, severity monotonicity, threshold behavior,
+  report determinism, rare-valid in-domain vs out-of-domain gate behavior).
+- EXP-007 registered (Gate 8 shift-detection and rare-structure rule).
+
 ### Added (Lane B, Phase 8 — Model Stability)
 - `stability-v1` draft contract (`docs/contracts/stability-v1.md`):
   stability = agreement under invertible perturbations, across same-

@@ -23,3 +23,12 @@ not interrupted unless new information invalidates its assumptions.
   error diversity in `src/evidence_net/stress_tests/stability.py`) is ready
   to consume; the diversity guard's included-model set is part of the
   review information.
+
+## Integration dependency (Lane B, Phase 9 -> Integration II)
+
+- EXP-007 (familiarity shift detection and rare-structure behavior, Gate 8)
+  needs the real-mode run on the frozen calibration reference to decide the
+  feature representation; the synthetic smoke suite reports the rare-valid
+  false-warning cap mechanism. Real rare-valid cases (curated from frozen
+  natural failures, Phase 10) will feed the gate. Familiarity integrates
+  into warnings/abstention only after Gate 8 (Lane A policy).
