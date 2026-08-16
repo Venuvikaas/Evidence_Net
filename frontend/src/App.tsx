@@ -50,7 +50,6 @@ export const App: React.FC = () => {
         <div className="brand-logo">
           <div style={{ width: 12, height: 12, borderRadius: "50%", background: "var(--primary)", boxShadow: "var(--shadow-glow)" }} />
           EVIDENCE-Net
-          <span className="brand-badge">Developer C</span>
         </div>
 
         <nav className="header-tabs">
