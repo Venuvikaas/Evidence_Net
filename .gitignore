@@ -48,6 +48,8 @@ runs/*
 !runs/.gitkeep
 artifacts/*
 !artifacts/.gitkeep
+scratch/
+!scratch/.gitkeep
 
 # --- Model checkpoints and weights ---
 *.pt
