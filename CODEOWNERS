@@ -1,0 +1,57 @@
+# CODEOWNERS — four-developer lane ownership (Phase 4 handoff)
+#
+# Replace the placeholder owners below with the real GitHub handles or teams
+# for each lane before the first post-handoff pull request. Until then the
+# mapping is documented ownership, enforced by review in
+# docs/four-developer-workflow.md.
+#
+# Lane assignments follow EVIDENCE_NET_EXECUTION_WITH_DATASET_4_DEVELOPERS.md
+# Part 4:
+#   A = Benefit prediction and decision science (Phases 5-6)
+#   B = Diagnostics and structural validation (Phases 7-10)
+#   C = Product and review platform (Phases 11-14)
+#   D = Deployment, security, monitoring, release (Phases 15-17)
+#   ALL = frozen, shared, or joint-release paths
+
+# Lane A — Benefit prediction and decision science
+configs/support_definition/        @lane-a
+configs/calibration/               @lane-a
+configs/decision_policy/           @lane-a
+src/evidence_net/decision/         @lane-a
+src/evidence_net/benefit/          @lane-a
+tests/calibration/                 @lane-a
+
+# Lane B — Diagnostics and structural validation
+src/evidence_net/stress_tests/     @lane-b
+tests/numerical/                   @lane-b
+
+# Lane C — Product and review platform
+src/evidence_net/api/              @lane-c
+src/evidence_net/inference/        @lane-c
+src/evidence_net/reporting/        @lane-c
+frontend/                          @lane-c
+tests/integration/                 @lane-c
+tests/regression/                  @lane-c
+
+# Lane D — Deployment, security, monitoring, and release
+tests/decision_parity/             @lane-d
+.github/workflows/                 @lane-d
+deploy/                            @lane-d
+
+# Frozen, shared, and jointly owned paths — changes need cross-lane review
+docs/contracts/                    @lane-a @lane-b @lane-c @lane-d
+docs/                              @lane-a @lane-b @lane-c @lane-d
+data/                              @lane-a @lane-b @lane-c @lane-d
+configs/data/                      @lane-a @lane-b @lane-c @lane-d
+configs/modality/                  @lane-a @lane-b @lane-c @lane-d
+configs/model/                     @lane-a @lane-b @lane-c @lane-d
+configs/experiments/               @lane-a @lane-b @lane-c @lane-d
+src/evidence_net/data/             @lane-a @lane-b @lane-c @lane-d
+src/evidence_net/models/           @lane-a @lane-b @lane-c @lane-d
+src/evidence_net/evaluation/       @lane-a @lane-b @lane-c @lane-d
+src/evidence_net/training/         @lane-a @lane-b @lane-c @lane-d
+src/evidence_net/losses/           @lane-a @lane-b @lane-c @lane-d
+src/evidence_net/proposal/         @lane-a @lane-b @lane-c @lane-d
+tests/unit/                        @lane-a @lane-b @lane-c @lane-d
+scripts/                           @lane-a @lane-b @lane-c @lane-d
+CODEOWNERS                         @lane-a @lane-b @lane-c @lane-d
