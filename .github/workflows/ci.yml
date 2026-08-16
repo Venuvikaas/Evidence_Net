@@ -40,6 +40,9 @@ jobs:
       - name: Model-stability smoke (Lane B, synthetic)
         run: python scripts/measure_stability.py --synthetic --run-id smoke-ci-stability
 
+      - name: Familiarity smoke (Lane B, synthetic)
+        run: python scripts/measure_familiarity.py --synthetic --run-id smoke-ci-familiarity
+
       - name: Environment check
         run: python scripts/check_env.py
 
