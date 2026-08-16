@@ -115,9 +115,11 @@ def test_minimal_predictor_forward_and_score() -> None:
 
 def test_minimal_predictor_learns_benefit_pattern() -> None:
     """Trained on calibration-style labels, the MLP separates the halves."""
-    rng = np.random.default_rng(0)
     from evidence_net.benefit.labels import patch_benefit_labels
+    from evidence_net.training.trainer import set_seed
 
+    set_seed(0)  # python, numpy, and torch RNGs (reproducible training)
+    rng = np.random.default_rng(0)
     features_list: list[np.ndarray] = []
     labels_list: list[np.ndarray] = []
     for _index in range(24):
@@ -134,7 +136,7 @@ def test_minimal_predictor_learns_benefit_pattern() -> None:
     )
     optimizer = torch.optim.AdamW(predictor.parameters(), lr=1e-2)
     loss_fn = torch.nn.BCEWithLogitsLoss()
-    for _ in range(8):
+    for _ in range(10):
         predictor.train()
         for batch_features, batch_labels in loader:
             optimizer.zero_grad(set_to_none=True)
