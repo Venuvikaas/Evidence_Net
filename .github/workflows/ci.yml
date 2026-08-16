@@ -34,6 +34,9 @@ jobs:
       - name: Handoff verification (four-developer kill switch)
         run: python scripts/verify_handoff.py
 
+      - name: Measurement-consistency smoke (Lane B, synthetic)
+        run: python scripts/measure_consistency.py --synthetic --run-id smoke-ci-consistency
+
       - name: Environment check
         run: python scripts/check_env.py
 
