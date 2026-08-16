@@ -1,0 +1,89 @@
+{
+  "frozen_fields": {
+    "base.npy": {
+      "dtype": "float32",
+      "hash": "sha256:85ab6fe18c007ddf118eb659a2dfdcc7df7ecbac4b125b95c1332feb5bcffd9e",
+      "range": [
+        0.028637094423174858,
+        0.9845319390296936
+      ],
+      "shape": [
+        1,
+        128,
+        128
+      ]
+    },
+    "candidate.npy": {
+      "dtype": "float32",
+      "hash": "sha256:a47823eebb766f04c724b68357e9c9b85385758975dfa204e9123387831eeb8a",
+      "range": [
+        0.0259740948677063,
+        0.9818472862243652
+      ],
+      "shape": [
+        1,
+        128,
+        128
+      ]
+    },
+    "final.npy": {
+      "dtype": "float32",
+      "hash": "sha256:a47823eebb766f04c724b68357e9c9b85385758975dfa204e9123387831eeb8a",
+      "range": [
+        0.0259740948677063,
+        0.9818472862243652
+      ],
+      "shape": [
+        1,
+        128,
+        128
+      ]
+    },
+    "input.npy": {
+      "dtype": "float32",
+      "hash": "sha256:fc7e461a71b302f108f8aa4a48115c084273a5d0a17131f96e213589826f5418",
+      "range": [
+        0.0005187441711314023,
+        0.9997653365135193
+      ],
+      "shape": [
+        1,
+        64,
+        64
+      ]
+    },
+    "proposal.npy": {
+      "dtype": "float32",
+      "hash": "sha256:6b5340eded4f3dbb0da36647a60d43f7851d7a4ec1e7405cc7bea7fb5a9b35a4",
+      "range": [
+        -0.005524618551135063,
+        -0.0011350272689014673
+      ],
+      "shape": [
+        1,
+        128,
+        128
+      ]
+    }
+  },
+  "optional_fields_absent": {
+    "decision_map.npy": "not-defined",
+    "distribution_familiarity.npy": "not-defined",
+    "measurement_consistency.npy": "not-defined",
+    "model_stability.npy": "not-defined",
+    "proposal_benefit.npy": "not-defined",
+    "unresolved.npy": "not-defined"
+  },
+  "optional_fields_present": {},
+  "provenance": {
+    "base_model_version": "base-model-v1",
+    "calibration_version": "not-defined",
+    "dataset_manifest_hash": "sha256:test1234",
+    "decision_policy_version": "not-defined",
+    "forward_model_version": "not-defined",
+    "pipeline_version": "unified-inference-v1",
+    "proposal_model_version": "proposal-model-v1",
+    "support_definition_version": "not-defined"
+  },
+  "schema": "error-and-optional-fields-v1"
+}

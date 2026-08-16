@@ -1,0 +1,5 @@
+loss:
+  pixel: 0
+  structural: 0
+  edge: 0
+  frequency: 0

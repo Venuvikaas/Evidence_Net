@@ -1,0 +1,120 @@
+{
+  "artifacts": {
+    "base.npy": {
+      "dtype": "float32",
+      "hash": "sha256:d222d353732fc5d911c19fe3857b93fc385d0c2e518afd6522393e9377af0b95",
+      "range": [
+        0.0004370868264231831,
+        0.9992098212242126
+      ],
+      "shape": [
+        1,
+        32,
+        32
+      ]
+    },
+    "candidate.npy": {
+      "dtype": "float32",
+      "hash": "sha256:d222d353732fc5d911c19fe3857b93fc385d0c2e518afd6522393e9377af0b95",
+      "range": [
+        0.0004370868264231831,
+        0.9992098212242126
+      ],
+      "shape": [
+        1,
+        32,
+        32
+      ]
+    },
+    "final.npy": {
+      "dtype": "float32",
+      "hash": "sha256:d222d353732fc5d911c19fe3857b93fc385d0c2e518afd6522393e9377af0b95",
+      "range": [
+        0.0004370868264231831,
+        0.9992098212242126
+      ],
+      "shape": [
+        1,
+        32,
+        32
+      ]
+    },
+    "input.npy": {
+      "dtype": "float32",
+      "hash": "sha256:d222d353732fc5d911c19fe3857b93fc385d0c2e518afd6522393e9377af0b95",
+      "range": [
+        0.0004370868264231831,
+        0.9992098212242126
+      ],
+      "shape": [
+        1,
+        32,
+        32
+      ]
+    },
+    "proposal.npy": {
+      "dtype": "float32",
+      "hash": "sha256:ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7",
+      "range": [
+        0.0,
+        0.0
+      ],
+      "shape": [
+        1,
+        32,
+        32
+      ]
+    }
+  },
+  "metrics": {
+    "base": {
+      "edge_displacement_px": 1.2629310344827587,
+      "frequency_bands": {
+        "[0.000,0.125)": -0.06877909854090462,
+        "[0.125,0.500)": -0.08644760968444644,
+        "[0.500,1.000)": -0.034988250934805266
+      },
+      "mae": 0.3233883269469118,
+      "psnr": 7.995787786270502,
+      "ssim": 0.1432201468549359,
+      "structural_error": 0.1486380755064889
+    },
+    "candidate": {
+      "edge_displacement_px": 1.2629310344827587,
+      "frequency_bands": {
+        "[0.000,0.125)": -0.06877909854090462,
+        "[0.125,0.500)": -0.08644760968444644,
+        "[0.500,1.000)": -0.034988250934805266
+      },
+      "mae": 0.3233883269469118,
+      "psnr": 7.995787786270502,
+      "ssim": 0.1432201468549359,
+      "structural_error": 0.1486380755064889
+    },
+    "final": {
+      "edge_displacement_px": 1.2629310344827587,
+      "frequency_bands": {
+        "[0.000,0.125)": -0.06877909854090462,
+        "[0.125,0.500)": -0.08644760968444644,
+        "[0.500,1.000)": -0.034988250934805266
+      },
+      "mae": 0.3233883269469118,
+      "psnr": 7.995787786270502,
+      "ssim": 0.1432201468549359,
+      "structural_error": 0.1486380755064889
+    }
+  },
+  "notes": "",
+  "provenance": {
+    "base_model_version": "base-v1-golden",
+    "calibration_version": "not-defined",
+    "dataset_manifest_hash": "sha256:1111222233334444",
+    "decision_policy_version": "not-defined",
+    "forward_model_version": "not-defined",
+    "pipeline_version": "unified-inference-v1",
+    "proposal_model_version": "proposal-v1-golden",
+    "support_definition_version": "not-defined"
+  },
+  "run_id": "golden-loop-001",
+  "schema": "review-package-v1"
+}

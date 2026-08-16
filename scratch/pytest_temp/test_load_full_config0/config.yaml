@@ -1,0 +1,17 @@
+seed: 3
+epochs: 5
+batch_size: 4
+learning_rate: 0.001
+data:
+  split: validation
+  n_samples: 16
+  seed: 1
+model:
+  name: direct
+  hidden_channels: 16
+  depth: 2
+loss:
+  pixel: 1.0
+  structural: 0.5
+  edge: 0.1
+  frequency: 0.0

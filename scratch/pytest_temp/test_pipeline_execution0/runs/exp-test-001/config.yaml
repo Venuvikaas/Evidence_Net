@@ -1,0 +1,4 @@
+device: cpu
+has_base_model: true
+has_proposal_model: true
+pipeline: UnifiedInferencePipeline

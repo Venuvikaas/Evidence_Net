@@ -1,0 +1,23 @@
+batch_size: 2
+checkpoint_dir: checkpoints
+data:
+  n_samples: 64
+  seed: 0
+  split: train
+epochs: 3
+grad_clip: 1.0
+learning_rate: 0.001
+loss:
+  edge: 0.25
+  frequency: 0.1
+  pixel: 1.0
+  residual: 0.0
+  structural: 0.25
+mixed_precision: false
+model:
+  amplitude: 0.1
+  depth: 3
+  hidden_channels: 32
+  name: base
+seed: 7
+weight_decay: 0.0
