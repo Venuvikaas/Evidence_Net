@@ -29,9 +29,9 @@ def test_all_handoff_contracts_are_frozen_and_versioned() -> None:
         path = contracts_dir / f"{name}.md"
         assert path.is_file(), f"frozen contract missing: {name}"
         text = path.read_text(encoding="utf-8")
-        assert re.search(
-            r"^- \*\*Name:\*\* `" + re.escape(name) + r"`", text, re.MULTILINE
-        ), f"{name}: missing 'Name: `{name}`' header"
+        assert re.search(r"^- \*\*Name:\*\* `" + re.escape(name) + r"`", text, re.MULTILINE), (
+            f"{name}: missing 'Name: `{name}`' header"
+        )
         assert "- **Version:** v1" in text, f"{name}: not versioned as v1"
         assert "- **Status:** frozen" in text, f"{name}: not marked frozen"
 
