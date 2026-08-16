@@ -167,3 +167,42 @@ superseded`.
   as FAIL-001); the oracle stays a study tool, never used at inference.
 - Contracts or experiments affected: EXP-004, docs/proposal-contract.md,
   docs/proposal-failures.md, FAIL-001.
+
+## ADR-008 — Accept the Phase 4 handoff and the four-developer integration protocol
+- Status: accepted
+- Context: Research Gate 3 recorded **continue** (ADR-007) and the Phase 4
+  vertical slice is reproducible. The execution plan
+  (`EVIDENCE_NET_EXECUTION_WITH_DATASET_4_DEVELOPERS.md`, Part 3) requires a
+  frozen set of shared contracts, pinned checkpoints, published fixtures,
+  lane ownership, and branch/PR/contract-change rules before four developers
+  may work in parallel after Phase 4.
+- Decision: Freeze the nine handoff contracts in `docs/contracts/`
+  (`dataset-v1`, `tensor-v1`, `metrics-v1`, `artifacts-v1`, `base-output-v1`,
+  `proposal-output-v1`, `structural-summary-v1`, `oracle-report-v1`,
+  `error-and-optional-fields-v1`); pin the promoted Base
+  (`checkpoints/train-base-gate2/best.pt`, sha256
+  `3e5d2f94...`, tag `v0.2-base-reconstruction`) and Proposal
+  (`checkpoints/train-proposal-gate3v2/best.pt`, sha256 `524156ed...`, tag
+  `v0.3-proposal-oracle`) in `docs/handoff/checkpoint-registry.md`; register
+  fixtures with schema and producer versions in
+  `data/fixtures/manifest-v1.json`; add `CODEOWNERS` for lanes A, B, C, D;
+  adopt the workflow and kill switches in `docs/four-developer-workflow.md`
+  and `docs/kill-switches.md`; enforce the invariants mechanically with
+  `scripts/verify_handoff.py` (run in CI) and `tests/unit/test_handoff.py`.
+- Evidence: Phase 0-4 code, tests, manifests, EXP-001..004, ADR-005..007,
+  tags `v0.1-data-eval`/`v0.2-base-reconstruction`/`v0.3-proposal-oracle`;
+  handoff verification passes (contracts frozen, isolation and fixture
+  checks green).
+- Alternatives rejected: starting parallel lanes without a frozen contract
+  set (breaks the no-silent-cross-lane-change rule); committing checkpoints
+  or datasets to Git (violates ADR-002 storage strategy — hashes are pinned
+  instead); using synthetic fixtures in scientific reports (prohibited by
+  the fixture rules).
+- Consequences: four lanes A/B/C/D may begin their phase sets in parallel;
+  every PR names consumed contract versions and passes the handoff kill
+  switch; contract changes require an ADR, version increment, migration
+  note, affected-owner review, and rerun decision; `Test_NoisyLR/` remains
+  isolated; Integration checkpoints I-V and Phase 18 remain joint gates.
+- Contracts or experiments affected: all nine contracts in
+  `docs/contracts/`; fixture registry `data/fixtures/manifest-v1.json`;
+  checkpoint registry `docs/handoff/checkpoint-registry.md`; future EXP-005+.

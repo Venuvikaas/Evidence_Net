@@ -5,6 +5,25 @@ execution plan lives in `EXECUTION.md`.
 
 ## [Unreleased]
 
+### Added (Four-Developer Handoff, after Phase 4)
+- Frozen handoff contracts in `docs/contracts/`: `dataset-v1`, `tensor-v1`,
+  `metrics-v1`, `artifacts-v1`, `base-output-v1`, `proposal-output-v1`,
+  `structural-summary-v1`, `oracle-report-v1`, and
+  `error-and-optional-fields-v1`, with a registry README and contract-change
+  procedure (ADR-008).
+- Four-lane ownership and workflow: `CODEOWNERS` (lanes A/B/C/D), PR
+  template naming consumed contract versions, `CONTRIBUTING.md`, and
+  `docs/four-developer-workflow.md` (branch/PR rules, integration
+  checkpoints I-V, promotion, current-work rule).
+- Kill switches: `docs/kill-switches.md` (per-lane Gates 4-10, global
+  process switches) mechanically enforced by `scripts/verify_handoff.py`
+  (new CI step) and `tests/unit/test_handoff.py`.
+- Handoff artifacts: checkpoint registry
+  (`docs/handoff/checkpoint-registry.md`, sha256-pinned Base and Proposal
+  checkpoints with reproduction commands) and fixture registry
+  (`data/fixtures/manifest-v1.json`) with a synthetic
+  `error-and-optional-fields-v1` example fixture.
+
 ## [0.5.0] - 2026-08-16
 
 ### Added (Phase 4)

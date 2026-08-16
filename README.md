@@ -18,15 +18,34 @@ existed. Every probability names its exact event and calibration domain.
 
 ## Status
 
-**Phases 0–4 complete** — repository skeleton, contracts, data foundation,
-trusted evaluation harness, a frozen learned Base Reconstruction, and a
-bounded Detail Proposal with oracle-measured headroom are in place. The
-official `train/` dataset (3200 NoisyLR→GT pairs) is paired, audited, split
-deterministically; the isolated `Test_NoisyLR/` set (400 inputs) is
-registered without touching any development decision; the Base beats the
-classical baselines (Gate 2: continue) and the oracle shows selective
-acceptance of the proposal improves MAE by 6.3% and PSNR by 3 dB over the
-equal-capacity direct model (Gate 3: continue).
+**Phases 0–4 complete; four-developer handoff accepted (ADR-008)** —
+repository skeleton, contracts, data foundation, trusted evaluation harness,
+a frozen learned Base Reconstruction, and a bounded Detail Proposal with
+oracle-measured headroom are in place. The official `train/` dataset
+(3200 NoisyLR→GT pairs) is paired, audited, split deterministically; the
+isolated `Test_NoisyLR/` set (400 inputs) is registered without touching any
+development decision; the Base beats the classical baselines (Gate 2:
+continue) and the oracle shows selective acceptance of the proposal improves
+MAE by 6.3% and PSNR by 3 dB over the equal-capacity direct model (Gate 3:
+continue).
+
+After the handoff, four lanes work in parallel per
+[`docs/four-developer-workflow.md`](docs/four-developer-workflow.md):
+
+- **A** — Benefit Prediction, Calibration, Decision Policy, Abstention
+  (Phases 5–6).
+- **B** — Measurement Consistency, Stability, Familiarity, Structural Risk,
+  Downstream Validation (Phases 7–10).
+- **C** — Unified Inference, Metadata, API, Review UI, Human-Interpretation
+  Tooling (Phases 11–14).
+- **D** — Deployment, Optimization, Security, Monitoring, Release (Phases
+  15–17).
+
+Frozen handoff contracts live in [`docs/contracts/`](docs/contracts/README.md),
+kill switches in [`docs/kill-switches.md`](docs/kill-switches.md), promoted
+checkpoint hashes in
+[`docs/handoff/checkpoint-registry.md`](docs/handoff/checkpoint-registry.md),
+and lane ownership in [`CODEOWNERS`](CODEOWNERS).
 
 | Phase | State |
 | --- | --- |
@@ -35,7 +54,7 @@ equal-capacity direct model (Gate 3: continue).
 | 2 — Evaluation harness and classical baselines | ✅ complete (tag `v0.1-data-eval`) |
 | 3 — Learned Base Reconstruction | ✅ complete (decision: continue, ADR-006) |
 | 4 — Bounded Detail Proposal + oracle study | ✅ complete (tag `v0.3-proposal-oracle`, decision: continue, ADR-007) |
-| 5+ — Benefit prediction, diagnostics, product | pending (see `EXECUTION.md`) |
+| 5+ — Four parallel lanes after handoff | ready (handoff accepted, ADR-008; see `docs/four-developer-workflow.md`) |
 
 ## Phase 1 summary
 
@@ -152,6 +171,10 @@ smoke pipeline on every push (`.github/workflows/ci.yml`).
 
 ## One change per checked box
 
-Work proceeds sequentially through the boxes in `EXECUTION.md`. Each completed
-box ends with a Conventional Commit; contracts and experiments are recorded in
-the governance ledgers before code relies on them.
+Work proceeds sequentially through the boxes in the execution plan. Each
+completed box ends with a Conventional Commit; contracts and experiments are
+recorded in the governance ledgers before code relies on them. After the
+Phase 4 handoff, four lanes work in parallel: one lane objective per PR,
+consumed contract versions named in every PR (template in
+`.github/PULL_REQUEST_TEMPLATE.md`), and `python scripts/verify_handoff.py`
+passing before merge. See `CONTRIBUTING.md`.
