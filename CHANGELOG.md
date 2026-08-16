@@ -5,6 +5,71 @@ execution plan lives in `EXECUTION.md`.
 
 ## [Unreleased]
 
+### Added (Lane B, Phase 10 — Structural-Risk and Downstream Validation)
+- `structural-risk-v1` draft contract (`docs/contracts/structural-risk-v1.md`)
+  defining five **separate** threat-model evidence categories (candidate
+  manipulation, ambiguity, acquisition, natural failure, downstream) and the
+  hidden-test rule (definitions frozen, never trained on). Registered in the
+  contracts index as a lane-B draft.
+- Candidate manipulation suite (`src/evidence_net/stress_tests/structural.py`):
+  false-line, deletion, edge-shift, merge, split, false-periodicity,
+  defect-point with validated parameters.
+- Ambiguity suite (`ambiguity.py`): clean-candidate pairs with
+  near-identical observations (non-identifiable by construction).
+- Acquisition artifacts (`acquisition.py`): pre-inference degradations
+  (sensor noise, compression, hot pixels, downsampling).
+- Frozen hidden stress (`data/stress/hidden-stress-v1.json`) with
+  content-hash verification (`hidden_stress.py`), frozen natural failure
+  bank (`data/failures/natural-failures-v1.json`) curated into
+  `FAILURES.md`, and downstream task (`downstream.py`, `docs/downstream-validation.md`)
+  evaluated without co-training on the stress suite.
+- `scripts/measure_structural_risk.py` (synthetic smoke, CI-safe; real mode
+  on frozen Base/Proposal validation split) writing run bundles with the
+  hidden-stress hash pinned in the manifest.
+- Analytical tests in `tests/numerical/` (test_structural.py, test_ambiguity.py,
+  test_acquisition.py, test_downstream.py, test_stress_isolation.py)
+  covering all five evidence categories plus training isolation.
+
+### Added (Lane B, Phase 9 — Distribution Familiarity and Shift)
+- `familiarity-v1` draft contract (`docs/contracts/familiarity-v1.md`):
+  frozen 6-component feature representation on the input grid, reference
+  population rule (development data only), RMS standardized reference
+  distance, configurable threshold, applicability limits, and the separate
+  evaluation of rare valid structures (no systematic suppression, Gate 8).
+- Familiarity diagnostics (`src/evidence_net/stress_tests/familiarity.py`):
+  feature extraction with epsilon guards (flat images never NaN), the
+  reference-distance baseline (`ReferenceFamiliarity`), a seeded synthetic
+  shift suite (source / severity / degradation / acquisition / rare-valid),
+  and a report with per-group detection rates and the rare-valid
+  false-warning rate against the declared cap.
+- `scripts/measure_familiarity.py` (synthetic smoke, CI-safe; real mode fits
+  the calibration split and probes validation / heldout-source / shifts /
+  rare-valid) writing run bundles; `configs/modality/familiarity-v1.yaml`.
+- Analytical tests in `tests/numerical/test_familiarity.py` (feature guards,
+  in-distribution familiarity, severity monotonicity, threshold behavior,
+  report determinism, rare-valid in-domain vs out-of-domain gate behavior).
+- EXP-007 registered (Gate 8 shift-detection and rare-structure rule).
+
+### Added (Lane B, Phase 8 — Model Stability)
+- `stability-v1` draft contract (`docs/contracts/stability-v1.md`):
+  stability = agreement under invertible perturbations, across same-
+  architecture checkpoints, and measured error diversity before combining
+  models; prohibited interpretations (agreement is never correctness,
+  never a probability of truth, never calibration); promotes at Gate 7.
+- Stability diagnostics (`src/evidence_net/stress_tests/stability.py`):
+  invertible perturbation family (bounded shifts + flips) with output-grid
+  inverses, perturbation deviation distribution with grouped bootstrap CIs,
+  pairwise checkpoint agreement, and error-diversity metrics (correlation /
+  disagreement / complementarity) with the `add_if_diverse` guard.
+- `scripts/measure_stability.py` (seeded synthetic smoke, CI-safe; real mode
+  uses the promoted Base checkpoints) writing run bundles;
+  `configs/modality/stability-v1.yaml`.
+- Analytical tests in `tests/numerical/test_stability.py` (identity
+  perturbation, flip equivariance, subpixel shift sensitivity, checkpoint
+  self-agreement, diversity metrics, guard behavior).
+- EXP-006 registered (Gate 7 incremental-value question); governed
+  comparison pending Lane A's simple benefit features (Integration II).
+
 ### Added (Lane B, Phase 7 — Measurement Consistency)
 - `forward-model-v1` draft contract (`docs/contracts/forward-model-v1.md`):
   bounded operator family (bilinear / area / blur / noisy-blur), parameter

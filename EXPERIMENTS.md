@@ -228,3 +228,129 @@ are written before examining final test results. The format is defined in
   never sample counts; stochastic operators report seeded spread.
 - Decision: pending (Research Gate 6).
 - Artifact path: `runs/measure-consistency-*/` (synthetic smoke runs).
+
+---
+
+## EXP-006 — Does the model-stability diagnostic add held-out value?
+- Question: Does the stability diagnostic (`stability-v1`, Phase 8) —
+  perturbation deviation, checkpoint agreement, and measured error
+  diversity — improve selective-risk ordering or restoration decisions
+  beyond simple benefit features (Lane A) and the measurement-consistency
+  features (Phase 7), or provide independently useful review information
+  (Research Gate 7)?
+- Primary metric: change in selective-risk ordering quality (e.g. AUROC of
+  the oracle-accept event) and/or calibration-domain-valid mean absolute
+  error of the frozen benefit predictor, with vs without the stability
+  feature set; for the review arm: fraction of documented cases where
+  perturbation/checkpoint agreement or the diversity guard changes the
+  review verdict on a predeclared case bank.
+- Secondary diagnostics: per-perturbation deviation means and CIs (group
+  bootstrap), arg-max perturbation, pairwise checkpoint agreement, pairwise
+  error diversity (correlation / disagreement / complementarity) and the
+  included-model set after the diversity guard.
+- Baselines: no stability features; benefit features only; benefit +
+  consistency features; benefit + consistency + stability features.
+- Dataset manifest: `official-train-source-v1.json` + `dataset-splits-v1.json`
+  (validation + calibration splits only; Test_NoisyLR untouched).
+- Configs: `configs/modality/stability-v1.yaml`;
+  `scripts/measure_stability.py --synthetic` (harness smoke, CI); real
+  governed run on the frozen validation sample with the promoted Base
+  checkpoints (`base-output-v1`) and, when present, the direct model.
+- Acceptance rule (predeclared, Gate 7): **keep** the diagnostic if (1) the
+  stability feature set improves a declared held-out outcome by a
+  predeclared margin over benefit+consistency features alone, OR (2) the
+  review information arm shows agreement/diversity changes review verdicts
+  on a predeclared fraction of the case bank. **Remove** the diagnostic if it
+  adds no held-out value and no independently useful review information.
+  Agreement is stability, never correctness; a stable wrong output is still
+  wrong.
+- Result: pending — machinery (perturbations, checkpoint agreement,
+  diversity guard, script, tests) is complete; the governed comparison needs
+  Lane A's simple benefit features (Phase 5) and runs at Integration II when
+  those are promoted. The synthetic smoke run validates the harness
+  end-to-end in CI.
+- Confidence interval / uncertainty: group bootstrap over samples; pixels
+  are never sample counts; synthetic checkpoint pairs are labeled synthetic
+  and never used in scientific reports.
+- Decision: pending (Research Gate 7).
+- Artifact path: `runs/measure-stability-*/` (synthetic smoke runs).
+
+---
+
+## EXP-007 — Does the familiarity diagnostic detect declared shifts without suppressing rare valid structures?
+- Question: Does the reference-distance baseline (`familiarity-v1`, Phase 9)
+  detect the declared source, severity, degradation, and acquisition shifts,
+  and does it avoid systematically suppressing rare **valid** structures
+  (thin lines, isolated points, small defects) — Research Gate 8?
+- Primary metric: per-shift-group detection rate (fraction of probes flagged
+  unfamiliar) with grouped CIs; rare-valid false-warning rate (fraction of
+  rare-valid probes flagged unfamiliar) against the declared cap
+  (`rare_valid_max_false_warning_rate = 0.5` default).
+- Secondary diagnostics: mean distance per group, distance distributions,
+  per-feature z-contributions (which features drive the flag), and the
+  applicability statement bound to the reference feature domain.
+- Baselines: no familiarity signal (no shift warnings); random threshold;
+  per-feature threshold variants.
+- Dataset manifest: `official-train-source-v1.json` + `dataset-splits-v1.json`
+  (calibration reference; validation + heldout-source probes; Test_NoisyLR
+  untouched). Synthetic rare-valid structures are labeled and never used as
+  scientific evidence.
+- Configs: `configs/modality/familiarity-v1.yaml`;
+  `scripts/measure_familiarity.py --synthetic` (harness smoke, CI); real
+  governed run on the frozen calibration reference.
+- Acceptance rule (predeclared, Gate 8): **continue** if (1) every declared
+  shift group is detected at a predeclared rate (e.g. >= 0.8 detection on
+  severity and degradation groups), (2) the rare-valid false-warning rate
+  stays below the declared cap (no systematic suppression), and (3) the
+  applicability limits are published with the output. **Redesign the
+  representation** if detection fails; **do not integrate into warnings or
+  abstention** before this gate passes (Lane A policy).
+- Result: pending — machinery (features, baseline, shift suites, report,
+  script, tests) is complete; the governed run on the real calibration
+  reference and curated rare-valid cases (Phase 10 failure bank) decides the
+  gate. The synthetic smoke run validates the harness end-to-end in CI and
+  reports the rare-valid cap mechanism.
+- Confidence interval / uncertainty: group bootstrap over samples; pixels
+  are never sample counts; synthetic probes are labeled synthetic.
+- Decision: pending (Research Gate 8).
+- Artifact path: `runs/measure-familiarity-*/` (synthetic smoke runs).
+
+## EXP-008 — Do the five structural-risk evidence categories give the claimed downstream protection?
+- Question: Does the candidate manipulation suite (false-line, deletion,
+  edge-shift, merge, split, false-periodicity, defect-point), the ambiguity
+  suite, the acquisition artifact suite, the frozen natural failure bank,
+  and the frozen downstream task each provide **separate** evidence about
+  restoration behavior, and do they jointly support a structural-risk claim
+  without any single suite overclaiming — Research Gate 9?
+- Primary metric: per-category effect sizes (candidate manipulations:
+  downstream-measurement deltas per manipulation; ambiguity: observation vs
+  candidate MAE on non-identifiable pairs; acquisition: input deltas;
+  natural failures: count/severity of frozen bank cases; downstream:
+  measurement-fidelity error per output type with group bootstrap CIs).
+- Secondary diagnostics: manipulation vs measurement type cross-tables,
+  worst-case candidate effects, ambiguity pair residuals, per-artifact input
+  deltas, and the hidden-stress hash pinned in every run manifest
+  (`data/stress/hidden-stress-v1.json`).
+- Baselines: no candidate (base output only) vs candidate-modified output;
+  observation vs candidate on ambiguity pairs; base vs oracle-patch proxy
+  on the frozen downstream task.
+- Dataset manifest: `dataset-splits-v1.json` validation split for real mode;
+  synthetic probes are labeled synthetic and never used as scientific
+  evidence; `Test_NoisyLR/` untouched (hash-verified hidden stress).
+- Configs: `scripts/measure_structural_risk.py --synthetic` (harness smoke,
+  CI) and `--real` (frozen Base/Proposal checkpoints on validation split).
+- Acceptance rule (predeclared, Gate 9): **continue** if each of the five
+  categories produces evidence on its own terms (no cross-category
+  substitution), the hidden stress definitions remain frozen (hash match),
+  and the downstream task is evaluated without co-training on the stress
+  suite. **Redesign the affected suite** if a category is empty or its
+  effect cannot be measured.
+- Result: pending — machinery (structural.py, ambiguity.py, acquisition.py,
+  downstream.py, hidden_stress.py, natural-failures bank, tests, script) is
+  complete; the governed real run at Integration III decides the gate.
+  The synthetic smoke run validates all five categories end-to-end in CI.
+- Confidence interval / uncertainty: group bootstrap over samples; synthetic
+  probes labeled; ambiguity pairs are non-identifiable by construction, so
+  candidate vs observation MAE is reported, never judged as "truth".
+- Decision: pending (Research Gate 9).
+- Artifact path: `runs/structural-risk-*/` (synthetic smoke runs).

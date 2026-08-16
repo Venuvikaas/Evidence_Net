@@ -1,0 +1,10 @@
+# Distribution familiarity diagnostic configuration (familiarity-v1, Phase 9).
+# Reference-distance baseline: threshold, population sizes, shift suite, and
+# the rare-valid false-warning cap checked at Research Gate 8.
+version: familiarity-v1
+threshold: 2.0
+n_reference: 64
+n_per_shift: 32
+rare_valid_max_false_warning_rate: 0.5
+n_boot: 1000
+seed: 0
