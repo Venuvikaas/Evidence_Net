@@ -1,0 +1,14 @@
+# Forward operator family configuration (forward-model-v1, Phase 7).
+# Bounded parameters only; out-of-bounds values raise ForwardError.
+version: forward-model-v1
+scale: 2
+blur_sigma: 0.5
+noise_sigma: 0.01
+seed: 0
+n_boot: 1000
+deterministic_operators:
+  - bilinear
+  - area
+  - blur
+stochastic_operators:
+  - noisy-blur
