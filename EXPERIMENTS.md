@@ -289,10 +289,11 @@ are written before examining final test results. The format is defined in
 ---
 
 ## EXP-007 — Does the familiarity diagnostic detect declared shifts without suppressing rare valid structures?
-- Question: Does the reference-distance baseline (`familiarity-v1`, Phase 9)
-  detect the declared source, severity, degradation, and acquisition shifts,
-  and does it avoid systematically suppressing rare **valid** structures
-  (thin lines, isolated points, small defects) — Research Gate 8?
+- Question: Does the reference-distance baseline (`familiarity-v1` then
+  `familiarity-v2`, Phase 9) detect the declared source, severity,
+  degradation, and acquisition shifts, and does it avoid systematically
+  suppressing rare **valid** structures (thin lines, isolated points, small
+  defects) — Research Gate 8?
 - Primary metric: per-shift-group detection rate (fraction of probes flagged
   unfamiliar) with grouped CIs; rare-valid false-warning rate (fraction of
   rare-valid probes flagged unfamiliar) against the declared cap
@@ -306,7 +307,8 @@ are written before examining final test results. The format is defined in
   (calibration reference; validation + heldout-source probes; Test_NoisyLR
   untouched). Synthetic rare-valid structures are labeled and never used as
   scientific evidence.
-- Configs: `configs/modality/familiarity-v1.yaml`;
+- Configs: `configs/modality/familiarity-v2.yaml` (v2 default);
+  `familiarity-v1.yaml` retained as the historical record;
   `scripts/measure_familiarity.py --synthetic` (harness smoke, CI); real
   governed run on the frozen calibration reference.
 - Acceptance rule (predeclared, Gate 8): **continue** if (1) every declared
@@ -316,22 +318,40 @@ are written before examining final test results. The format is defined in
   applicability limits are published with the output. **Redesign the
   representation** if detection fails; **do not integrate into warnings or
   abstention** before this gate passes (Lane A policy).
-- Result: pending — machinery (features, baseline, shift suites, report,
-  script, tests) is complete; the governed run on the real calibration
-  reference and curated rare-valid cases (Phase 10 failure bank) decides the
-  gate. The synthetic smoke run validates the harness end-to-end in CI and
-  reports the rare-valid cap mechanism.
+- Result (v1, historical): the governed real run
+  (`runs/familiarity-gate8-real/`) detected **none** of the declared shift
+  groups and flagged **100% of rare-valid structures** unfamiliar — v1
+  features were brightness-dominated and its fixed threshold (2.0) was
+  never calibrated to the reference spread. Recorded in ADR-013.
+- Result (v2, redesign): the brightness-invariant representation and
+  reference-calibrated threshold fix both failure modes
+  (`runs/familiarity-gate8-v2-real/`):
+  - **Rare-valid false-warning rate 0.094** (cap 0.50 met) — rare valid
+    structures are no longer systematically suppressed (the Gate 8 safety
+    property);
+  - **Severity ranks above chance** (AUROC 0.785 at max-legitimate blur
+    2.0/noise 0.10; group mean distance rises monotonically with shift
+    strength) and flags at the calibrated threshold for strong shifts
+    (detection 0.25 at severity-max vs 0.09 validation);
+  - **Source shift is not a measurable distribution shift in this dataset**
+    — `dataset-splits-v1.json` records *"no acquisition/session metadata
+    exists in the official train directory, so each sample is its own
+    source unit"* — published as an applicability limit, not a failure;
+  - Weak severity/acquisition probes (blur 1.5/noise 0.03, 0.8x+0.1)
+    applied to already-degraded inputs are near-identity perturbations:
+    they rank above chance but flag at the validation rate by design.
 - Confidence interval / uncertainty: group bootstrap over samples; pixels
   are never sample counts; synthetic probes are labeled synthetic.
-- Decision: **not promoted (Gate 8 FAILED)** — governed real run
-  (`runs/familiarity-gate8-real/`, reference = 64 calibration inputs)
-  detects **none** of the declared shift groups (acquisition/severity/
-  source detection 0.000) and flags **100% of rare-valid structures** as
-  unfamiliar (false-warning cap 0.50 predeclared; exceeded). Per the
-  predeclared rule the diagnostic must be redesigned or removed before
-  promotion; it is retained only as a disabled-by-default reported
-  diagnostic, never a gating input. Recorded in ADR-013.
-- Artifact path: `runs/measure-familiarity-*/` (synthetic smoke runs).
+- Decision (v1): **not promoted (Gate 8 FAILED)** — recorded in ADR-013.
+- Decision (v2): **continue as a reported diagnostic with published
+  applicability limits** — the systematic-suppression failure is resolved,
+  the threshold is calibrated from the reference population (no post-hoc
+  tuning), strong shifts are rankable and detectable, and the unmeasurable
+  source shift is documented. `familiarity-v2` stays disabled by default
+  in warnings/abstention pending lane A/C integration review. Recorded in
+  ADR-017.
+- Artifact path: `runs/measure-familiarity-*/` (synthetic smoke runs),
+  `runs/familiarity-gate8-v2-real/` (governed real v2 run).
 
 ## EXP-008 — Do the five structural-risk evidence categories give the claimed downstream protection?
 - Question: Does the candidate manipulation suite (false-line, deletion,

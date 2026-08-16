@@ -18,9 +18,12 @@ from evidence_net.stress_tests.familiarity import (
     FamiliarityConfig,
     FamiliarityError,
     ReferenceFamiliarity,
+    ReferenceFamiliarityV2,
     build_familiarity_report,
     build_shift_suite,
     feature_vector,
+    feature_vector_v2,
+    inject_rare_valid,
 )
 
 SIZE = 64
@@ -193,3 +196,69 @@ def test_config_validation() -> None:
         FamiliarityConfig(n_reference=0).validate()
     with pytest.raises(FamiliarityError):
         FamiliarityConfig(version="old").validate()
+
+
+# --- Familiarity-v2 (brightness-invariant + calibrated threshold) ------------
+
+
+def test_v2_feature_vector_shape_and_determinism() -> None:
+    image = np.random.default_rng(0).random((64, 64))
+    vector = feature_vector_v2(image)
+    assert vector.shape == (7,)
+    assert np.isfinite(vector).all()
+    np.testing.assert_allclose(feature_vector_v2(image), feature_vector_v2(image))
+
+
+def test_v2_features_are_brightness_invariant() -> None:
+    # Global brightness/scale must not dominate: the v2 vector on a dark
+    # image equals the v2 vector on the same structure brightened, because
+    # features are computed on a z-scored grid (Gate 8 no-suppression fix).
+    image = np.random.default_rng(3).random((64, 64))
+    dark = 0.1 * image
+    bright = 0.9 * image + 0.05
+    v_dark = feature_vector_v2(dark)
+    v_bright = feature_vector_v2(bright)
+    # Band-energy fractions are relative; z-scored stats are scale-invariant.
+    np.testing.assert_allclose(v_dark[1:], v_bright[1:], atol=1e-6)
+
+
+def test_v2_fit_calibrates_threshold_from_reference() -> None:
+    images = _noise_images(32)
+    reference = ReferenceFamiliarityV2.fit(images, calibration_quantile=0.9)
+    assert reference.n_reference == 32
+    assert 0.0 < reference.threshold
+    assert reference.threshold < 10.0
+    # A probe drawn from the reference distribution is familiar.
+    assert reference.is_familiar(reference.distance(_noise_images(1, seed=5)[0]))
+
+
+def test_v2_fit_rejects_small_reference_and_bad_quantile() -> None:
+    with pytest.raises(FamiliarityError):
+        ReferenceFamiliarityV2.fit(_noise_images(1))
+    with pytest.raises(FamiliarityError):
+        ReferenceFamiliarityV2.fit(_noise_images(8), calibration_quantile=1.5)
+    with pytest.raises(FamiliarityError):
+        ReferenceFamiliarityV2.fit(_noise_images(8), calibration_quantile=0.0)
+
+
+def test_inject_rare_valid_preserves_shape_and_brightness() -> None:
+    images = _noise_images(6)
+    injected = inject_rare_valid(images, seed=0)
+    assert len(injected) == 6
+    for original, modified in zip(images, injected, strict=True):
+        assert modified.shape == original.shape
+        assert np.isfinite(modified).all()
+        assert modified.min() >= 0.0 and modified.max() <= 1.0
+        # In-domain: global brightness stays in the original's range.
+        assert abs(float(modified.mean()) - float(original.mean())) < 0.2
+
+
+def test_v2_does_not_suppress_in_domain_rare_valid() -> None:
+    # The Gate 8 safety property: with brightness-invariant features, rare
+    # valid structures injected into in-domain images stay familiar.
+    images = _noise_images(24)
+    reference = ReferenceFamiliarityV2.fit(images, calibration_quantile=0.9)
+    rare = inject_rare_valid(_noise_images(12, seed=1), seed=0)
+    distances = [reference.distance(image) for image in rare]
+    false_warnings = [not reference.is_familiar(d) for d in distances]
+    assert sum(false_warnings) / len(false_warnings) < 0.5

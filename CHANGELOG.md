@@ -5,6 +5,30 @@ execution plan lives in `EXECUTION.md`.
 
 ## [Unreleased]
 
+### Fixed (familiarity-v2 — Gate 8 redesign)
+- Root-caused the Gate 8 failure (`runs/familiarity-gate8-real/`): v1
+  features were dominated by global brightness (rare-valid false warnings
+  1.000, cap 0.50) and the fixed threshold was never calibrated (0.000
+  detection everywhere).
+- `familiarity-v2` (`src/evidence_net/stress_tests/familiarity.py`):
+  brightness-invariant feature vector `feature_vector_v2` (structure on a
+  z-scored grid; global pixel mean excluded), `ReferenceFamiliarityV2`
+  with the threshold calibrated as the `calibration_quantile` (default
+  0.90) of the reference population's leave-one-out distances, and
+  `inject_rare_valid` for in-domain rare-valid probes (replaces synthetic
+  dark-flat fixtures in real mode).
+- New config `configs/modality/familiarity-v2.yaml` (default); v1 config
+  retained as the historical record. `scripts/measure_familiarity.py`
+  dispatches on the config version; real v2 run
+  `runs/familiarity-gate8-v2-real/` records rare-valid false-warning rate
+  **0.094** (cap met), severity rankable (AUROC 0.785 at max-legitimate
+  strength), and the source shift published as unmeasurable in this
+  dataset (manifest: each sample its own source unit).
+- New contract `docs/contracts/familiarity-v2.md` (v1 marked superseded),
+  EXP-007 updated with both runs, ADR-017 recorded, 6 new unit tests in
+  `tests/numerical/test_familiarity.py` (brightness invariance, calibrated
+  threshold, in-domain rare-valid no-suppression).
+
 ### Added (Phase 18 — Final Validation and Release)
 - `scripts/run_final_inference.py`: frozen one-pass evaluation on all 400
   supported `Test_NoisyLR/` inputs, preserving original relative names,

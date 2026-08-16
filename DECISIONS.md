@@ -420,3 +420,46 @@ superseded`.
   while the policy stays default-accept + unresolved abstention.
 - Contracts or experiments affected: `support-definition-v1`, EXP-009,
   `labels-v2` (benefit label generator margin parameter).
+
+## ADR-017 — Familiarity-v2 redesign and Gate 8 re-run
+
+- Status: accepted
+- Context: Research Gate 8 failed on the v1 familiarity diagnostic
+  (`runs/familiarity-gate8-real/`): 0% detection on every declared shift
+  group and 100% false warnings on rare-valid structures (cap 0.50
+  exceeded). Root-cause analysis (EXP-007) showed two independent v1
+  defects: (1) the v1 feature vector was dominated by global brightness —
+  rare **valid** structures on dark inputs scored z ≈ -100 on the pixel
+  mean, so darkness was conflated with unfamiliarity; (2) the v1 threshold
+  was a fixed constant (2.0) never calibrated to the reference
+  population's own spread, so nothing could ever be flagged.
+- Decision: **redesign as `familiarity-v2`** and re-run Gate 8. The v2
+  representation is brightness-invariant (features computed on a z-scored
+  grid; the global pixel mean is excluded) and the threshold is calibrated
+  as the 90th percentile of the reference population's leave-one-out
+  distances — fit on development inputs only, so no post-hoc tuning is
+  possible. Rare-valid probes are now injected **in-domain** (into real
+  validation inputs) instead of synthetic dark-flat fixtures.
+- Evidence: EXP-007 (both runs), `runs/familiarity-gate8-v2-real/`,
+  `tests/numerical/test_familiarity.py` (v2 tests).
+- Result: rare-valid false-warning rate **0.094** (cap 0.50 met) — the
+  systematic-suppression failure is resolved; severity is rankable
+  (AUROC 0.785 at max-legitimate shift strength, monotonic in strength);
+  the declared **source** shift is published as **not measurable** in this
+  dataset (the official manifest records no acquisition/session metadata —
+  each sample is its own source unit), so its detection rate is not
+  diagnostic evidence.
+- Alternatives rejected: post-hoc lowering the v1 threshold or cap (explicitly
+  prohibited — v1 was uncalibrated by design and its failures were
+  representational); promoting v1 despite the cap breach (systematically
+  suppresses rare valid structures); removing the diagnostic entirely
+  (its no-suppression and calibrated-threshold design is now testable and
+  the near-identity-shift limits are understood).
+- Consequences: `familiarity-v2` is the current contract (v1 retained as
+  the frozen historical record); the diagnostic remains **disabled by
+  default** in warnings/abstention pending lane A/C integration review;
+  lane C renders the layer only when enabled with the exact legend; lane D
+  does not monitor it as a production signal; Integration II stays
+  untriggered for familiarity.
+- Contracts or experiments affected: `familiarity-v1` (superseded),
+  `familiarity-v2` (new), EXP-007, `configs/modality/familiarity-v2.yaml`.

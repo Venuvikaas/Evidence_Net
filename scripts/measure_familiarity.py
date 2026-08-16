@@ -35,8 +35,10 @@ try:
         FamiliarityConfig,
         FamiliarityError,
         ReferenceFamiliarity,
+        ReferenceFamiliarityV2,
         build_familiarity_report,
         build_shift_suite,
+        inject_rare_valid,
         load_familiarity_config,
     )
     from evidence_net.stress_tests.forward import NoisyBlurDownsample
@@ -49,19 +51,21 @@ except ImportError:  # allow running before `pip install -e .`
         FamiliarityConfig,
         FamiliarityError,
         ReferenceFamiliarity,
+        ReferenceFamiliarityV2,
         build_familiarity_report,
         build_shift_suite,
+        inject_rare_valid,
         load_familiarity_config,
     )
     from evidence_net.stress_tests.forward import NoisyBlurDownsample  # noqa: E402
 
-DEFAULT_CONFIG = REPO_ROOT / "configs" / "modality" / "familiarity-v1.yaml"
+DEFAULT_CONFIG = REPO_ROOT / "configs" / "modality" / "familiarity-v2.yaml"
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--config", default=DEFAULT_CONFIG, type=Path, help="familiarity-v1 config YAML"
+        "--config", default=DEFAULT_CONFIG, type=Path, help="familiarity config YAML"
     )
     parser.add_argument(
         "--synthetic", action="store_true", help="synthetic smoke (default; CI-safe)"
@@ -81,10 +85,26 @@ def _group_ids(group_name: str, n: int) -> list[str]:
 
 def synthetic_case(
     config: FamiliarityConfig,
-) -> tuple[ReferenceFamiliarity, dict[str, list[np.ndarray]], dict[str, list[str]], str]:
+) -> tuple[
+    ReferenceFamiliarity | ReferenceFamiliarityV2,
+    dict[str, list[np.ndarray]],
+    dict[str, list[str]],
+    str,
+]:
     suite = build_shift_suite(n_per_shift=config.n_per_shift, seed=config.seed)
-    reference = ReferenceFamiliarity.fit(suite[REFERENCE_GROUP], threshold=config.threshold)
+    reference_images = suite[REFERENCE_GROUP]
+    if config.version == "familiarity-v2":
+        reference: ReferenceFamiliarity | ReferenceFamiliarityV2 = ReferenceFamiliarityV2.fit(
+            reference_images, calibration_quantile=config.calibration_quantile
+        )
+    else:
+        reference = ReferenceFamiliarity.fit(reference_images, threshold=config.threshold)
     probes = {name: images for name, images in suite.items() if name != REFERENCE_GROUP}
+    if config.version == "familiarity-v2" and RARE_VALID_GROUP in probes:
+        # v2 evaluates rare-valid in-domain: inject into reference-like images.
+        probes[RARE_VALID_GROUP] = inject_rare_valid(
+            suite[REFERENCE_GROUP][: len(probes[RARE_VALID_GROUP])], seed=config.seed
+        )
     ids = {name: _group_ids(name, len(images)) for name, images in probes.items()}
     notes = "synthetic software-only population and shift groups (never used in scientific reports)"
     return reference, probes, ids, notes
@@ -92,14 +112,23 @@ def synthetic_case(
 
 def real_case(
     config: FamiliarityConfig,
-) -> tuple[ReferenceFamiliarity, dict[str, list[np.ndarray]], dict[str, list[str]], str]:
-    """Reference on the calibration split; probes from validation and heldout-source."""
+) -> tuple[
+    ReferenceFamiliarity | ReferenceFamiliarityV2,
+    dict[str, list[np.ndarray]],
+    dict[str, list[str]],
+    str,
+]:
+    """Reference on the calibration split; probes from validation and heldout-source.
+
+    familiarity-v2 uses the brightness-invariant feature vector with a
+    reference-calibrated threshold, and evaluates rare-valid structures
+    injected into in-domain images (the actual Gate 8 no-suppression
+    question) instead of synthetic dark-flat fixtures.
+    """
     from evidence_net.data.paths import resolve_dataset_paths
-    from evidence_net.stress_tests.familiarity import _rare_valid_images
     from evidence_net.training.dataset import RestorationDataset
 
     paths = resolve_dataset_paths()
-    rng = np.random.default_rng(config.seed)
 
     def load(split: str, n: int) -> tuple[list[np.ndarray], list[str]]:
         dataset = RestorationDataset(paths.train_dir, split=split, n_samples=n, seed=0)
@@ -112,7 +141,12 @@ def real_case(
         return images, ids
 
     reference_images, _ = load("calibration", config.n_reference)
-    reference = ReferenceFamiliarity.fit(reference_images, threshold=config.threshold)
+    if config.version == "familiarity-v2":
+        reference: ReferenceFamiliarity | ReferenceFamiliarityV2 = ReferenceFamiliarityV2.fit(
+            reference_images, calibration_quantile=config.calibration_quantile
+        )
+    else:
+        reference = ReferenceFamiliarity.fit(reference_images, threshold=config.threshold)
 
     validation, validation_ids = load("validation", config.n_per_shift)
     heldout_source, source_ids = load("heldout-source", config.n_per_shift)
@@ -120,7 +154,7 @@ def real_case(
     severe = NoisyBlurDownsample(blur_sigma=1.5, noise_sigma=0.03, seed=config.seed)
     severity = [severe.apply(image) for image in validation]
     acquisition = [np.clip(0.8 * image + 0.1, 0.0, 1.0) for image in validation]
-    rare_valid = _rare_valid_images(config.n_per_shift, validation[0].shape[0], rng)
+    rare_valid = inject_rare_valid(validation, seed=config.seed)
 
     probes: dict[str, list[np.ndarray]] = {
         "validation": validation,
@@ -136,11 +170,20 @@ def real_case(
         "acquisition": _group_ids("acquisition", len(acquisition)),
         RARE_VALID_GROUP: _group_ids("rare-valid", len(rare_valid)),
     }
-    notes = (
-        "reference = train/ calibration split; validation/heldout-source from frozen "
-        "splits; severity/acquisition are synthetic shifts of real validation inputs; "
-        "rare-valid are synthetic structures (labeled)"
-    )
+    if config.version == "familiarity-v2":
+        notes = (
+            "familiarity-v2: reference = train/ calibration split (LOO-calibrated "
+            "threshold); validation/heldout-source from frozen splits; "
+            "severity/acquisition are synthetic shifts of real validation inputs; "
+            "rare-valid are in-domain structures injected into real validation inputs "
+            "(Gate 8 no-suppression, brightness-invariant features)"
+        )
+    else:
+        notes = (
+            "reference = train/ calibration split; validation/heldout-source from frozen "
+            "splits; severity/acquisition are synthetic shifts of real validation inputs; "
+            "rare-valid are synthetic structures (labeled)"
+        )
     return reference, probes, ids, notes
 
 
@@ -148,7 +191,7 @@ def build_summary(
     run_id: str,
     config: FamiliarityConfig,
     report: Any,
-    reference: ReferenceFamiliarity,
+    reference: ReferenceFamiliarity | ReferenceFamiliarityV2,
     mode: str,
     notes: str,
 ) -> str:

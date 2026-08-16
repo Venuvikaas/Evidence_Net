@@ -33,7 +33,7 @@ Key results from the governed real evaluations:
 | 5 — Selective policy | **Continue**: default-accept + unresolved abstention beats the frozen Base (PSNR 25.38 vs 24.89 dB, MAE 0.0382 vs 0.0408) | EXP-010, ADR-010 |
 | 6 — Measurement consistency | Keep (bounded operator residuals) | EXP-005, ADR-011 |
 | 7 — Model stability | Keep (max perturbation drift 0.015) | EXP-006, ADR-012 |
-| 8 — Distribution familiarity | **Not promoted**: 0% shift detection, rare-valid false warnings exceed cap | EXP-007, ADR-013 |
+| 8 — Distribution familiarity | **Redesigned (v2)**: rare-valid no longer suppressed (0.09 vs 0.50 cap), severity rankable (AUROC 0.79), source shift unmeasurable in this data — reported diagnostic, still disabled by default | EXP-007, ADR-013 + ADR-017 |
 | 9 — Structural risk | Continue (five distinct evidence categories, hidden tests frozen) | EXP-008, ADR-014 |
 | 10 — Human interpretation | Registered; participants unavailable — explicit limitation | EXP-011, ADR-015 |
 
@@ -43,8 +43,10 @@ Published in full in the [release report](docs/release-report-v1.md):
 
 - Per-patch benefit prediction is not discriminative on the frozen event, so
   no support-aware gating claim is made — the policy defaults to accept.
-- The familiarity diagnostic failed its gate on real data and is disabled by
-  default.
+- The familiarity diagnostic failed its v1 gate on real data, was redesigned
+  as `familiarity-v2` (brightness-invariant features, reference-calibrated
+  threshold), and remains disabled by default in warnings/abstention pending
+  integration review — see EXP-007 and ADR-017.
 - Human interpretation is untested: no participants were available; the
   study protocol and capture machinery are ready, but results are never
   simulated.

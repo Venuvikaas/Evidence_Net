@@ -1,0 +1,15 @@
+# Distribution familiarity diagnostic configuration (familiarity-v2, Phase 9).
+# v2 fixes the Gate 8 failure modes of v1:
+#   - brightness-invariant feature vector (structure on a z-scored grid), so
+#     dark/bright inputs are not flagged for global brightness and rare
+#     **valid** structures are not systematically suppressed;
+#   - threshold calibrated from the reference population's own leave-one-out
+#     distance spread (`calibration_quantile`), instead of a fixed constant.
+version: familiarity-v2
+threshold: 2.0            # fallback only for v1 configs; v2 calibrates from the reference
+calibration_quantile: 0.9 # threshold = 90th percentile of reference LOO distances
+n_reference: 64
+n_per_shift: 32
+rare_valid_max_false_warning_rate: 0.5
+n_boot: 1000
+seed: 0

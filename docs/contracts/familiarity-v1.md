@@ -87,3 +87,9 @@ threshold semantics requires `familiarity-v2`, an ADR, and review by lanes A
 (warnings/abstention policy consume familiarity) and C (review UI renders the
 diagnostic). Unproven familiarity outputs stay disabled by default
 (Integration II).
+
+> **Status: superseded.** The Gate 8 real run exposed two v1 failure modes
+> (rare-valid suppression from brightness-dominated features; zero detection
+> from an uncalibrated threshold) and the redesign is recorded as
+> [`familiarity-v2`](familiarity-v2.md) with the v2 config, script, and
+> tests. v1 remains here only as the frozen historical record.
