@@ -165,13 +165,18 @@ def _real_cases(
     bases: list[np.ndarray] = []
     proposals: list[np.ndarray] = []
     targets: list[np.ndarray] = []
+    up = torch.nn.Upsample(scale_factor=2, mode="bilinear", align_corners=False)
     with torch.no_grad():
         for index in range(len(dataset)):
             input_tensor, target_tensor, sample_id = dataset[index]
-            y = input_tensor.squeeze(0).numpy()
+            # Dataset yields (1, H, W); models expect (B, 1, H, W). The
+            # predictor features are defined on the output grid, so the
+            # degraded input is upsampled to 256x256.
+            batch = input_tensor[None]
+            y = up(batch).squeeze().numpy()
             x = target_tensor.squeeze(0).numpy()
-            b = base(input_tensor).squeeze(0).numpy()
-            d = proposal(input_tensor).squeeze(0).numpy()
+            b = base(batch).squeeze().numpy()
+            d = proposal(batch).squeeze().numpy()
             sample_ids.append(sample_id)
             inputs.append(y)
             bases.append(b)

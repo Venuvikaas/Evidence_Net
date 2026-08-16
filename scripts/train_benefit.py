@@ -160,13 +160,18 @@ def _real_dataset(
     proposal = load_model(proposal_checkpoint)
     grids: list[tuple[np.ndarray, np.ndarray, np.ndarray]] = []
     labels: list[np.ndarray] = []
+    up = torch.nn.Upsample(scale_factor=2, mode="bilinear", align_corners=False)
     with torch.no_grad():
         for index in range(len(dataset)):
             inputs, target, _sample_id = dataset[index]
-            y = inputs.squeeze(0).numpy()
+            # Dataset yields (1, H, W); models expect (B, 1, H, W). The
+            # predictor features are defined on the output grid, so the
+            # degraded input is upsampled to 256x256.
+            batch = inputs[None]
+            y = up(batch).squeeze().numpy()
             x = target.squeeze(0).numpy()
-            b = base(inputs).squeeze(0).numpy()
-            d = proposal(inputs).squeeze(0).numpy()
+            b = base(batch).squeeze().numpy()
+            d = proposal(batch).squeeze().numpy()
             grids.append((y, b, d))
             labels.append(patch_benefit_labels(b, d, x).astype(np.float32))
     return grids, labels
