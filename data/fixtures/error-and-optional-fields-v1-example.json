@@ -1,0 +1,55 @@
+{
+  "schema": "error-and-optional-fields-v1",
+  "example": "synthetic software-only fixture; never used in a scientific report",
+  "frozen_fields": {
+    "input.npy": {
+      "dtype": "float32",
+      "shape": [1, 256, 256],
+      "range": [0.0, 1.0],
+      "hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "base.npy": {
+      "dtype": "float32",
+      "shape": [1, 256, 256],
+      "range": [0.0, 1.0],
+      "hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "proposal.npy": {
+      "dtype": "float32",
+      "shape": [1, 256, 256],
+      "range": [-0.1, 0.1],
+      "hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "optional_fields_present": {
+    "proposal_benefit.npy": {
+      "contract_version": "support-definition-v1",
+      "dtype": "float32",
+      "shape": [1, 256, 256],
+      "range": [0.0, 1.0]
+    },
+    "decision_map.npy": {
+      "contract_version": "decision-policy-v1",
+      "dtype": "uint8",
+      "shape": [1, 256, 256],
+      "values": [0, 1, 2, 3]
+    }
+  },
+  "optional_fields_absent": {
+    "measurement_consistency.npy": "not-defined",
+    "model_stability.npy": "not-defined",
+    "distribution_familiarity.npy": "not-defined",
+    "unresolved.npy": "not-defined"
+  },
+  "error_payload": {
+    "error_code": "OPTIONAL_FIELD_UNAVAILABLE",
+    "message": "proposal_benefit computed on out-of-domain input; field left absent, frozen fields unaffected",
+    "details": {}
+  },
+  "rules_demonstrated": [
+    "the Phase 4 vertical slice is complete without any optional field",
+    "absent optional fields are recorded as not-defined, never omitted",
+    "error payloads never expose paths, secrets, or raw tensors",
+    "a failed optional field leaves the frozen fields and run bundle intact"
+  ]
+}

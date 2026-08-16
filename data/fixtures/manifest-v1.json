@@ -1,0 +1,24 @@
+{
+  "manifest_version": "1",
+  "schema": "fixtures-v1",
+  "fixture_rule": "every fixture names its schema version and producer version",
+  "real_rule": "real fixtures come from frozen Phase 4 outputs and are allowed for tests and reproduction; synthetic software-only fixtures cover future optional fields and errors; no scientific report uses synthetic software-only fixtures",
+  "fixtures": [
+    {
+      "name": "sample_8x8.npy",
+      "purpose": "deterministic smoke fixture exercising manifest -> sample -> preprocess -> infer -> evaluate -> save artifacts -> report",
+      "schema_version": "tensor-v1",
+      "producer_version": "seed 0, numpy default_rng(0), committed Phase 0",
+      "producer_commit": "initial repository skeleton",
+      "kind": "synthetic"
+    },
+    {
+      "name": "error-and-optional-fields-v1-example.json",
+      "purpose": "synthetic example of the error-and-optional-fields-v1 contract: optional fields present, absent (not-defined), and a structured error payload",
+      "schema_version": "error-and-optional-fields-v1",
+      "producer_version": "handoff freeze commit",
+      "producer_commit": "phase 4 handoff",
+      "kind": "synthetic"
+    }
+  ]
+}
