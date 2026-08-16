@@ -46,6 +46,12 @@ jobs:
       - name: Structural-risk smoke (Lane B, synthetic)
         run: python scripts/measure_structural_risk.py --synthetic --run-id smoke-ci-structural-risk
 
+      - name: Benefit predictor train smoke (Lane A, synthetic)
+        run: python scripts/train_benefit.py --synthetic --n-samples 6 --epochs 2 --run-id smoke-ci-benefit-train
+
+      - name: Benefit predictor eval smoke (Lane A, synthetic)
+        run: python scripts/measure_benefit.py --synthetic --n-samples 6 --run-id smoke-ci-benefit-eval
+
       - name: Environment check
         run: python scripts/check_env.py
 

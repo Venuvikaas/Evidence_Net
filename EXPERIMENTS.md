@@ -354,3 +354,51 @@ are written before examining final test results. The format is defined in
   candidate vs observation MAE is reported, never judged as "truth".
 - Decision: pending (Research Gate 9).
 - Artifact path: `runs/structural-risk-*/` (synthetic smoke runs).
+
+## EXP-009 — Is proposal benefit predictably useful (Gate 4)?
+- Question: Can the minimal Proposal-Benefit Predictor (trained two-stage,
+  separately from the proposal and Base) predict the deterministic benefit
+  event of `support-definition-v1` well enough to beat declared simple
+  heuristics, order selective risk usefully, and calibrate meaningfully
+  within a stated domain — Research Gate 4?
+- Primary metric: group-bootstrapped AUC (per source group) and pooled AUC
+  of the learned predictor vs the declared baselines (residual-magnitude,
+  local-signal, attention-gate) on held-out validation data; selective-risk
+  curve (mean patch MAE of the gated output at declared coverage levels vs
+  the ungated and Base floors); calibration (group-bootstrapped Brier,
+  reliability/ECE) fit on the **calibration split only**.
+- Secondary diagnostics: per-group AUC distribution, gate coverage at
+  thresholds, calibration reliability bins, and the transfer check on
+  proposals not seen during predictor training.
+- Baselines: residual-magnitude heuristic; local-signal heuristic;
+  reconstruction-trained attention gate; uncalibrated predictor scores
+  (pre-calibration preserved per `calibration-version-v1`).
+- Dataset manifest: `dataset-splits-v1.json` (calibration split for
+  training/calibration; validation split for evaluation; `Test_NoisyLR/`
+  untouched). Synthetic fixtures are labeled synthetic, never scientific
+  evidence.
+- Configs: `configs/support_definition/support-definition-v1.yaml`,
+  `configs/calibration/calibration-version-v1.yaml`;
+  `scripts/train_benefit.py --synthetic` (two-stage train, CI);
+  `scripts/measure_benefit.py --synthetic` (evaluation, CI); real governed
+  run on the frozen calibration/validation splits.
+- Acceptance rule (predeclared, Gate 4): **continue** if the learned
+  predictor (1) beats every declared simple baseline in group AUC on
+  held-out validation data, (2) provides useful selective-risk ordering
+  (gated error at 0.5 coverage below the ungated floor at 1.0 coverage),
+  (3) has meaningful calibration within a stated domain (ECE below a
+  declared bound on the calibration fit), and (4) retains value on external
+  proposal behavior or bounds its limitation explicitly.
+  **Simplify, redefine the event, or stop the support-aware claim** if the
+  learned predictor does not beat the simple baselines.
+- Result: pending — machinery (labels, baselines, attention gate, minimal
+  predictor, calibration, evaluation suite, scripts, tests) is complete;
+  the governed real run on the frozen calibration/validation splits decides
+  the gate. The synthetic smoke run validates the harness end-to-end in CI
+  and reports the split isolation (calibration fit / validation eval).
+- Confidence interval / uncertainty: group bootstrap over source groups;
+  pixels and patches are never sample counts; synthetic probes labeled
+  synthetic; pre-calibration scores preserved.
+- Decision: pending (Research Gate 4).
+- Artifact path: `runs/benefit-eval-*/` and `runs/benefit-predictor-*/`
+  (synthetic smoke runs).

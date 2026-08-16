@@ -5,6 +5,31 @@ execution plan lives in `EXECUTION.md`.
 
 ## [Unreleased]
 
+### Added (Lane A, Phase 5 — Proposal-Benefit Definition, Predictor, and Calibration)
+- `support-definition-v1` draft contract (`docs/contracts/support-definition-v1.md`):
+  the benefit event is a strict patch-level comparison (16x16 grid, ungated
+  candidate patch MAE < Base patch MAE), deterministic, versioned `labels-v1`,
+  population limited to development data (Test_NoisyLR never enters).
+- `calibration-version-v1` draft contract
+  (`docs/contracts/calibration-version-v1.md`): calibrated probabilities
+  within a stated domain, fit on the **calibration split only** (kill-switch),
+  pre-calibration scores always preserved.
+- Deterministic label generation (`src/evidence_net/benefit/labels.py`),
+  declared baselines (residual-magnitude, local-signal), a
+  reconstruction-trained attention gate, and the minimal two-stage
+  Proposal-Benefit Predictor (`benefit/predictors.py`).
+- Calibration (`benefit/calibration.py`: Platt/temperature, Brier,
+  reliability/ECE) and the separate evaluation suite
+  (`benefit/evaluate.py`: per-group AUC, pooled AUC, selective-risk curves)
+  with the statistical-unit discipline of the evaluation protocol.
+- `scripts/train_benefit.py` (two-stage, calibration-split-only, synthetic
+  smoke for CI) and `scripts/measure_benefit.py` (calibration-fit / eval-split
+  split isolation, synthetic smoke for CI) writing run bundles.
+- Tests in `tests/calibration/` (labels, predictors, calibration, evaluation,
+  and split-isolation regression tests) — 35 tests.
+- EXP-009 registered with a predeclared Gate 4 acceptance rule; CI gains the
+  two Lane A smoke steps (flagged for lane-D review of `.github/workflows`).
+
 ### Added (Lane B, Phase 10 — Structural-Risk and Downstream Validation)
 - `structural-risk-v1` draft contract (`docs/contracts/structural-risk-v1.md`)
   defining five **separate** threat-model evidence categories (candidate

@@ -33,6 +33,17 @@ not interrupted unless new information invalidates its assumptions.
   natural failures, Phase 10) will feed the gate. Familiarity integrates
   into warnings/abstention only after Gate 8 (Lane A policy).
 
+## Lane A, Phase 5 -> Gate 4 (Integration I)
+
+- EXP-009 (benefit predictability, Gate 4) machinery is complete: deterministic
+  labels (`support-definition-v1`), baselines (residual-magnitude,
+  local-signal, attention gate), minimal two-stage predictor, calibration
+  (`calibration-version-v1`, calibration-split-only fit), and the evaluation
+  suite. The governed real run on the frozen calibration/validation splits
+  (real Base/Proposal checkpoints) decides the gate; CI exercises the full
+  path in synthetic smoke. Integration I (Benefit and policy promotion) is
+  the first unblocked cross-lane checkpoint once Gate 4 passes.
+
 ## Integration dependency (Lane B, Phase 10 -> Integration III)
 
 - EXP-008 (five structural-risk evidence categories, Gate 9) needs the

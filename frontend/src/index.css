@@ -4,21 +4,21 @@
   --bg-card-hover: rgba(26, 35, 54, 0.95);
   --border-color: rgba(255, 255, 255, 0.08);
   --border-accent: rgba(99, 102, 241, 0.4);
-  
+
   --primary: #6366f1;
   --primary-hover: #4f46e5;
   --accent-cyan: #06b6d4;
   --accent-emerald: #10b981;
   --accent-amber: #f59e0b;
   --accent-rose: #f43f5e;
-  
+
   --text-main: #f3f4f6;
   --text-muted: #9ca3af;
   --text-dim: #6b7280;
-  
+
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  
+
   --shadow-glow: 0 0 25px rgba(99, 102, 241, 0.15);
   --glass: backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
 }
