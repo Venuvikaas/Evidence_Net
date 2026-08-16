@@ -1,0 +1,23 @@
+{
+  "schema": "hidden-stress-v1",
+  "frozen": true,
+  "seed": 0,
+  "perturbation": {
+    "line_width": 1,
+    "min_line_length": 16,
+    "edge_shift_px": 2,
+    "merge_gap": 4,
+    "split_gap": 4,
+    "period": 4,
+    "point_value": 0.9,
+    "stripe_amplitude": 0.05
+  },
+  "acquisition": {
+    "noise_sigma": 0.02,
+    "stripe_amplitude": 0.05,
+    "gain_range": [0.8, 1.2],
+    "dead_pixel_fraction": 0.001,
+    "blur_sigma": 1.0
+  },
+  "hash": "087d6c1369de350abc03262c205656d06d3d3e58ad662f02764c66d9f1b74919"
+}
