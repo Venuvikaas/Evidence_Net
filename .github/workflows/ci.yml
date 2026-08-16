@@ -31,6 +31,9 @@ jobs:
       - name: Unit tests
         run: pytest
 
+      - name: Handoff verification (four-developer kill switch)
+        run: python scripts/verify_handoff.py
+
       - name: Environment check
         run: python scripts/check_env.py
 
