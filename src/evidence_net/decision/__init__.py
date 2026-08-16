@@ -1,1 +1,1 @@
-"""Decision policies, gating, attenuation, and abstention (Phase 6)."""
+"""Decision policy, gating, and abstention (Lane A, Phase 6)."""

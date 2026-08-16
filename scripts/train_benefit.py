@@ -156,8 +156,14 @@ def _real_dataset(
         model.eval()
         return model
 
-    base = load_model(base_checkpoint)
     proposal = load_model(proposal_checkpoint)
+    # The proposal checkpoint is a full BoundedDetailProposal: calling it
+    # directly returns the *candidate* (b + d). Use ``propose`` so ``d`` is
+    # the bounded detail residual (matching measure_oracle.py).
+    from evidence_net.models.proposal import BoundedDetailProposal
+
+    if not isinstance(proposal, BoundedDetailProposal):
+        raise SystemExit("FAIL: proposal checkpoint is not a BoundedDetailProposal")
     grids: list[tuple[np.ndarray, np.ndarray, np.ndarray]] = []
     labels: list[np.ndarray] = []
     up = torch.nn.Upsample(scale_factor=2, mode="bilinear", align_corners=False)
@@ -170,10 +176,13 @@ def _real_dataset(
             batch = inputs[None]
             y = up(batch).squeeze().numpy()
             x = target.squeeze(0).numpy()
-            b = base(batch).squeeze().numpy()
-            d = proposal(batch).squeeze().numpy()
-            grids.append((y, b, d))
-            labels.append(patch_benefit_labels(b, d, x).astype(np.float32))
+            b, d, _c = proposal.propose(batch)
+            grids.append((y, b.squeeze().numpy(), d.squeeze().numpy()))
+            labels.append(
+                patch_benefit_labels(b.squeeze().numpy(), d.squeeze().numpy(), x).astype(
+                    np.float32
+                )
+            )
     return grids, labels
 
 
@@ -201,11 +210,21 @@ def _train(
             [np.stack([inp, base, prop], axis=0) for inp, base, prop in inputs]
         ).astype(np.float32)
         input_tensor = torch.from_numpy(stacked)
+    # Benefit events are rare (a few % of patches on real data). Plain BCE
+    # lets a constant all-negative prediction win; weight the positive class
+    # by the inverse label frequency so the learned predictor must actually
+    # separate the classes (standard imbalanced-BCE practice).
+    positive_fraction = float(label_tensor.mean())
+    pos_weight = (
+        torch.tensor([(1.0 - positive_fraction) / max(positive_fraction, 1e-6)])
+        if 0.0 < positive_fraction < 1.0
+        else torch.ones(1)
+    )
     loader = DataLoader(
         TensorDataset(input_tensor, label_tensor), batch_size=batch_size, shuffle=True
     )
     optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
-    loss_fn = torch.nn.BCEWithLogitsLoss()
+    loss_fn = torch.nn.BCEWithLogitsLoss(pos_weight=pos_weight)
     last_loss = float("nan")
     for _epoch in range(epochs):
         model.train()

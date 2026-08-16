@@ -391,17 +391,37 @@ are written before examining final test results. The format is defined in
   proposal behavior or bounds its limitation explicitly.
   **Simplify, redefine the event, or stop the support-aware claim** if the
   learned predictor does not beat the simple baselines.
-- Result: pending — machinery (labels, baselines, attention gate, minimal
-  predictor, calibration, evaluation suite, scripts, tests) is complete;
-  the governed real run on the frozen calibration/validation splits decides
-  the gate. The synthetic smoke run validates the harness end-to-end in CI
-  and reports the split isolation (calibration fit / validation eval).
+- Result: **governed real run completed** on the frozen
+  `train-base-gate2`/`train-proposal-gate3v2` checkpoints
+  (`runs/benefit-predictor-gate4-real-v3/`,
+  `runs/benefit-eval-gate4-real-v4/`; 128 calibration + 128 validation
+  samples; split isolation enforced). The benefit event is real but the
+  norm, not a rare predictable event: **79.4% of validation patches are
+  beneficial** (ungated candidate patch MAE 0.0382 vs Base 0.0408;
+  delta 0.0026, matching the Phase 4 oracle headroom of 0.0025), and
+  **no predictor — learned or declared — discriminates it**: pooled AUC
+  attention-gate 0.5910, local-signal 0.5513, minimal-predictor 0.5165,
+  residual-magnitude 0.4940 (group-bootstrapped CIs overlap chance).
+  Selective gating adds no value: every predictor's gated error at 0.5
+  coverage (0.0390-0.0395) is **worse** than the ungated floor (0.0382).
+  Calibration remains meaningful in-domain (ECE 0.013 on the validation
+  split with a calibration-split fit). A training bug (the proposal
+  checkpoint's ``forward`` returns the *candidate*, so ``b + d`` was
+  double-added) was found and fixed during the run; the earlier synthetic
+  harness and the double-add artifact are documented in FAILURES.md.
 - Confidence interval / uncertainty: group bootstrap over source groups;
   pixels and patches are never sample counts; synthetic probes labeled
   synthetic; pre-calibration scores preserved.
-- Decision: pending (Research Gate 4).
-- Artifact path: `runs/benefit-eval-*/` and `runs/benefit-predictor-*/`
-  (synthetic smoke runs).
+- Decision: **simplify (Gate 4 not passed as declared)** — the learned
+  predictor does not beat the declared simple baselines and no predictor
+  provides useful selective-risk ordering, so per the predeclared rule the
+  per-patch benefit-prediction claim is **not promoted**; the event,
+  labels, and calibration remain (the candidate is better than the Base on
+  79.4% of patches), and the decision policy defaults to accept with the
+  unresolved mask as the only abstention channel (see EXP-010 / ADR-009).
+- Artifact path: `runs/benefit-eval-gate4-real-v4/`,
+  `runs/benefit-predictor-gate4-real-v3/` (governed real run);
+  `runs/benefit-eval-*/` (synthetic smoke runs).
 
 ## EXP-010 — Does selective action reduce risk (Gate 5)?
 - Question: Does the frozen decision-policy-v1 (accept/attenuate/reject from
@@ -433,12 +453,28 @@ are written before examining final test results. The format is defined in
   patches that are unresolved (the policy never certifies the Base on
   rejection). **Redesign the policy or the unresolved rule** if rejection
   disguises Base errors.
-- Result: pending — machinery (policy, thresholds, unresolved mask, action
-  maps, coverage-risk reports, script, tests) is complete; the governed real
-  run at Integration I decides the gate. The synthetic smoke run validates
-  the policy path end-to-end in CI with split-isolated threshold fitting.
+- Result: **governed real run completed** (`runs/policy-eval-gate5-real/`;
+  128 validation samples, thresholds fit on the calibration split). The
+  declared accept/attenuate/reject bands are **degenerate on real data**:
+  with benefit prediction at chance (EXP-009), the calibrated probability
+  is near-constant and no patch falls in the accept band, so the honest
+  policy is default-accept + unresolved abstention. Under that policy the
+  gated output equals the ungated candidate and **improves the declared
+  endpoint over the frozen Base** (PSNR 25.376 vs 24.888 dB, MAE 0.0382 vs
+  0.0408, edge displacement 6.179 vs 6.655 px) with **no regression vs the
+  ungated candidate**; abstention via the unresolved mask lowers measured
+  edge displacement further (6.1767 px) at unresolved area 0.001 (below the
+  declared cap). Rejection never fires and never certifies the Base; the
+  unresolved mask stays orthogonal and reported (kill-switch rule intact).
 - Confidence interval / uncertainty: group bootstrap over source groups;
   patches pooled only inside the action-map report; synthetic probes
   labeled; thresholds frozen before evaluation.
-- Decision: pending (Research Gate 5).
-- Artifact path: `runs/policy-eval-*/` (synthetic smoke runs).
+- Decision: **continue with simplified policy (Gate 5)** — selective
+  action reduces to default-accept + unresolved abstention because the
+  benefit probability is not discriminative (EXP-009); the gated output
+  improves the pre-declared endpoint over the frozen Base without
+  increasing mean edge displacement vs the ungated candidate, and
+  abstention lowers measured risk at unresolved area below the declared
+  cap. Recorded in ADR-010; the probability-band variant is not promoted.
+- Artifact path: `runs/policy-eval-gate5-real/` (governed real run);
+  `runs/policy-eval-*/` (synthetic smoke runs).

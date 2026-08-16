@@ -37,6 +37,7 @@ try:
     )
     from evidence_net.benefit.labels import OUTPUT_GRID, patch_benefit_labels
     from evidence_net.benefit.predictors import (
+        AttentionGateBaseline,
         LocalSignalBaseline,
         MinimalBenefitPredictor,
         ResidualMagnitudeBaseline,
@@ -52,6 +53,7 @@ except ImportError:  # allow running before `pip install -e .`
     )
     from evidence_net.benefit.labels import OUTPUT_GRID, patch_benefit_labels  # noqa: E402
     from evidence_net.benefit.predictors import (  # noqa: E402
+        AttentionGateBaseline,
         LocalSignalBaseline,
         MinimalBenefitPredictor,
         ResidualMagnitudeBaseline,
@@ -68,6 +70,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--run-id", default=None)
     parser.add_argument("--out", default=REPO_ROOT / "runs", type=Path)
+    parser.add_argument(
+        "--attention-checkpoint",
+        default=REPO_ROOT
+        / "runs"
+        / "benefit-predictor-latest"
+        / "checkpoints"
+        / "attention-gate-best.pt",
+        type=Path,
+    )
     parser.add_argument(
         "--predictor-checkpoint",
         default=REPO_ROOT
@@ -158,8 +169,15 @@ def _real_cases(
         model.eval()
         return model
 
-    base = load_model(REPO_ROOT / "checkpoints" / "train-base-gate2" / "best.pt")
     proposal = load_model(REPO_ROOT / "checkpoints" / "train-proposal-gate3v2" / "best.pt")
+    # The proposal checkpoint is a full BoundedDetailProposal: calling it
+    # directly returns the *candidate* (b + d). Use ``propose`` so ``d`` is
+    # the bounded detail residual (matching measure_oracle.py). Its internal
+    # frozen Base is bit-identical to the promoted train-base-gate2 weights.
+    from evidence_net.models.proposal import BoundedDetailProposal
+
+    if not isinstance(proposal, BoundedDetailProposal):
+        raise SystemExit("FAIL: proposal checkpoint is not a BoundedDetailProposal")
     sample_ids: list[str] = []
     inputs: list[np.ndarray] = []
     bases: list[np.ndarray] = []
@@ -175,14 +193,24 @@ def _real_cases(
             batch = input_tensor[None]
             y = up(batch).squeeze().numpy()
             x = target_tensor.squeeze(0).numpy()
-            b = base(batch).squeeze().numpy()
-            d = proposal(batch).squeeze().numpy()
+            b, d, _c = proposal.propose(batch)
+            bases.append(b.squeeze().numpy())
+            proposals.append(d.squeeze().numpy())
             sample_ids.append(sample_id)
             inputs.append(y)
-            bases.append(b)
-            proposals.append(d)
             targets.append(x)
     return sample_ids, inputs, bases, proposals, targets
+
+
+def _load_attention_gate(path: Path) -> AttentionGateBaseline | None:
+    """Load the trained attention-gate baseline from a checkpoint."""
+    if not path.is_file():
+        return None
+    payload = torch.load(path, map_location="cpu", weights_only=False)
+    gate = AttentionGateBaseline(hidden_channels=int(payload["config"]["hidden_channels"]))
+    gate.load_state_dict(payload["model_state_dict"])
+    gate.eval()
+    return gate
 
 
 def _load_predictor(path: Path) -> MinimalBenefitPredictor | None:
@@ -285,11 +313,15 @@ def main() -> int:
     ]
     val_label_arrays = [np.asarray(label, dtype=np.float64) for label in val_labels]
 
-    # Declared baselines on validation.
+    # Declared baselines on validation (including the reconstruction-trained
+    # attention gate from the predictor run, per support-definition-v1).
     baseline_predictors = {
         "residual-magnitude": ResidualMagnitudeBaseline(),
         "local-signal": LocalSignalBaseline(),
     }
+    attention = _load_attention_gate(args.attention_checkpoint)
+    if attention is not None:
+        baseline_predictors["attention-gate"] = attention
     reports: dict[str, object] = {}
     for name, baseline in baseline_predictors.items():
         reports[name] = _evaluate_predictors(

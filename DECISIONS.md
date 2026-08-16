@@ -206,3 +206,69 @@ superseded`.
 - Contracts or experiments affected: all nine contracts in
   `docs/contracts/`; fixture registry `data/fixtures/manifest-v1.json`;
   checkpoint registry `docs/handoff/checkpoint-registry.md`; future EXP-005+.
+
+## ADR-009 — Phase 5 benefit-prediction decision (Research Gate 4)
+
+- Status: accepted
+- Context: Research Gate 4 (EXECUTION.md Phase 5) requires the learned
+  benefit predictor to beat declared simple heuristics on held-out data,
+  provide useful selective-risk ordering, and calibrate within a stated
+  domain. The governed real run
+  (`runs/benefit-eval-gate4-real-v4/` on the frozen
+  `train-base-gate2`/`train-proposal-gate3v2` checkpoints, 128 calibration
+  + 128 validation samples, split isolation enforced) found that the
+  benefit event is real but the norm: 79.4% of validation patches are
+  beneficial (candidate patch MAE 0.0382 vs Base 0.0408, delta 0.0026,
+  matching the Phase 4 oracle headroom), and no predictor discriminates it
+  (pooled AUC: attention-gate 0.5910, local-signal 0.5513,
+  minimal-predictor 0.5165, residual-magnitude 0.4940; gated error at 0.5
+  coverage is worse than the ungated floor for every predictor).
+- Decision: **simplify** — the per-patch benefit-prediction claim is not
+  promoted. The event, labels (`labels-v1`), and calibration remain (ECE
+  0.013 in-domain); the decision policy defaults to accept the candidate
+  (better than Base on 79.4% of patches) with the unresolved mask as the
+  only abstention channel. A harness bug (the proposal checkpoint's
+  `forward` returns the candidate, double-adding `b + d`) was found and
+  fixed during the run; documented in FAILURES.md.
+- Evidence: EXP-009, `runs/benefit-predictor-gate4-real-v3/`,
+  `runs/benefit-eval-gate4-real-v4/`.
+- Alternatives rejected: redesigning the proposal head without new evidence
+  (Gate 3 already recorded continue); promoting the attention gate as the
+  benefit signal (still near chance, 0.591 pooled AUC, and gating adds no
+  value); stopping the support-aware claim entirely (the event and
+  calibration remain scientifically valid).
+- Consequences: `support-definition-v1` event + `calibration-version-v1`
+  remain; the predictor is retained as a reported diagnostic, not a gating
+  input; Integration I consumes the event, labels, and calibration but not
+  per-patch gating probabilities.
+- Contracts or experiments affected: `support-definition-v1`,
+  `calibration-version-v1`, EXP-009, EXP-010.
+
+## ADR-010 — Phase 6 decision-policy decision (Research Gate 5)
+
+- Status: accepted
+- Context: Research Gate 5 requires selective action to improve a
+  predeclared endpoint, abstention to lower risk at usable coverage, and
+  the policy to never disguise unresolved Base errors. The governed real
+  run (`runs/policy-eval-gate5-real/`, 128 validation samples, thresholds
+  fit on the calibration split) found the declared accept/attenuate/reject
+  bands are degenerate on real data: with benefit prediction at chance
+  (EXP-009 / ADR-009) the calibrated probability is near-constant and the
+  accept band is empty.
+- Decision: **continue with simplified policy** — the promoted policy is
+  default-accept + unresolved abstention: the candidate is emitted
+  everywhere (it improves the endpoint over the frozen Base: PSNR 25.376
+  vs 24.888 dB, MAE 0.0382 vs 0.0408, edge displacement 6.179 vs 6.655 px)
+  and unresolved (high edge-density) patches fall back to the Base without
+  certifying it. Abstention lowers measured edge displacement further
+  (6.1767 px) at unresolved area 0.001 (below the declared cap). The
+  probability-band variant is not promoted.
+- Evidence: EXP-010, `runs/policy-eval-gate5-real/`.
+- Alternatives rejected: promoting the probability-band policy on real data
+  (degenerate fit); rejecting more aggressively (no evidence the proposal
+  harms on a predictable subset — 79.4% of patches benefit).
+- Consequences: `decision-policy-v1` retains the accept/attenuate/reject
+  action semantics and unresolved mask; the frozen default-accept +
+  unresolved-abstention configuration is the promoted v1; kill-switch rule
+  (rejection never certifies the Base) stays regression-tested.
+- Contracts or experiments affected: `decision-policy-v1`, EXP-010.
