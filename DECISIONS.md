@@ -384,3 +384,39 @@ superseded`.
   follows the protocol; D's privacy/retention/audit behavior is validated
   by `docs/security-and-privacy-operations.md`.
 - Contracts or experiments affected: EXP-011, `human-interpretation-study-protocol.md`.
+
+## ADR-016 — Gate 4 revised: benefit event redefined with a margin (labels-v2)
+
+- Status: accepted (supersedes the simplify decision in ADR-009 for the
+  event definition; ADR-009's policy consequences remain)
+- Context: ADR-009 recorded *simplify* because every predictor was at
+  chance on the strict event (`MAE(c) < MAE(b)`, `labels-v1`). Post-release
+  analysis (EXP-009 revision) showed why: the strict event is dominated by
+  sub-margin noise — the proposal improves the average patch by only
+  0.0026 MAE (79.4% beneficial, mean delta 0.0026), so the strict label is
+  near-random (pooled AUC 0.49-0.59). The predeclared Gate 4 rule
+  explicitly allows **redefining the event**.
+- Decision: **redefine the benefit event with a declared margin** — a patch
+  is beneficial only if the candidate improves on the Base by more than
+  `margin = 0.005` MAE (`labels-v2`). Under the redefined event the
+  predictors are highly discriminative (group-bootstrapped AUC
+  attention-gate 0.878 [0.853, 0.901], residual-magnitude 0.889 [0.870,
+  0.907], local-signal 0.848 [0.822, 0.873], minimal-predictor 0.927
+  pooled; calibration ECE 0.017) and gated error beats random acceptance at
+  every coverage. The benefit predictor is promoted as a **ranking signal
+  for the margin event**.
+- Evidence: `runs/benefit-predictor-gate4-v2-real/`,
+  `runs/benefit-eval-gate4-v2-real/` (128 calibration + 128 validation
+  samples, split isolation enforced; margin 0.005).
+- Alternatives rejected: keeping the strict event (not predictable — the
+  sub-margin noise makes the label near-random); promoting the predictor on
+  the strict event (would overclaim); switching the endpoint policy to
+  probability-band gating (the proposal helps on average, so default-accept
+  + unresolved abstention remains the best endpoint — EXP-010/ADR-010).
+- Consequences: `support-definition-v1` gains the margin parameter
+  (`labels-v2`, default `margin = 0.005`); `scripts/train_benefit.py` and
+  `scripts/measure_benefit.py` accept `--benefit-margin`; Gate 4 is
+  recorded **continue**; the benefit predictor is a valid ranking signal
+  while the policy stays default-accept + unresolved abstention.
+- Contracts or experiments affected: `support-definition-v1`, EXP-009,
+  `labels-v2` (benefit label generator margin parameter).

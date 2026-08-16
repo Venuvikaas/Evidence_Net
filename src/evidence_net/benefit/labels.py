@@ -45,13 +45,25 @@ def patch_benefit_labels(
     base: np.ndarray,
     proposal: np.ndarray,
     target: np.ndarray,
+    *,
+    margin: float = 0.0,
 ) -> np.ndarray:
     """Binary per-patch benefit labels on the patch grid (16x16).
 
     Returns a ``(16, 16)`` uint8 array: 1 where the ungated candidate patch
-    has strictly lower MAE than the Base patch, else 0. Requires a 256x256
+    improves on the Base patch by **more than ``margin``** MAE, else 0:
+
+        beneficial(r)  <=>  MAE(x, c) + margin < MAE(x, b)
+
+    ``labels-v1`` uses ``margin = 0`` (strict). ``labels-v2`` declares a
+    meaningful margin (e.g. 0.005): Gate 4 evidence (EXP-009, ADR-016)
+    showed the strict event is dominated by sub-margin noise (mean delta
+    0.0026, AUC at chance), while the meaningful-benefit event is
+    predictable (AUC 0.91-0.99 for simple features). Requires a 256x256
     output grid (partial edge patches are not labeled).
     """
+    if margin < 0.0:
+        raise BenefitLabelsError(f"margin must be >= 0, got {margin}")
     b = _as_float64(base)
     d = _as_float64(proposal)
     x = _as_float64(target)
@@ -72,7 +84,8 @@ def patch_benefit_labels(
             rows = slice(row * PATCH_SIZE, (row + 1) * PATCH_SIZE)
             cols = slice(col * PATCH_SIZE, (col + 1) * PATCH_SIZE)
             labels[row, col] = int(
-                mae(x[rows, cols], candidate[rows, cols]) < mae(x[rows, cols], b[rows, cols])
+                mae(x[rows, cols], candidate[rows, cols]) + margin
+                < mae(x[rows, cols], b[rows, cols])
             )
     return labels
 

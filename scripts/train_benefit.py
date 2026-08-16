@@ -57,6 +57,12 @@ CALIBRATION_SPLIT = "calibration"
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
+        "--benefit-margin",
+        type=float,
+        default=0.005,
+        help="benefit requires this MAE improvement over Base (labels-v2; 0.0 = strict labels-v1)",
+    )
+    parser.add_argument(
         "--base-checkpoint",
         default=REPO_ROOT / "checkpoints" / "train-base-gate2" / "best.pt",
         type=Path,
@@ -105,11 +111,11 @@ def _synthetic_triple(seed: int) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     return y, np.clip(base, 0.0, 1.0), proposal
 
 
-def _build_dataset(seed: int, n_samples: int) -> tuple[list, list]:
+def _build_dataset(seed: int, n_samples: int, margin: float) -> tuple[list, list]:
     """Grid/label dataset on the calibration split (synthetic).
 
     Returns ``(grids, labels)`` where ``grids[i] = (y, b, d)`` triples and
-    ``labels[i]`` is the deterministic benefit label map.
+    ``labels[i]`` is the deterministic benefit label map (with margin).
     """
     if n_samples < 1:
         raise SystemExit("FAIL: --n-samples must be >= 1")
@@ -122,12 +128,12 @@ def _build_dataset(seed: int, n_samples: int) -> tuple[list, list]:
         # tied where it is tiny (striped half).
         target = np.clip(b + d, 0.0, 1.0)
         grids.append((y, b, d))
-        labels.append(patch_benefit_labels(b, d, target).astype(np.float32))
+        labels.append(patch_benefit_labels(b, d, target, margin=margin).astype(np.float32))
     return grids, labels
 
 
 def _real_dataset(
-    base_checkpoint: Path, proposal_checkpoint: Path, n_samples: int, seed: int
+    base_checkpoint: Path, proposal_checkpoint: Path, n_samples: int, seed: int, margin: float
 ) -> tuple[list, list]:
     """Grid/label dataset from the frozen Base/Proposal on calibration data."""
     from evidence_net.data.paths import resolve_dataset_paths
@@ -179,7 +185,9 @@ def _real_dataset(
             b, d, _c = proposal.propose(batch)
             grids.append((y, b.squeeze().numpy(), d.squeeze().numpy()))
             labels.append(
-                patch_benefit_labels(b.squeeze().numpy(), d.squeeze().numpy(), x).astype(np.float32)
+                patch_benefit_labels(
+                    b.squeeze().numpy(), d.squeeze().numpy(), x, margin=margin
+                ).astype(np.float32)
             )
     return grids, labels
 
@@ -253,7 +261,7 @@ def _train(
 def main() -> int:
     args = parse_args()
     if args.synthetic:
-        grids, labels = _build_dataset(args.seed, args.n_samples)
+        grids, labels = _build_dataset(args.seed, args.n_samples, args.benefit_margin)
     else:
         if not args.base_checkpoint.is_file() or not args.proposal_checkpoint.is_file():
             print(
@@ -263,7 +271,11 @@ def main() -> int:
             )
             return 1
         grids, labels = _real_dataset(
-            args.base_checkpoint, args.proposal_checkpoint, args.n_samples, args.seed
+            args.base_checkpoint,
+            args.proposal_checkpoint,
+            args.n_samples,
+            args.seed,
+            args.benefit_margin,
         )
 
     predictor_features = [patch_features(y, b, d) for y, b, d in grids]
@@ -324,6 +336,8 @@ def main() -> int:
             "stage": "two-stage predictor training (calibration split only)",
             "mode": "synthetic" if args.synthetic else "real",
             "split": CALIBRATION_SPLIT,
+            "labels_version": "labels-v2" if args.benefit_margin > 0.0 else "labels-v1",
+            "benefit_margin": args.benefit_margin,
             "n_samples": args.n_samples,
             "epochs": args.epochs,
             "seed": args.seed,

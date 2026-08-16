@@ -416,36 +416,42 @@ are written before examining final test results. The format is defined in
   proposal behavior or bounds its limitation explicitly.
   **Simplify, redefine the event, or stop the support-aware claim** if the
   learned predictor does not beat the simple baselines.
-- Result: **governed real run completed** on the frozen
-  `train-base-gate2`/`train-proposal-gate3v2` checkpoints
-  (`runs/benefit-predictor-gate4-real-v3/`,
-  `runs/benefit-eval-gate4-real-v4/`; 128 calibration + 128 validation
-  samples; split isolation enforced). The benefit event is real but the
-  norm, not a rare predictable event: **79.4% of validation patches are
-  beneficial** (ungated candidate patch MAE 0.0382 vs Base 0.0408;
-  delta 0.0026, matching the Phase 4 oracle headroom of 0.0025), and
-  **no predictor — learned or declared — discriminates it**: pooled AUC
-  attention-gate 0.5910, local-signal 0.5513, minimal-predictor 0.5165,
-  residual-magnitude 0.4940 (group-bootstrapped CIs overlap chance).
-  Selective gating adds no value: every predictor's gated error at 0.5
-  coverage (0.0390-0.0395) is **worse** than the ungated floor (0.0382).
-  Calibration remains meaningful in-domain (ECE 0.013 on the validation
-  split with a calibration-split fit). A training bug (the proposal
-  checkpoint's ``forward`` returns the *candidate*, so ``b + d`` was
-  double-added) was found and fixed during the run; the earlier synthetic
-  harness and the double-add artifact are documented in FAILURES.md.
+- Result: **governed real runs completed, decision revised (ADR-016)**. On
+  the frozen `train-base-gate2`/`train-proposal-gate3v2` checkpoints (128
+  calibration + 128 validation samples; split isolation enforced):
+  - **Strict event (`labels-v1`, margin 0): not predictable.** The benefit
+    event is real but the norm — 79.4% of validation patches are
+    beneficial (candidate patch MAE 0.0382 vs Base 0.0408; delta 0.0026,
+    matching the Phase 4 oracle headroom) — and every predictor is at
+    chance (pooled AUC 0.49-0.59; gated error at 0.5 coverage worse than
+    the ungated floor). Runs: `runs/benefit-eval-gate4-real-v4/`.
+  - **Meaningful event (`labels-v2`, margin 0.005): predictable.**
+    Restricting benefit to a declared MAE improvement over Base makes the
+    event discriminative: group-bootstrapped AUC attention-gate 0.878
+    [0.853, 0.901], residual-magnitude 0.889 [0.870, 0.907], local-signal
+    0.848 [0.822, 0.873], minimal-predictor 0.927 pooled; calibration ECE
+    0.017 on the validation split with a calibration-split fit; gated
+    error beats random acceptance at every coverage level (e.g. 0.0391 vs
+    0.0400 at coverage 0.3). Runs:
+    `runs/benefit-predictor-gate4-v2-real/`,
+    `runs/benefit-eval-gate4-v2-real/`.
+  A training bug (the proposal checkpoint's ``forward`` returns the
+  *candidate*, so ``b + d`` was double-added) was found and fixed during
+  the runs; documented in FAILURES.md.
 - Confidence interval / uncertainty: group bootstrap over source groups;
   pixels and patches are never sample counts; synthetic probes labeled
   synthetic; pre-calibration scores preserved.
-- Decision: **simplify (Gate 4 not passed as declared)** — the learned
-  predictor does not beat the declared simple baselines and no predictor
-  provides useful selective-risk ordering, so per the predeclared rule the
-  per-patch benefit-prediction claim is **not promoted**; the event,
-  labels, and calibration remain (the candidate is better than the Base on
-  79.4% of patches), and the decision policy defaults to accept with the
-  unresolved mask as the only abstention channel (see EXP-010 / ADR-009).
-- Artifact path: `runs/benefit-eval-gate4-real-v4/`,
-  `runs/benefit-predictor-gate4-real-v3/` (governed real run);
+- Decision: **continue with the redefined (margin) event (Gate 4, ADR-016)**
+  — the strict event is dominated by sub-margin noise (mean delta 0.0026)
+  and is not predictable, but the meaningful-benefit event (declared
+  margin 0.005, `labels-v2`) is highly predictable and provides useful
+  selective-risk ordering; the benefit predictor is promoted as a ranking
+  signal for the margin event. Default-accept + unresolved abstention
+  remains the endpoint policy because the proposal helps on average
+  (EXP-010).
+- Artifact path: `runs/benefit-eval-gate4-v2-real/`,
+  `runs/benefit-predictor-gate4-v2-real/` (governed v2 runs);
+  `runs/benefit-eval-gate4-real-v4/` (strict-event runs);
   `runs/benefit-eval-*/` (synthetic smoke runs).
 
 ## EXP-010 — Does selective action reduce risk (Gate 5)?

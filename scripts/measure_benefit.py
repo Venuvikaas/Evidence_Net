@@ -73,6 +73,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--run-id", default=None)
     parser.add_argument("--out", default=REPO_ROOT / "runs", type=Path)
     parser.add_argument(
+        "--benefit-margin",
+        type=float,
+        default=0.005,
+        help="benefit requires this MAE improvement over Base (labels-v2; 0.0 = strict labels-v1)",
+    )
+    parser.add_argument(
         "--attention-checkpoint",
         default=REPO_ROOT
         / "runs"
@@ -310,7 +316,7 @@ def main() -> int:
         )
 
     val_labels = [
-        patch_benefit_labels(b, d, x)
+        patch_benefit_labels(b, d, x, margin=args.benefit_margin)
         for b, d, x in zip(val_bases, val_proposals, val_targets, strict=True)
     ]
     val_label_arrays = [np.asarray(label, dtype=np.float64) for label in val_labels]
@@ -365,7 +371,7 @@ def main() -> int:
             for y, b, d in zip(cal_inputs, cal_bases, cal_proposals, strict=True)
         ]
         cal_labels = [
-            np.asarray(patch_benefit_labels(b, d, x), dtype=np.float64)
+            np.asarray(patch_benefit_labels(b, d, x, margin=args.benefit_margin), dtype=np.float64)
             for b, d, x in zip(cal_bases, cal_proposals, cal_targets, strict=True)
         ]
         mapping = fit_calibration(
@@ -401,6 +407,8 @@ def main() -> int:
             "mode": "synthetic" if args.synthetic else "real",
             "evaluation_split": VALIDATION_SPLIT,
             "calibration_fit_split": CALIBRATION_SPLIT,
+            "labels_version": "labels-v2" if args.benefit_margin > 0.0 else "labels-v1",
+            "benefit_margin": args.benefit_margin,
             "n_samples": args.n_samples,
             "seed": args.seed,
             "predictor_checkpoint": str(args.predictor_checkpoint),

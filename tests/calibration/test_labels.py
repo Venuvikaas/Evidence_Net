@@ -52,6 +52,37 @@ def test_ties_are_not_beneficial() -> None:
     assert labels.sum() == 0
 
 
+def test_margin_rejects_sub_margin_improvement() -> None:
+    # The proposal improves every patch by a tiny amount (below the declared
+    # margin): with margin=0.005 no patch counts as beneficial (labels-v2).
+    # base MAE = |0.4-0.5| = 0.10; candidate MAE = |0.401-0.5| = 0.099;
+    # delta = 0.001 < 0.005 margin.
+    base = _grid(value=0.4)
+    target = _grid(value=0.5)
+    proposal = np.full((OUTPUT_GRID, OUTPUT_GRID), 0.001)  # sub-margin delta
+    strict = patch_benefit_labels(base, proposal, target, margin=0.0)
+    assert strict.sum() == PATCH_GRID * PATCH_GRID  # strictly beneficial
+    margin_labels = patch_benefit_labels(base, proposal, target, margin=0.005)
+    assert margin_labels.sum() == 0  # below the margin: not meaningful benefit
+
+
+def test_margin_keeps_meaningful_improvement() -> None:
+    # A large proposal improvement clears the margin: beneficial under
+    # labels-v2 as well.
+    base = _grid(value=0.3)
+    target = _grid(value=0.7)
+    proposal = np.full((OUTPUT_GRID, OUTPUT_GRID), 0.4)
+    labels = patch_benefit_labels(base, proposal, target, margin=0.005)
+    assert labels.sum() == PATCH_GRID * PATCH_GRID
+
+
+def test_margin_must_be_non_negative() -> None:
+    with pytest.raises(BenefitLabelsError, match="margin"):
+        patch_benefit_labels(
+            _grid(value=0.5), np.zeros((OUTPUT_GRID, OUTPUT_GRID)), _grid(value=0.5), margin=-1.0
+        )
+
+
 def test_region_beneficial_mixed_patch() -> None:
     # One patch is improved, the rest are harmed: exactly one label.
     # base = 0.5, target = 0.4: moving +0.1 pushes the candidate away from

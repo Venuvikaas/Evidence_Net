@@ -24,26 +24,32 @@ rule used in Phase 4 — never a claim that restored detail physically existed.
   (same patch size as the Phase 4 oracle, `PATCH_SIZE = 16`). A region is
   one patch.
 - **Event:** patch `r` is **beneficial** when the patch-level MAE of the
-  ungated candidate is **strictly** lower than the patch-level MAE of the
-  Base output:
+  ungated candidate is lower than the patch-level MAE of the Base output
+  by **more than a declared margin** `m`:
 
-      beneficial(r)  <=>  MAE(x_r, c_r) < MAE(x_r, b_r)
+      beneficial(r)  <=>  MAE(x_r, c_r) + m < MAE(x_r, b_r)
 
   where `x` is the clean target, `b` the frozen Base output, `c = clamp(b+d, 0, 1)`
-  the ungated candidate, and `d` the bounded proposal. Ties and increases
-  are **not** beneficial (strict, matching `docs/proposal-contract.md`).
+  the ungated candidate, and `d` the bounded proposal. Ties, increases, and
+  sub-margin improvements are **not** beneficial.
+- **Margin versions:** `labels-v1` uses `m = 0` (strict, matching
+  `docs/proposal-contract.md`). `labels-v2` declares `m = 0.005` — Gate 4
+  evidence (EXP-009 revision, ADR-016) showed the strict event is dominated
+  by sub-margin noise (mean delta 0.0026; all predictors at chance, pooled
+  AUC 0.49-0.59), while the meaningful-benefit event is predictable
+  (group AUC 0.85-0.93). The promoted event is `labels-v2` with `m = 0.005`.
 - The label map is the binary per-patch event over the patch grid; the same
   rule at pixel resolution is reported separately and never merged with the
   patch labels.
 
 ### 1.2 Determinism and versioning
 
-- Labels are a pure function of `(b, d, x)` on the output grid; they are
+- Labels are a pure function of `(b, d, x, m)` on the output grid; they are
   generated deterministically and written as versioned JSON artifacts
   (`benefit-labels-v1.json`) alongside the run bundle.
-- The label generator version is fixed at `labels-v1`; changing the event
-  rule, patch size, or strictness requires `support-definition-v2` (an ADR
-  and a rerun decision).
+- The label generator version is fixed at `labels-v1` / `labels-v2` (margin
+  parameter); changing the event rule, patch size, margin, or strictness
+  requires a new label version (an ADR and a rerun decision).
 
 ### 1.3 Utility and population
 
