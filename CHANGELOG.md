@@ -5,6 +5,31 @@ execution plan lives in `EXECUTION.md`.
 
 ## [Unreleased]
 
+### Added (Lane B, Phase 10 — Structural-Risk and Downstream Validation)
+- `structural-risk-v1` draft contract (`docs/contracts/structural-risk-v1.md`)
+  defining five **separate** threat-model evidence categories (candidate
+  manipulation, ambiguity, acquisition, natural failure, downstream) and the
+  hidden-test rule (definitions frozen, never trained on). Registered in the
+  contracts index as a lane-B draft.
+- Candidate manipulation suite (`src/evidence_net/stress_tests/structural.py`):
+  false-line, deletion, edge-shift, merge, split, false-periodicity,
+  defect-point with validated parameters.
+- Ambiguity suite (`ambiguity.py`): clean-candidate pairs with
+  near-identical observations (non-identifiable by construction).
+- Acquisition artifacts (`acquisition.py`): pre-inference degradations
+  (sensor noise, compression, hot pixels, downsampling).
+- Frozen hidden stress (`data/stress/hidden-stress-v1.json`) with
+  content-hash verification (`hidden_stress.py`), frozen natural failure
+  bank (`data/failures/natural-failures-v1.json`) curated into
+  `FAILURES.md`, and downstream task (`downstream.py`, `docs/downstream-validation.md`)
+  evaluated without co-training on the stress suite.
+- `scripts/measure_structural_risk.py` (synthetic smoke, CI-safe; real mode
+  on frozen Base/Proposal validation split) writing run bundles with the
+  hidden-stress hash pinned in the manifest.
+- Analytical tests in `tests/numerical/` (test_structural.py, test_ambiguity.py,
+  test_acquisition.py, test_downstream.py, test_stress_isolation.py)
+  covering all five evidence categories plus training isolation.
+
 ### Added (Lane B, Phase 9 — Distribution Familiarity and Shift)
 - `familiarity-v1` draft contract (`docs/contracts/familiarity-v1.md`):
   frozen 6-component feature representation on the input grid, reference

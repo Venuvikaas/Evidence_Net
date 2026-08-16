@@ -314,3 +314,43 @@ are written before examining final test results. The format is defined in
   are never sample counts; synthetic probes are labeled synthetic.
 - Decision: pending (Research Gate 8).
 - Artifact path: `runs/measure-familiarity-*/` (synthetic smoke runs).
+
+## EXP-008 — Do the five structural-risk evidence categories give the claimed downstream protection?
+- Question: Does the candidate manipulation suite (false-line, deletion,
+  edge-shift, merge, split, false-periodicity, defect-point), the ambiguity
+  suite, the acquisition artifact suite, the frozen natural failure bank,
+  and the frozen downstream task each provide **separate** evidence about
+  restoration behavior, and do they jointly support a structural-risk claim
+  without any single suite overclaiming — Research Gate 9?
+- Primary metric: per-category effect sizes (candidate manipulations:
+  downstream-measurement deltas per manipulation; ambiguity: observation vs
+  candidate MAE on non-identifiable pairs; acquisition: input deltas;
+  natural failures: count/severity of frozen bank cases; downstream:
+  measurement-fidelity error per output type with group bootstrap CIs).
+- Secondary diagnostics: manipulation vs measurement type cross-tables,
+  worst-case candidate effects, ambiguity pair residuals, per-artifact input
+  deltas, and the hidden-stress hash pinned in every run manifest
+  (`data/stress/hidden-stress-v1.json`).
+- Baselines: no candidate (base output only) vs candidate-modified output;
+  observation vs candidate on ambiguity pairs; base vs oracle-patch proxy
+  on the frozen downstream task.
+- Dataset manifest: `dataset-splits-v1.json` validation split for real mode;
+  synthetic probes are labeled synthetic and never used as scientific
+  evidence; `Test_NoisyLR/` untouched (hash-verified hidden stress).
+- Configs: `scripts/measure_structural_risk.py --synthetic` (harness smoke,
+  CI) and `--real` (frozen Base/Proposal checkpoints on validation split).
+- Acceptance rule (predeclared, Gate 9): **continue** if each of the five
+  categories produces evidence on its own terms (no cross-category
+  substitution), the hidden stress definitions remain frozen (hash match),
+  and the downstream task is evaluated without co-training on the stress
+  suite. **Redesign the affected suite** if a category is empty or its
+  effect cannot be measured.
+- Result: pending — machinery (structural.py, ambiguity.py, acquisition.py,
+  downstream.py, hidden_stress.py, natural-failures bank, tests, script) is
+  complete; the governed real run at Integration III decides the gate.
+  The synthetic smoke run validates all five categories end-to-end in CI.
+- Confidence interval / uncertainty: group bootstrap over samples; synthetic
+  probes labeled; ambiguity pairs are non-identifiable by construction, so
+  candidate vs observation MAE is reported, never judged as "truth".
+- Decision: pending (Research Gate 9).
+- Artifact path: `runs/structural-risk-*/` (synthetic smoke runs).

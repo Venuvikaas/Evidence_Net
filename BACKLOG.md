@@ -32,3 +32,17 @@ not interrupted unless new information invalidates its assumptions.
   false-warning cap mechanism. Real rare-valid cases (curated from frozen
   natural failures, Phase 10) will feed the gate. Familiarity integrates
   into warnings/abstention only after Gate 8 (Lane A policy).
+
+## Integration dependency (Lane B, Phase 10 -> Integration III)
+
+- EXP-008 (five structural-risk evidence categories, Gate 9) needs the
+  governed real run on the frozen validation split (Base/Proposal
+  checkpoints + oracle-patch proxy) to decide the gate. The candidate
+  suite, ambiguity suite, acquisition artifacts, frozen hidden stress
+  (`data/stress/hidden-stress-v1.json`), natural failure bank
+  (`data/failures/natural-failures-v1.json`), and downstream task
+  (`src/evidence_net/stress_tests/downstream.py`) are ready to consume;
+  the downstream task must never be co-trained on the stress suite.
+  Real-mode candidate/ambiguity/acquisition probes are labeled synthetic
+  where applicable; no hallucination-resistance claim follows from any
+  single suite.
