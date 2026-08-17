@@ -188,6 +188,20 @@ body.dark-theme {
   cursor: pointer;
 }
 
+/* Input image upload card */
+.upload-btn {
+  width: 100%;
+  font-size: 0.8rem;
+  padding: 8px 12px;
+}
+
+.upload-file-name {
+  font-family: var(--font-mono);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* Run status / error banners */
 .status-banner {
   display: flex;

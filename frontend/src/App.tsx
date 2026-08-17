@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Layers,
   Sliders,
@@ -12,6 +12,7 @@ import { RestorationWorkspace } from "./components/RestorationWorkspace";
 import { InterventionInspector } from "./components/InterventionInspector";
 import { ReliabilityWorkspace } from "./components/ReliabilityWorkspace";
 import { RestorationResponse, runRestorationInference } from "./api/client";
+import { UploadedImage, imageFileToGrayscale } from "./api/imageUpload";
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"workspace" | "intervention" | "reliability">("workspace");
@@ -20,6 +21,9 @@ export const App: React.FC = () => {
   const [runError, setRunError] = useState<string | null>(null);
   const [lastRunId, setLastRunId] = useState<string | null>(null);
   const [hoverPixel, setHoverPixel] = useState<{ x: number; y: number; values: Record<string, number> } | null>(null);
+  const [uploadedImage, setUploadedImage] = useState<UploadedImage | null>(null);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [activeLayers, setActiveLayers] = useState<Record<string, boolean>>({
     benefit: true,
@@ -30,11 +34,27 @@ export const App: React.FC = () => {
     unresolved: false,
   });
 
+  const handleFileSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    // Reset the input so selecting the same file again re-triggers onChange.
+    e.target.value = "";
+    if (!file) return;
+    setUploadError(null);
+    try {
+      const image = await imageFileToGrayscale(file);
+      setUploadedImage(image);
+    } catch (err) {
+      setUploadError(err instanceof Error ? err.message : String(err));
+    }
+  };
+
   const handleRunInference = async () => {
     setLoading(true);
     setRunError(null);
     try {
-      const data = await runRestorationInference();
+      const data = await runRestorationInference(
+        uploadedImage ? uploadedImage.values : undefined
+      );
       setRestorationData(data);
       setLastRunId(data.run_id);
     } catch (e) {
@@ -119,6 +139,50 @@ export const App: React.FC = () => {
       <div className="app-body">
         {/* Left Sidebar Control Panel */}
         <aside className="sidebar-panel">
+          <div>
+            <h3 className="section-title">Input Image</h3>
+            <div className="control-card">
+              {uploadedImage ? (
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: "0.82rem", color: "var(--accent-cyan)" }}>
+                    <CheckCircle size={14} />
+                    <span className="upload-file-name">{uploadedImage.name}</span>
+                  </div>
+                  <div style={{ fontSize: "0.78rem", color: "var(--text-dim)" }}>
+                    {uploadedImage.width}×{uploadedImage.height} grayscale — the next run
+                    will restore this image.
+                  </div>
+                  <button className="btn-secondary upload-btn" onClick={() => setUploadedImage(null)}>
+                    Reset to demo input
+                  </button>
+                </div>
+              ) : (
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  <div style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
+                    Upload your own image (PNG/JPG/…) or keep the built-in demo input. Images
+                    are converted to grayscale and downscaled to ≤512px client-side.
+                  </div>
+                  <button className="btn-secondary upload-btn" onClick={() => fileInputRef.current?.click()}>
+                    <Crosshair size={14} />
+                    Upload Image
+                  </button>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={handleFileSelected}
+                  />
+                  {uploadError && (
+                    <div style={{ fontSize: "0.78rem", color: "var(--accent-rose)" }}>
+                      Could not read image: {uploadError}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+
           <div>
             <h3 className="section-title">Reliability Layers</h3>
             <div className="control-card">
