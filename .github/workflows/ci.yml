@@ -17,7 +17,7 @@ jobs:
       - name: Install package and dev tools
         run: |
           pip install torch --index-url https://download.pytorch.org/whl/cpu
-          pip install -e ".[dev]"
+          pip install -e ".[dev,deploy]"
 
       - name: Lint
         run: ruff check .

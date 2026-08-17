@@ -52,7 +52,31 @@
 | 9 (structural) | **Continue** | EXP-008, ADR-014, `runs/structural-gate9-real/` |
 | 10 (human interpretation) | **Pending participants** — protocol + capture ready; no participants available | EXP-011, ADR-015 |
 
-## 5. Published failures, negative results, and limitations
+## 5. Phase 15 deployment parity (ONNX export)
+
+- **Exported components:** the two promoted model heads only — Base
+  Reconstruction (`base.onnx`) and the bounded Detail Proposal head
+  (`proposal.onnx`), via `deploy/export_onnx.py`, on the frozen
+  128x128 -> 256x256 grid with dynamic batch/spatial axes.
+- **Decision parity validated** (`tests/decision_parity/test_onnx_parity.py`)
+  between PyTorch and ONNX Runtime within 1e-5:
+  - **tensor parity**: `b`, `d`, candidate, and final outputs match;
+  - **spatial parity**: all outputs are 256x256 (frozen 2x up-scale);
+  - **ranking parity**: the residual-magnitude benefit score map computed
+    from ONNX tensors matches the PyTorch one;
+  - **action parity**: the promoted decision gate map (default-accept with
+    unresolved abstention, ADR-010) matches;
+  - **abstention parity**: the unresolved-region mask matches.
+- **Calibration parity**: honestly **not-defined** — the promoted pipeline
+  records `calibration-v1` as a version but never serves a calibration
+  tensor, so there is nothing to compare at inference time (documented in
+  the parity test).
+- **Integrity:** export fails loudly instead of writing a placeholder
+  asset; the exported graphs are re-loaded and verified in the test.
+- **TensorRT:** not added — deployment requirements do not justify it; the
+  parity gate runs on CPU ONNX Runtime in CI (`.[dev,deploy]` extra).
+
+## 6. Published failures, negative results, and limitations
 
 - **Benefit prediction is not discriminative** on the frozen event: all
   predictors at chance (pooled AUC 0.48–0.59). The support-aware
@@ -70,7 +94,7 @@
   double-adding `b + d`) was found and fixed during the governed runs;
   documented in FAILURES.md.
 
-## 6. Integrity statement
+## 7. Integrity statement
 
 - No post-evaluation tuning was performed after the frozen candidate was
   set.

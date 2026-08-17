@@ -22,7 +22,21 @@ This document specifies runtime container requirements, hardware recommendations
 
 ---
 
-## 3. Container & Memory Profile
+## 3. ONNX decision parity (validated)
+
+- **Exported components:** the two promoted heads only — Base
+  Reconstruction and the bounded Detail Proposal — via
+  `deploy/export_onnx.py`, on the frozen 128x128 -> 256x256 grid.
+- **Parity gate** (`tests/decision_parity/test_onnx_parity.py`) compares
+  PyTorch vs ONNX Runtime within 1e-5 across tensor, spatial, ranking,
+  action, and abstention outputs. Calibration parity is recorded as
+  `not-defined` (the service never serves a calibration tensor).
+- Export fails loudly rather than writing placeholder assets; graphs are
+  re-loaded and verified.
+
+---
+
+## 4. Container & Memory Profile
 
 - **Base Container Footprint:** ~350 MB RAM
 - **Model Graph Memory:** Base (~45 MB), Detail Proposal (~28 MB)

@@ -39,6 +39,14 @@ def check_release_readiness() -> int:
     if not dockerfile.is_file() or not compose.is_file():
         failures.append("Deployment files deploy/Dockerfile or deploy/docker-compose.yml missing")
 
+    # 4. Check Phase 15 ONNX export + decision-parity gate
+    export_module = REPO_ROOT / "deploy" / "export_onnx.py"
+    parity_test = REPO_ROOT / "tests" / "decision_parity" / "test_onnx_parity.py"
+    if not export_module.is_file():
+        failures.append("Phase 15 export module deploy/export_onnx.py missing")
+    if not parity_test.is_file():
+        failures.append("Phase 15 parity test tests/decision_parity/test_onnx_parity.py missing")
+
     if failures:
         print(f"Release Readiness FAILED ({len(failures)} issue(s)):", file=sys.stderr)
         for msg in failures:

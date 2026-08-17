@@ -463,3 +463,49 @@ superseded`.
   untriggered for familiarity.
 - Contracts or experiments affected: `familiarity-v1` (superseded),
   `familiarity-v2` (new), EXP-007, `configs/modality/familiarity-v2.yaml`.
+
+## ADR-018 — Phase 15 ONNX export and decision-parity validation
+
+- Status: accepted
+- Context: Phase 15 prescribes exporting the promoted model components to
+  ONNX and validating decision parity across tensor, spatial, ranking,
+  calibration, action, and abstention outputs. The pre-existing
+  `deploy/export_onnx.py` exported **default-architecture** models (never
+  the promoted checkpoints) and, on any export failure, wrote a fake
+  placeholder asset (`ONNX_DUMMY_MODEL_GRAPH_*` bytes) that is not a valid
+  ONNX graph — violating the project's "UI/artifacts show only
+  backend-computed real values" integrity rule. The parity test
+  (`tests/decision_parity/test_onnx_parity.py`) covered tensor parity only,
+  silently skipped when `onnxruntime` was absent, and never exercised the
+  promoted weights.
+- Decision: rewrite the export to load the **promoted frozen checkpoints**
+  (`train-base-gate2`, `train-proposal-gate3v2`) through the model factory,
+  fail loudly on export errors instead of writing placeholders, verify the
+  graphs load via `onnx`, and expand the parity test to full decision
+  parity on the frozen 128x128 -> 256x256 grid: tensor (base/proposal/
+  candidate/final), spatial (256x256 contract), ranking (benefit score
+  map), action (decision gate map), and abstention (unresolved mask).
+  Calibration parity is recorded honestly as `not-defined` — the service
+  records `calibration-v1` as a version but never serves a calibration
+  tensor, so there is nothing to compare at inference time. `onnx` and
+  `onnxruntime` move into a new `deploy` optional extra installed by the
+  CI quality job so the parity gate actually runs there (falling back to
+  default architectures when checkpoints are absent, as in CI).
+- Evidence: `deploy/export_onnx.py`, `tests/decision_parity/
+  test_onnx_parity.py` (3 tests, all passing locally with the promoted
+  checkpoints within 1e-5), release report §5.
+- Alternatives rejected: writing a valid-but-untrained placeholder model
+  (ships non-functional weights); skipping the parity gate when
+  `onnxruntime` is missing in CI (the gate would silently never run);
+  exporting the fused `BoundedDetailProposal` container instead of the two
+  promoted heads (the container re-embeds the frozen Base; the heads are
+  the deployed components).
+- Consequences: `deploy/export_onnx.py` is the single ONNX export path for
+  the promoted models; `release_check.py` now verifies the export module
+  and parity test exist; TensorRT remains out of scope (not justified by
+  deployment requirements) with the parity gate running on CPU ONNX
+  Runtime in CI.
+- Contracts or experiments affected: Phase 15 deploy gate,
+  `deploy/export_onnx.py`, `tests/decision_parity/test_onnx_parity.py`,
+  `scripts/release_check.py`, `pyproject.toml` (`deploy` extra),
+  `docs/release-report-v1.md` §5.
