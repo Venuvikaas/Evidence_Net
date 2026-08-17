@@ -17,15 +17,31 @@ export interface UploadedImage {
   values: number[][];
 }
 
+export interface GrayscaleOptions {
+  maxDim?: number;
+  /** Exact output size (e.g. convert a target image to the input's grid so
+   * pixel metrics are computed on aligned arrays). */
+  width?: number;
+  height?: number;
+}
+
 export async function imageFileToGrayscale(
   file: File,
-  maxDim: number = MAX_UPLOAD_DIM
+  options: GrayscaleOptions = {}
 ): Promise<UploadedImage> {
   const bitmap = await createImageBitmap(file);
   try {
-    const scale = Math.min(1, maxDim / Math.max(bitmap.width, bitmap.height));
-    const width = Math.max(1, Math.round(bitmap.width * scale));
-    const height = Math.max(1, Math.round(bitmap.height * scale));
+    let width: number;
+    let height: number;
+    if (options.width && options.height) {
+      width = options.width;
+      height = options.height;
+    } else {
+      const maxDim = options.maxDim ?? MAX_UPLOAD_DIM;
+      const scale = Math.min(1, maxDim / Math.max(bitmap.width, bitmap.height));
+      width = Math.max(1, Math.round(bitmap.width * scale));
+      height = Math.max(1, Math.round(bitmap.height * scale));
+    }
 
     const canvas = document.createElement("canvas");
     canvas.width = width;

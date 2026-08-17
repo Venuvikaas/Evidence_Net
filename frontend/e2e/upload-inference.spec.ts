@@ -16,8 +16,8 @@ test("uploaded image is used for the run and the workspace updates", async ({
 
   await page.goto("/");
 
-  // Upload through the hidden file input.
-  await page.setInputFiles('input[type="file"]', {
+  // Upload through the hidden input-image file input.
+  await page.setInputFiles('input[aria-label="Upload input image"]', {
     name: "checker-16.bmp",
     mimeType: "image/bmp",
     buffer: bmp,
@@ -28,10 +28,12 @@ test("uploaded image is used for the run and the workspace updates", async ({
 
   await page.getByRole("button", { name: "Run Unified Inference" }).click();
 
-  // The run completes against the uploaded input...
+  // The run completes against the uploaded input, and the success banner
+  // names the restored file.
   await expect(page.getByText(/Run eval-\d+.* completed/)).toBeVisible({
     timeout: 90_000,
   });
+  await expect(page.locator(".status-success")).toContainText("checker-16.bmp");
 
   // ...and the workspace redraws with the uploaded image's artifacts instead
   // of the synthetic 64x64 demo grid. The grid size depends on whether the

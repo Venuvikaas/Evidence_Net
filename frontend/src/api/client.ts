@@ -45,7 +45,9 @@ export async function fetchHealth(): Promise<HealthResponse> {
 
 export async function runRestorationInference(
   inputValues?: number[][],
-  hasTarget = false
+  hasTarget = false,
+  targetValues?: number[][],
+  shape?: number[]
 ): Promise<RestorationResponse> {
   const res = await fetch(`${API_BASE}/restoration`, {
     method: "POST",
@@ -53,6 +55,8 @@ export async function runRestorationInference(
     body: JSON.stringify({
       input_values: inputValues,
       has_target: hasTarget,
+      target_values: targetValues,
+      shape,
     }),
   });
   if (!res.ok) {

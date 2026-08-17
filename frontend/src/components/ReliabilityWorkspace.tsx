@@ -6,6 +6,36 @@ interface ReliabilityWorkspaceProps {
   restorationData: RestorationResponse | null;
 }
 
+function renderMetrics(metrics: Record<string, unknown>) {
+  const rows: Array<[string, string]> = [
+    ["PSNR", formatPsnr(metrics.psnr)],
+    ["SSIM", formatNumber(metrics.ssim, 4)],
+    ["MAE", formatNumber(metrics.mae, 4)],
+    ["Edge displacement", formatNumber(metrics.edge_displacement_px, 2) + " px"],
+    ["Structural error", formatNumber(metrics.structural_error, 4)],
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 6, fontFamily: "var(--font-mono)", fontSize: "0.8rem" }}>
+      {rows.map(([label, value]) => (
+        <div key={label} style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
+          <span style={{ color: "var(--text-dim)" }}>{label}</span>
+          <span style={{ color: "var(--accent-cyan)", fontWeight: 600 }}>{value}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function formatNumber(value: unknown, digits: number): string {
+  if (typeof value !== "number" || !Number.isFinite(value)) return "∞";
+  return value.toFixed(digits);
+}
+
+function formatPsnr(value: unknown): string {
+  if (typeof value !== "number" || !Number.isFinite(value)) return "∞ dB";
+  return `${value.toFixed(2)} dB`;
+}
+
 export const ReliabilityWorkspace: React.FC<ReliabilityWorkspaceProps> = ({ restorationData }) => {
   const handleRecordReview = async (action: string) => {
     if (!restorationData) return;
@@ -48,6 +78,26 @@ export const ReliabilityWorkspace: React.FC<ReliabilityWorkspaceProps> = ({ rest
           </button>
         </div>
       </div>
+
+      {/* Restoration Metrics (computed when a target image was uploaded) */}
+      {restorationData && Object.keys(restorationData.metrics).length > 0 && (
+        <div className="control-card">
+          <h3 className="section-title">Restoration Metrics (vs uploaded target)</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 12 }}>
+            {Object.entries(restorationData.metrics).map(([output, metrics]) => (
+              <div
+                key={output}
+                style={{ background: "rgba(0,0,0,0.3)", padding: "12px 14px", borderRadius: 6, border: "1px solid var(--border-color)" }}
+              >
+                <div style={{ fontSize: "0.85rem", fontWeight: 700, textTransform: "capitalize", marginBottom: 8 }}>
+                  {output} output
+                </div>
+                {renderMetrics(metrics as Record<string, unknown>)}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Provenance Grid */}
       <div className="control-card">

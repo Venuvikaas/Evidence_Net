@@ -188,6 +188,36 @@ body.dark-theme {
   cursor: pointer;
 }
 
+/* Drag-and-drop upload overlay */
+.app-body {
+  position: relative;
+}
+
+.app-body.drag-active .sidebar-panel,
+.app-body.drag-active .workspace-grid {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.drop-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  background: rgba(11, 15, 25, 0.6);
+  border: 2px dashed var(--primary);
+  border-radius: 12px;
+  margin: 12px;
+  backdrop-filter: blur(4px);
+}
+
 /* Input image upload card */
 .upload-btn {
   width: 100%;
@@ -223,6 +253,11 @@ body.dark-theme {
 .status-error {
   background: rgba(244, 63, 94, 0.12);
   color: #fda4af;
+}
+
+.status-banner .banner-filename {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-main);
 }
 
 .status-success {
