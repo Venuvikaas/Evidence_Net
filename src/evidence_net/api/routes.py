@@ -36,9 +36,101 @@ router = APIRouter()
 MAX_UPLOAD_SIZE = 10 * 1024 * 1024  # 10 MB limit
 ALLOWED_EXTENSIONS = {".npy", ".npz", ".png", ".jpg", ".jpeg"}
 
+# Repo root (this file lives at src/evidence_net/api/routes.py).
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+
+# Run bundles always live in the repository's runs/ directory so artifact
+# retrieval works no matter which working directory the server is started
+# from (IDE/"Run" buttons frequently use a different CWD).
+RUNS_DIR = REPO_ROOT / "runs"
+
+_pipeline_cache: UnifiedInferencePipeline | None = None
+_pipeline_loaded: bool = False
+
+
+def _get_pipeline() -> UnifiedInferencePipeline:
+    """Return a pipeline with the frozen promoted checkpoints loaded.
+
+    Falls back to a no-model pipeline (input passthrough) when the
+    checkpoints are absent (e.g. CI). The frozen checkpoints use
+    16-channel architectures, so they are loaded through the model factory
+    rather than the pipeline's default-architecture loader.
+    """
+    global _pipeline_cache, _pipeline_loaded
+    if _pipeline_loaded:
+        assert _pipeline_cache is not None
+        return _pipeline_cache
+    base_path = REPO_ROOT / "checkpoints" / "train-base-gate2" / "best.pt"
+    proposal_path = REPO_ROOT / "checkpoints" / "train-proposal-gate3v2" / "best.pt"
+    if not (base_path.is_file() and proposal_path.is_file()):
+        _pipeline_loaded = True
+        _pipeline_cache = UnifiedInferencePipeline()
+        return _pipeline_cache
+    try:
+        import torch
+
+        from evidence_net.models.base import BaseReconstruction
+        from evidence_net.models.factory import build_model
+        from evidence_net.models.proposal import BoundedDetailProposal, DetailProposer
+        from evidence_net.training.config import ModelConfig
+
+        def _load(checkpoint: Path) -> torch.nn.Module:
+            payload = torch.load(checkpoint, map_location="cpu", weights_only=False)
+            config = ModelConfig(
+                name=payload["config"]["model"]["name"],
+                hidden_channels=payload["config"]["model"]["hidden_channels"],
+                depth=payload["config"]["model"]["depth"],
+                amplitude=payload["config"]["model"].get("amplitude", 0.1),
+            )
+            model = build_model(config)
+            model.load_state_dict(payload["model_state_dict"])
+            model.eval()
+            return model
+
+        base = _load(base_path)
+        proposal = _load(proposal_path)
+        if not isinstance(base, BaseReconstruction) or not isinstance(
+            proposal, BoundedDetailProposal
+        ):
+            raise TypeError("unexpected promoted checkpoint architecture")
+        proposer = proposal.proposer
+        if not isinstance(proposer, DetailProposer):
+            raise TypeError("promoted proposal checkpoint has no DetailProposer")
+        _pipeline_cache = UnifiedInferencePipeline(base_model=base, proposal_model=proposer)
+    except Exception:
+        # Never take the API down because checkpoints failed to load; fall
+        # back to the input-passthrough pipeline.
+        _pipeline_cache = UnifiedInferencePipeline()
+    finally:
+        _pipeline_loaded = True
+    assert _pipeline_cache is not None
+    return _pipeline_cache
+
 
 def utc_now_str() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _default_demo_input() -> np.ndarray:
+    """Structured 128x128 demo input: a corrupted line pattern.
+
+    A ring/stripe structure on a dark background with additive noise, so
+    the Base must reconstruct structure and the proposal has detail to
+    offer — a meaningful restoration to show in a demo.
+    """
+    rng = np.random.default_rng(42)
+    grid = np.full((128, 128), 0.08, dtype=np.float32)
+    yy, xx = np.mgrid[0:128, 0:128]
+    dist = np.sqrt((xx - 64) ** 2 + (yy - 64) ** 2)
+    # A bright ring plus a few radial spokes (structure the Base must find).
+    ring = (dist > 30) & (dist < 46)
+    spokes = (np.abs(xx - 64) % 12 == 0) | (np.abs(yy - 64) % 12 == 0)
+    structure = ring | spokes
+    grid[structure] = 0.85
+    # Degradation: additive noise and a mild blur-like corruption.
+    noise = rng.normal(0.0, 0.06, size=grid.shape).astype(np.float32)
+    grid = np.clip(grid + noise, 0.0, 1.0)
+    return grid[np.newaxis, ...]  # (1, 128, 128)
 
 
 @router.get("/health", response_model=HealthResponse)
@@ -71,9 +163,7 @@ def run_restoration(req: RestorationRequest) -> RestorationResponse | JSONRespon
     """Run unified sample restoration inference and write run bundle."""
     try:
         if req.input_values is None:
-            # Default smoke sample if none provided
-            rng = np.random.default_rng(42)
-            inp_arr = rng.uniform(0.0, 1.0, size=(1, 32, 32)).astype(np.float32)
+            inp_arr = _default_demo_input()
         else:
             flat = np.array(req.input_values, dtype=np.float32)
             if req.shape:
@@ -86,11 +176,12 @@ def run_restoration(req: RestorationRequest) -> RestorationResponse | JSONRespon
             flat_tgt = np.array(req.target_values, dtype=np.float32)
             tgt_arr = flat_tgt.reshape(inp_arr.shape) if req.shape else flat_tgt
 
-        pipeline = UnifiedInferencePipeline()
+        pipeline = _get_pipeline()
         result = pipeline.run_sample(
             input_tensor=inp_arr,
             target_tensor=tgt_arr,
             optional_tensors=req.optional_fields,
+            runs_dir=RUNS_DIR,
         )
 
         return RestorationResponse(
@@ -116,7 +207,7 @@ def run_restoration(req: RestorationRequest) -> RestorationResponse | JSONRespon
 @router.get("/restoration/{run_id}/status")
 def get_restoration_status(run_id: str) -> dict[str, Any]:
     """Check restoration run status and list available artifacts."""
-    run_dir = Path("runs") / run_id
+    run_dir = RUNS_DIR / run_id
     if not run_dir.is_dir():
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -137,14 +228,35 @@ def get_restoration_status(run_id: str) -> dict[str, Any]:
     }
 
 
-@router.get("/restoration/{run_id}/artifacts/{artifact_name}")
-def get_restoration_artifact(run_id: str, artifact_name: str) -> FileResponse:
-    """Download an artifact file from a run bundle."""
-    path = Path("runs") / run_id / "artifacts" / artifact_name
+@router.get("/restoration/{run_id}/artifacts/{artifact_name}", response_model=None)
+def get_restoration_artifact(
+    run_id: str,
+    artifact_name: str,
+    format: str = "npy",  # noqa: A002
+) -> FileResponse | JSONResponse:
+    """Download an artifact from a run bundle (npy bytes or JSON values)."""
+    path = RUNS_DIR / run_id / "artifacts" / artifact_name
     if not path.is_file():
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Artifact '{artifact_name}' not found for run '{run_id}'",
+        )
+    if format == "json":
+        array = np.load(path)
+        # Downsample large grids to 128x128 for the review UI payload.
+        arr = np.asarray(array, dtype=np.float32)
+        if arr.ndim == 3 and arr.shape[0] == 1:
+            arr = arr[0]
+        if arr.ndim == 2 and arr.shape[0] > 128:
+            step = max(1, arr.shape[0] // 128)
+            arr = arr[::step, ::step]
+        return JSONResponse(
+            {
+                "name": artifact_name,
+                "dtype": str(np.asarray(array).dtype),
+                "shape": list(np.asarray(array).shape),
+                "values": arr.astype(float).tolist(),
+            }
         )
     return FileResponse(path, filename=artifact_name)
 
@@ -156,7 +268,7 @@ def run_comparison(req: ComparisonRequest) -> ComparisonResponse:
     metrics_summary: dict[str, Any] = {}
 
     for rid in req.run_ids:
-        metrics_file = Path("runs") / rid / "metrics.json"
+        metrics_file = RUNS_DIR / rid / "metrics.json"
         if metrics_file.is_file():
             import json
 

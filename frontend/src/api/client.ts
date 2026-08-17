@@ -79,3 +79,21 @@ export async function recordReviewEvent(
   if (!res.ok) throw new Error("Failed to record review event");
   return res.json();
 }
+
+export interface ArtifactPayload {
+  name: string;
+  dtype: string;
+  shape: number[];
+  values: number[][];
+}
+
+export async function fetchArtifact(
+  runId: string,
+  artifactName: string
+): Promise<ArtifactPayload> {
+  const res = await fetch(
+    `${API_BASE}/restoration/${runId}/artifacts/${artifactName}?format=json`
+  );
+  if (!res.ok) throw new Error(`Failed to fetch artifact ${artifactName}`);
+  return res.json();
+}

@@ -188,6 +188,34 @@ body.dark-theme {
   cursor: pointer;
 }
 
+/* Run status / error banners */
+.status-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  font-size: 0.82rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.status-banner code {
+  font-family: var(--font-mono);
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.status-error {
+  background: rgba(244, 63, 94, 0.12);
+  color: #fda4af;
+}
+
+.status-success {
+  background: rgba(16, 185, 129, 0.1);
+  color: #6ee7b7;
+}
+
 /* Workspace Canvas Grid */
 .workspace-grid {
   flex: 1;

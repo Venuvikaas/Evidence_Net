@@ -95,6 +95,37 @@ CI runs lint, format, type checks, tests, environment check, smoke
 pipelines, and the final-inference smoke on every push
 ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)).
 
+## Running the review UI
+
+The technical review UI needs **both** the FastAPI backend and the Vite
+frontend. The one-command launcher starts both and waits until they are
+healthy:
+
+```bash
+bash scripts/demo_run.sh
+```
+
+Then open <http://localhost:3000> and click **Run Unified Inference**. The
+workspace loads the frozen Base + Proposal checkpoints and draws the real
+restored artifacts for the demo input. Press `Ctrl+C` in the launcher to
+stop both servers (logs: `/tmp/evidence_api.log`, `/tmp/evidence_vite.log`).
+
+To run the two servers manually instead:
+
+```bash
+# Terminal 1 — backend (must be run from the repository root so run
+# bundles land in runs/)
+python -m uvicorn evidence_net.api.app:app --host 127.0.0.1 --port 8000
+
+# Terminal 2 — frontend
+cd frontend && npm install && npm run dev
+```
+
+> If the API is not reachable when you click Run, the UI now shows a
+> visible error banner instead of silently doing nothing. Run bundles are
+> always written to and read from `runs/` at the repository root,
+> regardless of the working directory the API is started from.
+
 ## Repository layout
 
 ```text

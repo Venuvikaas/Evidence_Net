@@ -6,6 +6,7 @@ import {
   Play,
   Crosshair,
   CheckCircle,
+  AlertCircle,
 } from "lucide-react";
 import { RestorationWorkspace } from "./components/RestorationWorkspace";
 import { InterventionInspector } from "./components/InterventionInspector";
@@ -16,6 +17,8 @@ export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"workspace" | "intervention" | "reliability">("workspace");
   const [restorationData, setRestorationData] = useState<RestorationResponse | null>(null);
   const [loading, setLoading] = useState(false);
+  const [runError, setRunError] = useState<string | null>(null);
+  const [lastRunId, setLastRunId] = useState<string | null>(null);
   const [hoverPixel, setHoverPixel] = useState<{ x: number; y: number; values: Record<string, number> } | null>(null);
 
   const [activeLayers, setActiveLayers] = useState<Record<string, boolean>>({
@@ -29,11 +32,22 @@ export const App: React.FC = () => {
 
   const handleRunInference = async () => {
     setLoading(true);
+    setRunError(null);
     try {
       const data = await runRestorationInference();
       setRestorationData(data);
+      setLastRunId(data.run_id);
     } catch (e) {
-      console.warn("API offline, using synthetic inference state");
+      // Surface the failure instead of silently keeping the synthetic demo:
+      // a silent catch is exactly what made the button appear to do nothing.
+      console.warn("API offline, using synthetic inference state", e);
+      setRestorationData(null);
+      setLastRunId(null);
+      setRunError(
+        "The EVIDENCE-Net API is not reachable, so the workspace keeps the synthetic demo. " +
+          "Start the backend from the repository root (e.g. `python -m uvicorn evidence_net.api.app:app " +
+          "--port 8000` or `bash scripts/demo_run.sh`), then click Run again."
+      );
     } finally {
       setLoading(false);
     }
@@ -83,6 +97,23 @@ export const App: React.FC = () => {
           {loading ? "Executing Pipeline..." : "Run Unified Inference"}
         </button>
       </header>
+
+      {/* Run status / error banner */}
+      {runError && (
+        <div className="status-banner status-error">
+          <AlertCircle size={16} />
+          <span>{runError}</span>
+        </div>
+      )}
+      {!runError && lastRunId && (
+        <div className="status-banner status-success">
+          <CheckCircle size={16} />
+          <span>
+            Run <code>{lastRunId}</code> completed — the workspace now shows the real restored
+            artifacts from the frozen Base + Proposal checkpoints.
+          </span>
+        </div>
+      )}
 
       {/* Body Area */}
       <div className="app-body">
