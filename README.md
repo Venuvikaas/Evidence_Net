@@ -126,6 +126,23 @@ cd frontend && npm install && npm run dev
 > always written to and read from `runs/` at the repository root,
 > regardless of the working directory the API is started from.
 
+### Frontend end-to-end test
+
+A Playwright test drives the real UI against the real backend: it starts the
+API and the Vite dev server, clicks **Run Unified Inference**, and asserts
+that the workspace redraws its canvases with the run's actual artifacts
+(success banner, `128x128` grid label, and changed canvas pixels).
+
+```bash
+cd frontend
+npm install
+npm run test:e2e            # or: npx playwright test
+```
+
+The config uses your locally installed Chrome, so no browser download is
+needed. On machines without Chrome, run `npx playwright install chromium`
+once and remove `channel: "chrome"` from `frontend/playwright.config.ts`.
+
 ## Repository layout
 
 ```text
