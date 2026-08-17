@@ -139,9 +139,16 @@ npm install
 npm run test:e2e            # or: npx playwright test
 ```
 
-The config uses your locally installed Chrome, so no browser download is
-needed. On machines without Chrome, run `npx playwright install chromium`
-once and remove `channel: "chrome"` from `frontend/playwright.config.ts`.
+Locally the config uses your installed Chrome, so no browser download is
+needed; on machines without Chrome, run `npx playwright install chromium`
+once. In CI (GitHub Actions, `.github/workflows/ci.yml`) the test runs in
+a dedicated `e2e` job with Playwright's bundled Chromium.
+
+```bash
+# The equivalent manual server setup, if you prefer to run servers yourself:
+python -m uvicorn evidence_net.api.app:app --host 127.0.0.1 --port 8000
+cd frontend && npm run dev
+```
 
 ## Repository layout
 

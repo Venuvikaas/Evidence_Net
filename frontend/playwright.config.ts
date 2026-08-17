@@ -35,10 +35,14 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      // Use the locally installed Google Chrome so no browser download is
-      // needed on developer machines; on machines without Chrome, run
-      // `npx playwright install chromium` and drop the channel below.
-      use: { ...devices["Desktop Chrome"], channel: "chrome" },
+      // Locally, use the installed Google Chrome so no browser download is
+      // needed on developer machines. In CI (GitHub Actions), fall back to
+      // Playwright's bundled Chromium, which the workflow installs via
+      // `npx playwright install --with-deps chromium`.
+      use: {
+        ...devices["Desktop Chrome"],
+        ...(process.env.CI ? {} : { channel: "chrome" }),
+      },
     },
   ],
   webServer: [
