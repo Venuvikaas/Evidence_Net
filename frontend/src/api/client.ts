@@ -101,3 +101,9 @@ export async function fetchArtifact(
   if (!res.ok) throw new Error(`Failed to fetch artifact ${artifactName}`);
   return res.json();
 }
+
+export async function fetchFrozenData(endpoint: "failures" | "stress-definitions"): Promise<any> {
+  const res = await fetch(`${API_BASE}/${endpoint}`);
+  if (!res.ok) throw new Error(`Failed to fetch ${endpoint}`);
+  return res.json();
+}

@@ -10,7 +10,7 @@ governed run bundles.
 from __future__ import annotations
 
 import hashlib
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -166,6 +166,7 @@ class UnifiedInferencePipeline:
         run_id: str | None = None,
         optional_tensors: Mapping[str, np.ndarray] | None = None,
         decision_mask: np.ndarray | None = None,
+        optional_tensors_fn: Callable[[dict[str, np.ndarray]], dict[str, np.ndarray]] | None = None,
     ) -> UnifiedInferenceResult:
         """Run single-sample inference, save arrays, compute contract metadata, write run bundle."""
         rid = run_id or new_run_id("eval")
@@ -270,6 +271,10 @@ class UnifiedInferencePipeline:
 
         # Save optional tensors or mark "not-defined"
         opts = dict(optional_tensors or {})
+        if optional_tensors_fn is not None:
+            # Run-level diagnostics computed from this sample's own tensors
+            # (e.g. benefit ranking, decision map, unresolved mask).
+            opts.update(optional_tensors_fn(tensor_dict))
         if decision_mask is not None and "decision_map.npy" not in opts:
             opts["decision_map.npy"] = decision_mask
 

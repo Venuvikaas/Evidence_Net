@@ -7,15 +7,20 @@ import {
   Crosshair,
   CheckCircle,
   AlertCircle,
+  AlertTriangle,
 } from "lucide-react";
 import { RestorationWorkspace } from "./components/RestorationWorkspace";
 import { InterventionInspector } from "./components/InterventionInspector";
 import { ReliabilityWorkspace } from "./components/ReliabilityWorkspace";
+import { PolicyExplorer } from "./components/PolicyExplorer";
+import { FailureBrowser } from "./components/FailureBrowser";
 import { RestorationResponse, runRestorationInference } from "./api/client";
 import { UploadedImage, imageFileToGrayscale } from "./api/imageUpload";
 
 export const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<"workspace" | "intervention" | "reliability">("workspace");
+  const [activeTab, setActiveTab] = useState<
+    "workspace" | "intervention" | "reliability" | "policy" | "failures"
+  >("workspace");
   const [restorationData, setRestorationData] = useState<RestorationResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [runError, setRunError] = useState<string | null>(null);
@@ -204,6 +209,22 @@ export const App: React.FC = () => {
           >
             <ShieldCheck size={16} />
             Reliability & Provenance
+          </button>
+
+          <button
+            className={`tab-btn ${activeTab === "policy" ? "active" : ""}`}
+            onClick={() => setActiveTab("policy")}
+          >
+            <Sliders size={16} />
+            Policy Explorer
+          </button>
+
+          <button
+            className={`tab-btn ${activeTab === "failures" ? "active" : ""}`}
+            onClick={() => setActiveTab("failures")}
+          >
+            <AlertTriangle size={16} />
+            Failure Browser
           </button>
         </nav>
 
@@ -421,11 +442,20 @@ export const App: React.FC = () => {
           />
         )}
 
-        {activeTab === "intervention" && <InterventionInspector />}
+        {activeTab === "intervention" && (
+          <InterventionInspector
+            restorationData={restorationData}
+            onExplorePolicy={() => setActiveTab("policy")}
+          />
+        )}
 
         {activeTab === "reliability" && (
           <ReliabilityWorkspace restorationData={restorationData} />
         )}
+
+        {activeTab === "policy" && <PolicyExplorer restorationData={restorationData} />}
+
+        {activeTab === "failures" && <FailureBrowser />}
       </div>
     </div>
   );

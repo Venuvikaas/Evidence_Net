@@ -15,6 +15,7 @@ import numpy as np
 from fastapi import APIRouter, File, HTTPException, UploadFile, status
 from fastapi.responses import FileResponse, JSONResponse
 
+from evidence_net.api.diagnostics import compute_run_diagnostics
 from evidence_net.api.schemas import (
     ComparisonRequest,
     ComparisonResponse,
@@ -146,6 +147,36 @@ def get_versions() -> VersionResponse:
     return VersionResponse(versions=prov.as_dict())
 
 
+@router.get("/failures", response_model=None)
+def get_failures() -> dict[str, Any] | JSONResponse:
+    """Serve the frozen natural-failure bank (Phase 10, Gate 9 evidence)."""
+    path = REPO_ROOT / "data" / "failures" / "natural-failures-v1.json"
+    if not path.is_file():
+        return JSONResponse(
+            status_code=status.HTTP_404_NOT_FOUND,
+            content={"error": "natural-failures-v1.json not found"},
+        )
+    return JSONResponse(_read_json(path))
+
+
+@router.get("/stress-definitions", response_model=None)
+def get_stress_definitions() -> dict[str, Any] | JSONResponse:
+    """Serve the frozen hidden stress definitions (Phase 10 test isolation)."""
+    path = REPO_ROOT / "data" / "stress" / "hidden-stress-v1.json"
+    if not path.is_file():
+        return JSONResponse(
+            status_code=status.HTTP_404_NOT_FOUND,
+            content={"error": "hidden-stress-v1.json not found"},
+        )
+    return JSONResponse(_read_json(path))
+
+
+def _read_json(path: Path) -> dict[str, Any]:
+    import json
+
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
 @router.get("/metadata")
 def get_metadata() -> dict[str, Any]:
     """Return repository and metadata store configuration."""
@@ -177,11 +208,23 @@ def run_restoration(req: RestorationRequest) -> RestorationResponse | JSONRespon
             tgt_arr = flat_tgt.reshape(inp_arr.shape) if req.shape else flat_tgt
 
         pipeline = _get_pipeline()
+
+        def _diagnostics(
+            tensors: dict[str, Any],
+        ) -> dict[str, np.ndarray]:
+            """Backend-computed review layers from this run's own tensors."""
+            return compute_run_diagnostics(
+                input_grid=tensors["input.npy"],
+                base_grid=tensors["base.npy"],
+                proposal_grid=tensors["proposal.npy"],
+            )
+
         result = pipeline.run_sample(
             input_tensor=inp_arr,
             target_tensor=tgt_arr,
             optional_tensors=req.optional_fields,
             runs_dir=RUNS_DIR,
+            optional_tensors_fn=_diagnostics,
         )
 
         return RestorationResponse(
